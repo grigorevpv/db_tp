@@ -1,13 +1,11 @@
+from api.controllers.users.views import users_blueprint
 from flask import Flask
-import psycopg2
-from api.forums.views import forums_blueprint
-from api.users.views import users_blueprint
 
-from connect import connect
+# from api.controllers.forums import forums_blueprint
 
 app = Flask(__name__)
 
-app.register_blueprint(forums_blueprint)
+# app.register_blueprint(forums_blueprint)
 app.register_blueprint(users_blueprint)
 
 # @app.route('/')

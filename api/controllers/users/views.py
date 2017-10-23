@@ -1,4 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
+from api.services.UserService.UserService import UserService
+from api.models.users.UserModel import UserModel
 from enquiry.connect import *
 from enquiry.queries_db import *
 from enquiry.secondary import *
@@ -6,40 +8,70 @@ from enquiry.secondary import *
 # create new blueprint
 users_blueprint = Blueprint('users', 'users', url_prefix='/user')
 
+user_service = UserService()
+user_model = UserModel
+STATUS_CODE = {
+	'OK': 200,
+	'CREATED': 201,
+	'NOT_FOUND': 400,
+	'CONFLICT': 409
+}
+
 
 @users_blueprint.route('/<nickname>/create', methods=['POST'])
 def create_user(nickname):
     content = request.get_json(silent=True)
-    about = content['about']
-    email = content['email']
-    fullname = content['fullname']
-    is_user_exist = False
+    content['nickname'] = nickname
+    user = user_model.from_dict(content)
 
-    connect = connectDB()
-    cursor = connect.cursor()
+    user, code = user_service.create_user(user)
 
-    try:
-        cursor = queries(cursor, INSERT_USER, [nickname, about, email, fullname, ])
-        connect.commit()
-    except:
-        is_user_exist = True
-
-    if is_user_exist:
-        users = []
+    if code == STATUS_CODE['CREATED']:
         param_name_array = ["nickname", "about", "email", "fullname"]
-        cursor = queries(cursor, SELECT_USERS_BY_NICKNAME_OR_EMAIL, [nickname, email, ])
-
-        for user in cursor.fetchall():
-            users.append(dict(zip(param_name_array, user[1:])))
-
-        return make_response(jsonify(users), 409)
-    else:
-        cursor.close()
-        param_name_array = ["nickname", "about", "email", "fullname"]
-        param_value_array = [nickname, about, email, fullname]
+        param_value_array = [user.nickname, user.about, user.email, user.fullname]
         user = dict(zip(param_name_array, param_value_array))
 
-        return make_response(jsonify(user), 201)
+        return make_response(jsonify(user), code)
+
+    if code == STATUS_CODE['CONFLICT']:
+
+        return make_response(jsonify(user), code)
+
+
+
+# @users_blueprint.route('/<nickname>/create', methods=['POST'])
+# def create_user(nickname):
+#     content = request.get_json(silent=True)
+#     about = content['about']
+#     email = content['email']
+#     fullname = content['fullname']
+#     is_user_exist = False
+#
+#     connect = connectDB()
+#     cursor = connect.cursor()
+#
+#     try:
+#         cursor = queries(cursor, INSERT_USER, [nickname, about, email, fullname, ])
+#         connect.commit()
+#     except:
+#         is_user_exist = True
+#
+#     if is_user_exist:
+#         users = []
+#         param_name_array = ["nickname", "about", "email", "fullname"]
+#         cursor = queries(cursor, SELECT_USERS_BY_NICKNAME_OR_EMAIL, [nickname, email, ])
+#
+#         for user in cursor.fetchall():
+#             users.append(dict(zip(param_name_array, user[1:])))
+#
+#         return make_response(jsonify(users), 409)
+#     else:
+#         cursor.close()
+#         param_name_array = ["nickname", "about", "email", "fullname"]
+#         param_value_array = [nickname, about, email, fullname]
+#         user = dict(zip(param_name_array, param_value_array))
+#
+#         return make_response(jsonify(user), 201)
 
 
 @users_blueprint.route('/<nickname>/profile', methods=['GET'])
