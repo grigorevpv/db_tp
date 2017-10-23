@@ -9,6 +9,10 @@ class UserModel(object):
 		self._fullname = fullname
 
 	@property
+	def id(self):
+		return self._id
+
+	@property
 	def nickname(self):
 		return self._nickname
 

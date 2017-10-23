@@ -33,3 +33,14 @@ class UserService(object):
 			return message, STATUS_CODE['NOT_FOUND']
 
 		return user, STATUS_CODE['OK']
+
+	@staticmethod
+	def update_user_by_nickname(user):
+		try:
+			user = user_repository.update_user_by_nickname(user)
+		except:
+			message = {"New user's data have been conflicted with existing"}
+
+			return message, STATUS_CODE['CONFLICT']
+
+		return user, STATUS_CODE['OK']

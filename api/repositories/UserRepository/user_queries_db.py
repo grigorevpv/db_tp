@@ -12,7 +12,8 @@ SELECT_USERS_BY_NICKNAME_OR_EMAIL = '''SELECT users.user_id, users.nickname, use
                                          FROM users WHERE nickname = %s OR email = %s;'''
 
 UPDATE_USER_BY_NICKNAME = '''UPDATE users SET about = %s, email = %s, fullname = %s
-                                WHERE nickname = %s;'''
+                                WHERE nickname = %s
+                                RETURNING users.user_id, users.nickname, users.about, users.email, users.fullname;'''
 
 INSERT_USER = '''INSERT INTO users (nickname, about, email, fullname) 
                     VALUES (%s, %s, %s, %s) 
