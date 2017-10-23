@@ -26,7 +26,7 @@ class UserRepository(object):
 			cursor.close()
 
 	@staticmethod
-	def select_user(user):
+	def select_user_by_nickname_or_email(user):
 		connect = connectDB()
 		cursor = connect.cursor()
 
@@ -39,6 +39,26 @@ class UserRepository(object):
 				users.append(dict(zip(param_name_array, user[1:])))
 
 			return users
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()
+
+	@staticmethod
+	def select_user_by_nickname(user):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_USERS_BY_NICKNAME, [user.nickname, ])
+			user = cursor.fetchone()
+
+			return user_model.from_tuple(user)
+		except psycopg2.IntegrityError as e:
+			print("IntegrityError")
+			# raise
+		except psycopg2.ProgrammingError as e:
+			print("programming error")
 		except psycopg2.Error as e:
 			print("PostgreSQL Error: " + e.diag.message_primary)
 		finally:

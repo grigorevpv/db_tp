@@ -38,58 +38,43 @@ def create_user(nickname):
         return make_response(jsonify(user), code)
 
 
+@users_blueprint.route('/<nickname>/profile', methods=['GET'])
+def get_user_profile(nickname):
+    content = dict()
+    content['nickname'] = nickname
+    user = user_model.from_dict(content)
 
-# @users_blueprint.route('/<nickname>/create', methods=['POST'])
-# def create_user(nickname):
-#     content = request.get_json(silent=True)
-#     about = content['about']
-#     email = content['email']
-#     fullname = content['fullname']
-#     is_user_exist = False
-#
+    message_or_user, code = user_service.select_user_by_nickname(user)
+
+    if code == STATUS_CODE['OK']:
+        param_name_array = ["nickname", "about", "email", "fullname"]
+        param_value_array = [message_or_user.nickname, message_or_user.about, message_or_user.email, message_or_user.fullname]
+        message_or_user = dict(zip(param_name_array, param_value_array))
+
+        return make_response(jsonify(message_or_user), code)
+
+    if code == STATUS_CODE['NOT_FOUND']:
+
+        return make_response(jsonify(message_or_user), code)
+
+
+
+# @users_blueprint.route('/<nickname>/profile', methods=['GET'])
+# def get_user_profile(nickname):
 #     connect = connectDB()
 #     cursor = connect.cursor()
 #
-#     try:
-#         cursor = queries(cursor, INSERT_USER, [nickname, about, email, fullname, ])
-#         connect.commit()
-#     except:
-#         is_user_exist = True
+#     cursor = queries(cursor, SELECT_USERS_BY_NICKNAME, [nickname, ])
 #
-#     if is_user_exist:
-#         users = []
-#         param_name_array = ["nickname", "about", "email", "fullname"]
-#         cursor = queries(cursor, SELECT_USERS_BY_NICKNAME_OR_EMAIL, [nickname, email, ])
-#
-#         for user in cursor.fetchall():
-#             users.append(dict(zip(param_name_array, user[1:])))
-#
-#         return make_response(jsonify(users), 409)
-#     else:
+#     if cursor.rowcount == 0:
 #         cursor.close()
-#         param_name_array = ["nickname", "about", "email", "fullname"]
-#         param_value_array = [nickname, about, email, fullname]
-#         user = dict(zip(param_name_array, param_value_array))
 #
-#         return make_response(jsonify(user), 201)
-
-
-@users_blueprint.route('/<nickname>/profile', methods=['GET'])
-def get_user_profile(nickname):
-    connect = connectDB()
-    cursor = connect.cursor()
-
-    cursor = queries(cursor, SELECT_USERS_BY_NICKNAME, [nickname, ])
-
-    if cursor.rowcount == 0:
-        cursor.close()
-
-        return make_response(jsonify({"message": "Can't find user with nickname = %s" % nickname}), 404)
-    param_name_array = ["nickname", "about", "email", "fullname"]
-    profile = dict(zip(param_name_array, cursor.fetchone()[1:]))
-    cursor.close()
-
-    return make_response(jsonify(profile), 200)
+#         return make_response(jsonify({"message": "Can't find user with nickname = %s" % nickname}), 404)
+#     param_name_array = ["nickname", "about", "email", "fullname"]
+#     profile = dict(zip(param_name_array, cursor.fetchone()[1:]))
+#     cursor.close()
+#
+#     return make_response(jsonify(profile), 200)
 
 
 @users_blueprint.route('/<nickname>/profile', methods=['POST'] )

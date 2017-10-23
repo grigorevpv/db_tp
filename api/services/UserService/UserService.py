@@ -17,7 +17,19 @@ class UserService(object):
 		try:
 			user = user_repository.insert_user(user)
 		except:
-			user = user_repository.select_user(user)
+			user = user_repository.select_user_by_nickname_or_email(user)
+
 			return user, STATUS_CODE['CONFLICT']
 
 		return user, STATUS_CODE['CREATED']
+
+	@staticmethod
+	def select_user_by_nickname(user):
+		try:
+			user = user_repository.select_user_by_nickname(user)
+		except:
+			message = {"message": "Can't find user with nickname =" + user.nickname}
+
+			return message, STATUS_CODE['NOT_FOUND']
+
+		return user, STATUS_CODE['OK']

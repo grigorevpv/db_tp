@@ -5,8 +5,8 @@ SELECT_USER_BY_USER_ID = '''SELECT * FROM users
 SELECT_USERS_BY_FORUM_ID = '''SELECT user_id FROM %s 
                                 WHERE forum_id = %s;'''
 
-SELECT_USERS_BY_NICKNAME = '''SELECT * FROM users 
-                                WHERE nickname = %s;'''
+SELECT_USERS_BY_NICKNAME = '''SELECT users.user_id, users.nickname, users.about, users.email, users.fullname
+                                FROM users WHERE nickname = %s;'''
 
 SELECT_USERS_BY_NICKNAME_OR_EMAIL = '''SELECT users.user_id, users.nickname, users.about, users.email, users.fullname 
                                          FROM users WHERE nickname = %s OR email = %s;'''
