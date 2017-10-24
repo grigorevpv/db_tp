@@ -1,9 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
 from api.services.UserService.UserService import UserService
 from api.models.users.UserModel import UserModel
-from enquiry.connect import *
-from enquiry.queries_db import *
-from enquiry.secondary import *
 
 # create new blueprint
 users_blueprint = Blueprint('users', 'users', url_prefix='/user')
@@ -13,7 +10,7 @@ user_model = UserModel
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
-	'NOT_FOUND': 400,
+	'NOT_FOUND': 404,
 	'CONFLICT': 409
 }
 
@@ -72,7 +69,8 @@ def change_user_profile(nickname):
 
     if code == STATUS_CODE['OK']:
         content['id'] = message_or_user.id
-        message_or_user = user_model.from_dict(content)
+        new_user = user_model.from_dict(content)
+        message_or_user.update_cls(new_user)
 
         message_or_user, code = user_service.update_user_by_nickname(message_or_user)
 

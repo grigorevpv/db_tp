@@ -2,6 +2,8 @@ import pytz
 
 
 def convert_time(created):
+    if created is None:
+        return 'Null'
     zone = pytz.timezone('Europe/Moscow')
     if created.tzinfo is None:
         created = zone.localize(created)

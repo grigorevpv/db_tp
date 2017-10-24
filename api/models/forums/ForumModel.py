@@ -50,7 +50,7 @@ class ForumModel(object):
 			slug = my_dict['slug']
 
 		if 'title' in my_dict:
-			fullname = my_dict['title']
+			title = my_dict['title']
 
 		forum = ForumModel(
 			id,

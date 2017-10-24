@@ -69,3 +69,19 @@ class UserModel(object):
 
 		return user
 
+	def update_cls(self, anower_cls):
+		id, nickname, about, email, fullname = [None for _ in range(5)]
+
+		if anower_cls.nickname is not None:
+			self._nickname = anower_cls.nickname
+
+		if anower_cls.about is not None:
+			self._about = anower_cls.about
+
+		if anower_cls.email is not None:
+			self._email = anower_cls.email
+
+		if anower_cls.fullname is not None:
+			self._fullname = anower_cls.fullname
+
+

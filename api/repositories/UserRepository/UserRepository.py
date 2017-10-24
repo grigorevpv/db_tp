@@ -53,15 +53,36 @@ class UserRepository(object):
 		try:
 			cursor.execute(SELECT_USERS_BY_NICKNAME, [user.nickname, ])
 			user = cursor.fetchone()
+			if user is None:
+				raise Exception("user is not exist")
 
 			return user_model.from_tuple(user)
-		except psycopg2.IntegrityError as e:
-			print("IntegrityError")
-			raise
-		except psycopg2.ProgrammingError as e:
-			print("programming error")
 		except psycopg2.Error as e:
 			print("PostgreSQL Error: " + e.diag.message_primary)
+		except Exception as e:
+			print("IntegrityError")
+			raise
+		finally:
+			cursor.close()
+
+	@staticmethod
+	# посмотреть исключения этого метода (оставить необходимые, остальные удалить)
+	def select_user_by_user_id(forum):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_USER_BY_USER_ID, [forum.user_id, ])
+			user = cursor.fetchone()
+			if user is None:
+				raise Exception("user is not exist")
+
+			return user_model.from_tuple(user)
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		except Exception as e:
+			print("IntegrityError")
+			raise
 		finally:
 			cursor.close()
 

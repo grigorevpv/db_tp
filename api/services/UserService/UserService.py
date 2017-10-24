@@ -5,7 +5,7 @@ user_repository = UserRepository()
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
-	'NOT_FOUND': 400,
+	'NOT_FOUND': 404,
 	'CONFLICT': 409
 }
 
@@ -35,11 +35,22 @@ class UserService(object):
 		return user, STATUS_CODE['OK']
 
 	@staticmethod
+	def select_user_by_user_id(forum):
+		try:
+			user = user_repository.select_user_by_user_id(forum)
+		except:
+			message = {"message": "Can't find user with id =" + forum.user_id}
+
+			return message, STATUS_CODE['NOT_FOUND']
+
+		return user, STATUS_CODE['OK']
+
+	@staticmethod
 	def update_user_by_nickname(user):
 		try:
 			user = user_repository.update_user_by_nickname(user)
 		except:
-			message = {"New user's data have been conflicted with existing"}
+			message = {"message": "New user's data have been conflicted with existing"}
 
 			return message, STATUS_CODE['CONFLICT']
 
