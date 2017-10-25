@@ -37,7 +37,7 @@ class UserService(object):
 	@staticmethod
 	def select_user_by_user_id(forum):
 		try:
-			user = user_repository.select_user_by_user_id(forum)
+			user = user_repository.select_user_by_user_id(forum.user_id)
 		except:
 			message = {"message": "Can't find user with id =" + forum.user_id}
 

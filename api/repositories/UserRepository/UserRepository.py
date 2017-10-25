@@ -67,12 +67,12 @@ class UserRepository(object):
 
 	@staticmethod
 	# посмотреть исключения этого метода (оставить необходимые, остальные удалить)
-	def select_user_by_user_id(forum):
+	def select_user_by_user_id(user_id):
 		connect = connectDB()
 		cursor = connect.cursor()
 
 		try:
-			cursor.execute(SELECT_USER_BY_USER_ID, [forum.user_id, ])
+			cursor.execute(SELECT_USER_BY_USER_ID, [user_id, ])
 			user = cursor.fetchone()
 			if user is None:
 				raise Exception("user is not exist")

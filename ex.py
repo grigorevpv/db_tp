@@ -2,7 +2,7 @@ import requests
 import json
 
 # POST with JSON
-url = "http://localhost:5000/forum/u5bpe5G3vm_KS2/create"
+url = "http://localhost:5000/forum/kF41Xupw2mBS8/threads?desc=true&limit=100"
 data = {
   "author": "quaerens.4NANDiO319yP7u",
   "created": "2016-10-31T15:16:19.981+03:00",
@@ -11,10 +11,10 @@ data = {
   "title": "Fluctuo antiquis ea fundum quotiens perit."
 }
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-r = requests.post(url, data=json.dumps(data), headers=headers)
+# r = requests.post(url, data=json.dumps(data), headers=headers)
 
 # data2 = {"slug": "sluggg", "limit": "100", "desc": "true"}
-# r = requests.get(url, headers=headers)
+r = requests.get(url, headers=headers)
 
 # Response, status etc
 print(r.text)
