@@ -38,10 +38,8 @@ def create_user(nickname):
 @users_blueprint.route('/<nickname>/profile', methods=['GET'])
 def get_user_profile(nickname):
     content = dict()
-    content['nickname'] = nickname
-    user = user_model.from_dict(content)
 
-    message_or_user, code = user_service.select_user_by_nickname(user)
+    message_or_user, code = user_service.select_user_by_nickname(nickname)
 
     if code == STATUS_CODE['OK']:
         param_name_array = ["nickname", "about", "email", "fullname"]
@@ -58,10 +56,8 @@ def get_user_profile(nickname):
 @users_blueprint.route('/<nickname>/profile', methods=['POST'])
 def change_user_profile(nickname):
     content = request.get_json(silent=True)
-    content['nickname'] = nickname
-    user = user_model.from_dict(content)
 
-    message_or_user, code = user_service.select_user_by_nickname(user)
+    message_or_user, code = user_service.select_user_by_nickname(nickname)
 
     if code == STATUS_CODE['NOT_FOUND']:
 

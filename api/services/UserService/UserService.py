@@ -24,9 +24,9 @@ class UserService(object):
 		return user, STATUS_CODE['CREATED']
 
 	@staticmethod
-	def select_user_by_nickname(user):
+	def select_user_by_nickname(user_nickname):
 		try:
-			user = user_repository.select_user_by_nickname(user)
+			user = user_repository.select_user_by_nickname(user_nickname)
 		except:
 			message = {"message": "Can't find user with nickname =" + user.nickname}
 

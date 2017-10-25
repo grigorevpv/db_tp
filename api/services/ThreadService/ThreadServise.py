@@ -52,3 +52,24 @@ class ThreadService(object):
 			print("[ThreadService] select_threads_by_forum_id: Threads is no exist")
 
 			return forum, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def select_thread_by_slug_or_id(slug_or_id):
+		if slug_or_id.isdigit():
+			try:
+				thread = thread_repository.get_thread_by_id(slug_or_id)
+
+				return thread, STATUS_CODE['OK']
+			except:
+				message = {"message": "Can't find thread with id: " + slug_or_id}
+
+				return message, STATUS_CODE['NOT_FOUND']
+		else:
+			try:
+				thread = thread_repository.get_thread_by_slug(slug_or_id)
+
+				return thread, STATUS_CODE['OK']
+			except:
+				message = {"message": "Can't find thread with slug: " + slug_or_id}
+
+				return message, STATUS_CODE['NOT_FOUND']

@@ -46,12 +46,12 @@ class UserRepository(object):
 
 	@staticmethod
 	# посмотреть исключения этого метода (оставить необходимые, остальные удалить)
-	def select_user_by_nickname(user):
+	def select_user_by_nickname(user_nickname):
 		connect = connectDB()
 		cursor = connect.cursor()
 
 		try:
-			cursor.execute(SELECT_USERS_BY_NICKNAME, [user.nickname, ])
+			cursor.execute(SELECT_USERS_BY_NICKNAME, [user_nickname, ])
 			user = cursor.fetchone()
 			if user is None:
 				raise Exception("user is not exist")

@@ -10,6 +10,46 @@ thread_model = ThreadModel
 
 class ThreadRepository(object):
 	@staticmethod
+	def get_thread_by_slug(thread_slug):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_THREAD_BY_SLUG, [thread_slug, ])
+			thread = cursor.fetchone()
+			if thread is None:
+				raise Exception("threads is not exist")
+
+			return thread_model.from_tuple(thread)
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		except Exception as e:
+			print("IntegrityError")
+			raise
+		finally:
+			cursor.close()
+
+	@staticmethod
+	def get_thread_by_id(thread_id):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_THREAD_BY_ID, [thread_id, ])
+			thread = cursor.fetchone()
+			if thread is None:
+				raise Exception("threads is not exist")
+
+			return thread_model.from_tuple(thread)
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		except Exception as e:
+			print("IntegrityError")
+			raise
+		finally:
+			cursor.close()
+
+	@staticmethod
 	def select_threads_by_forum_id(forum, params):
 		connect = connectDB()
 		cursor = connect.cursor()
