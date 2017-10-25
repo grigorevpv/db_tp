@@ -7,6 +7,7 @@ from api.repositories.ForumRepository.forum_queries_db import *
 forum_model = ForumModel
 thread_model = ThreadModel
 
+
 class ForumRepository(object):
 	@staticmethod
 	def create_forum(forum, user):
@@ -63,6 +64,26 @@ class ForumRepository(object):
 
 		try:
 			cursor.execute(SELECT_FORUM_BY_SLUG, [forum.slug, ])
+			forum = cursor.fetchone()
+			if forum is None:
+				raise Exception("forum is not exist")
+
+			return forum_model.from_tuple(forum)
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		except Exception as e:
+			print("IntegrityError")
+			raise
+		finally:
+			cursor.close()
+
+	@staticmethod
+	def select_forum_by_id(forum_id):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_FORUM_BY_ID, [forum_id, ])
 			forum = cursor.fetchone()
 			if forum is None:
 				raise Exception("forum is not exist")

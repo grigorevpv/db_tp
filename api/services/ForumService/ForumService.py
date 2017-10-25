@@ -43,13 +43,13 @@ class ForumService(object):
 			print("[ForumService] count_posts_by_forum_id exception")
 
 	@staticmethod
-	def select_forum_bu_slug(forum):
+	def select_forum_by_id(forum_id):
 		try:
-			forum = forum_repository.select_forum_by_slug(forum)
+			forum = forum_repository.select_forum_by_id(forum_id)
 
 			return forum, STATUS_CODE['OK']
 		except:
-			message = {"message": "Can't find forum with slug: " + forum.slug}
+			message = {"message": "Can't find forum with id: " + forum_id}
 
 			return message, STATUS_CODE['NOT_FOUND']
 

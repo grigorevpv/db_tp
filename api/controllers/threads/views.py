@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Blueprint, request, make_response, jsonify
 from api.services.ForumService.ForumService import ForumService
 from api.models.forums.ForumModel import ForumModel
@@ -5,6 +6,7 @@ from api.services.UserService.UserService import UserService
 from api.models.users.UserModel import UserModel
 from api.services.ThreadService.ThreadServise import ThreadService
 from api.models.threads.ThreadModel import ThreadModel
+from api.services.PostService.PostService import PostService
 from api.models.posts.PostModel import PostModel
 from enquiry.queries_db import *
 from enquiry.connect import *
@@ -19,6 +21,7 @@ user_service = UserService()
 user_model = UserModel
 thread_service = ThreadService()
 thread_model = ThreadModel
+post_service = PostService()
 post_model = PostModel
 STATUS_CODE = {
 	'OK': 200,
@@ -37,7 +40,17 @@ def create_posts(slug_or_id):
 
 		for post in content:
 			user, code = user_service.select_user_by_nickname(post['author'])
-			post, code = 
+			forum, code = forum_service.select_forum_bu_slug(message_or_thread.forum_id)
+			post_content = dict()
+			post_content['user_id'] = user.id
+			post_content['thread_id'] = message_or_thread.id
+			post_content['forum_id'] = message_or_thread.forum_id
+			post_content['created'] = convert_time(datetime.now())
+			post_content['message'] = content['message']
+			post_content['parent_id'] = 0 if content.get('parent') is None else content['parent_id']
+			post = post_model.from_dict(post_content)
+
+			post, code = post_service.create_post(post)
 
 
 		return make_response(jsonify(message_or_thread), code)

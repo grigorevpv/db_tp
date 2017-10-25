@@ -1,7 +1,7 @@
 SELECT_FORUM_BY_SLUG = '''SELECT forums.forum_id, forums.user_id, forums.slug, forums.title 
 							FROM forums WHERE slug = %s;'''
 
-SELECT_FORUM_BY_FORUM_ID = '''SELECT forums.forum_id, forums.user_id, forums.slug, forums.title 
+SELECT_FORUM_BY_ID = '''SELECT forums.forum_id, forums.user_id, forums.slug, forums.title 
 								FROM forums WHERE forum_id = %s;'''
 
 INSERT_FORUM = '''INSERT INTO forums (user_id, slug, title)
