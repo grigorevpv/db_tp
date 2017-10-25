@@ -5,6 +5,7 @@ from api.services.UserService.UserService import UserService
 from api.models.users.UserModel import UserModel
 from api.services.ThreadService.ThreadServise import ThreadService
 from api.models.threads.ThreadModel import ThreadModel
+from api.models.posts.PostModel import PostModel
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
@@ -18,6 +19,7 @@ user_service = UserService()
 user_model = UserModel
 thread_service = ThreadService()
 thread_model = ThreadModel
+post_model = PostModel
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
@@ -34,8 +36,8 @@ def create_posts(slug_or_id):
 	if code == STATUS_CODE['OK']:
 
 		for post in content:
-			post, code = 
 			user, code = user_service.select_user_by_nickname(post['author'])
+			post, code = 
 
 
 		return make_response(jsonify(message_or_thread), code)
