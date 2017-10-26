@@ -28,18 +28,18 @@ class UserService(object):
 		try:
 			user = user_repository.select_user_by_nickname(user_nickname)
 		except:
-			message = {"message": "Can't find user with nickname =" + user.nickname}
+			message = {"message": "Can't find user with nickname =" + user_nickname}
 
 			return message, STATUS_CODE['NOT_FOUND']
 
 		return user, STATUS_CODE['OK']
 
 	@staticmethod
-	def select_user_by_user_id(forum):
+	def select_user_by_user_id(user_id):
 		try:
-			user = user_repository.select_user_by_user_id(forum.user_id)
+			user = user_repository.select_user_by_user_id(user_id)
 		except:
-			message = {"message": "Can't find user with id =" + forum.user_id}
+			message = {"message": "Can't find user with id =" + user_id}
 
 			return message, STATUS_CODE['NOT_FOUND']
 

@@ -58,12 +58,12 @@ class ForumRepository(object):
 			cursor.close()
 
 	@staticmethod
-	def select_forum_by_slug(forum):
+	def select_forum_by_slug(forum_slug):
 		connect = connectDB()
 		cursor = connect.cursor()
 
 		try:
-			cursor.execute(SELECT_FORUM_BY_SLUG, [forum.slug, ])
+			cursor.execute(SELECT_FORUM_BY_SLUG, [forum_slug, ])
 			forum = cursor.fetchone()
 			if forum is None:
 				raise Exception("forum is not exist")

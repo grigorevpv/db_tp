@@ -13,6 +13,7 @@ STATUS_CODE = {
 	'CONFLICT': 409
 }
 
+
 class PostService(object):
 
 	@staticmethod

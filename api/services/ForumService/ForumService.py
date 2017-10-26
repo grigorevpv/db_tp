@@ -1,8 +1,10 @@
 from api.repositories.ForumRepository.ForumRepository import ForumRepository
 from api.repositories.UserRepository.UserRepository import UserRepository
+from api.repositories.ThreadRepository.ThreadRepository import ThreadRepository
 
 user_repository = UserRepository()
 forum_repository = ForumRepository()
+thread_repository = ThreadRepository()
 
 STATUS_CODE = {
 	'OK': 200,
@@ -43,6 +45,17 @@ class ForumService(object):
 			print("[ForumService] count_posts_by_forum_id exception")
 
 	@staticmethod
+	def select_forum_by_slug(forum_slug):
+		try:
+			forum = forum_repository.select_forum_by_slug(forum_slug)
+
+			return forum, STATUS_CODE['OK']
+		except:
+			message = {"message": "Can't find forum with slug: " + forum_slug}
+
+			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
 	def select_forum_by_id(forum_id):
 		try:
 			forum = forum_repository.select_forum_by_id(forum_id)
@@ -54,13 +67,37 @@ class ForumService(object):
 			return message, STATUS_CODE['NOT_FOUND']
 
 	@staticmethod
-	def create_thread(thread, forum, user):
+	def create_thread(user, forum, thread):
+
 		try:
-			thread = forum_repository.create_thread(thread, forum, user)
-
-			return thread, STATUS_CODE['CREATED']
+			message_or_user = user_repository.select_user_by_nickname(user.nickname)
 		except:
-			print("[ForumService] create_thread exception")
+			message = {"message": "Can't find user with nickname: " + user.nickname}
 
-			return thread, STATUS_CODE['CONFLICT']
+			return forum, user, message, STATUS_CODE['NOT_FOUND']
+
+		try:
+			message_or_forum = forum_repository.select_forum_by_slug(forum.slug)
+		except:
+			message = {"message": "Can't find forum with slug: " + forum.slug}
+
+			return forum, user, message, STATUS_CODE['NOT_FOUND']
+
+		try:
+			message_or_thread = thread_repository.get_thread_by_slug(thread.slug)
+			message_or_user = user_repository.select_user_by_user_id(message_or_thread.user_id)
+			message_or_forum = forum_repository.select_forum_by_id(message_or_thread.forum_id)
+
+			return message_or_forum, message_or_user, message_or_thread, STATUS_CODE['CONFLICT']
+
+		except:
+
+			message_or_thread = forum_repository.create_thread(thread, message_or_forum, message_or_user)
+
+			return message_or_forum, message_or_user, message_or_thread, STATUS_CODE['CREATED']
+
+
+
+
+
 
