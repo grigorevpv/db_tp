@@ -153,7 +153,19 @@ def get_posts_information(slug_or_id):
 	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
 
 	if code == STATUS_CODE['OK']:
+		forum, code = forum_service.select_forum_by_id(message_or_thread.forum_id)
 		message_or_posts_arr, code = post_service.get_posts_arr(message_or_thread, params)
+		posts_arr = []
+		param_name_array = ["author", "created", "forum", "id", "message", "parent", "thread"]
+
+		for post in message_or_posts_arr:
+			user, status_code = user_service.select_user_by_user_id(post.user_id)
+			param_value_array = [user.nickname, convert_time(post.created), forum.slug,
+			                     post.id, post.message, post.parent_id, post.thread_id]
+			post = dict(zip(param_name_array, param_value_array))
+			posts_arr.append(post)
+
+		return make_response(jsonify(posts_arr), code)
 
 	if code == STATUS_CODE['NOT_FOUND']:
 		return make_response(jsonify(message_or_thread), code)

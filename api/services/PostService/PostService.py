@@ -55,10 +55,9 @@ class PostService(object):
 		order = 'asc'
 		if 'desc' in params:
 			order = 'desc' if params.get('desc') == 'true' else 'asc'
-		since = ''
+		since = 0
 		if 'since' in params:
-			znak = ' <= ' if order == 'desc' else ' >= '
-			since = 'and created ' + znak + "'" + params.get('since') + "'"
+			since = params.get('since')
 		sort = 'flat'
 		if 'sort' in params:
 			sort = params.get('sort')
@@ -70,38 +69,51 @@ class PostService(object):
 		new_params['sort'] = sort
 		new_params['since'] = since
 
+		message = {"message": "Error in sorting posts"}
+
 		if sort == 'flat':
-			if since == '':
+			if since == 0:
 				try:
-					posts_arr = post_repository.posts_flat_sort(thread, params)
+					posts_arr = post_repository.posts_flat_sort(thread, new_params)
+					return posts_arr, STATUS_CODE['OK']
 				except:
-					print("[PostService] get_posts_arr flat sort error")
+					return message, STATUS_CODE['CONFLICT']
 			else:
 				try:
-					posts_arr = post_repository.posts_flat_sort_since(thread, params)
+					posts_arr = post_repository.posts_flat_sort_since(thread, new_params)
+					return posts_arr, STATUS_CODE['OK']
 				except:
 					print("[PostService] get_posts_arr flat sort with since error")
+					return message, STATUS_CODE['CONFLICT']
 		elif sort == 'tree':
-			if since == '':
+			if since == 0:
 				try:
-					posts_arr = post_repository.posts_tree_sort(thread, params)
+					posts_arr = post_repository.posts_tree_sort(thread, new_params)
+					return posts_arr, STATUS_CODE['OK']
 				except:
 					print("[PostService] get_posts_arr tree sort error")
+					return message, STATUS_CODE['CONFLICT']
 			else:
 				try:
-					posts_arr = post_repository.posts_tree_sort_since(thread, params)
+					posts_arr = post_repository.posts_tree_sort_since(thread, new_params)
+					return posts_arr, STATUS_CODE['OK']
 				except:
 					print("[PostService] get_posts_arr tree sort with since error")
+					return message, STATUS_CODE['CONFLICT']
 		elif sort == 'parent_tree':
-			if since == '':
+			if since == 0:
 				try:
-					posts_arr = post_repository.posts_parent_tree_sort(thread, params)
+					posts_arr = post_repository.posts_parent_tree_sort(thread, new_params)
+					return posts_arr, STATUS_CODE['OK']
 				except:
 					print("[PostService] get_posts_arr parent_tre sort error")
+					return message, STATUS_CODE['CONFLICT']
 			else:
 				try:
-					posts_arr = post_repository.posts_parent_tree_sort_since(thread, params)
+					posts_arr = post_repository.posts_parent_tree_sort_since(thread, new_params)
+					return posts_arr, STATUS_CODE['OK']
 				except:
 					print("[PostService] get_posts_arr parent_tre sort with since error")
+					return message, STATUS_CODE['CONFLICT']
 
 
