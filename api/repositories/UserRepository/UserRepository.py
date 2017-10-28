@@ -1,6 +1,6 @@
 import psycopg2
 from api.models.users.UserModel import UserModel
-from api.repositories.UserRepository.connect import connectDB
+from api.repositories.connect import connectDB
 from api.repositories.UserRepository.user_queries_db import *
 
 user_model = UserModel

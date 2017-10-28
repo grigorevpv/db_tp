@@ -1,6 +1,6 @@
 class PostModel(object):
 
-	def __init__(self, id, user_id, thread_id, forum_id, created, isedited, message, parent_id):
+	def __init__(self, id, user_id, thread_id, forum_id, created, isedited, message, parent_id, path):
 		self._id = id
 		self._user_id = user_id
 		self._thread_id = thread_id
@@ -9,6 +9,7 @@ class PostModel(object):
 		self._isedited = isedited
 		self._message = message
 		self._parent_id = parent_id
+		self._path = path
 
 	@property
 	def id(self):
@@ -42,9 +43,17 @@ class PostModel(object):
 	def parent_id(self):
 		return self._parent_id
 
+	@property
+	def path(self):
+		return self._path
+
+	@path.setter
+	def path(self, path):
+		self._path = path
+
 	@classmethod
 	def from_tuple(cls, my_tuple):
-		id, user_id, thread_id, forum_id, created, isedited, message, parent_id = my_tuple
+		id, user_id, thread_id, forum_id, created, isedited, message, parent_id, path = my_tuple
 
 		post = PostModel(
 			id,
@@ -54,14 +63,15 @@ class PostModel(object):
 			created,
 			isedited,
 			message,
-			parent_id
+			parent_id,
+			path
 		)
 
 		return post
 
 	@classmethod
 	def from_dict(cls, my_dict):
-		id, user_id, thread_id, forum_id, created, isedited, message, parent_id = [None for _ in range(8)]
+		id, user_id, thread_id, forum_id, created, isedited, message, parent_id, path = [None for _ in range(9)]
 
 		if 'user_id' in my_dict:
 			user_id = my_dict['user_id']
@@ -84,6 +94,9 @@ class PostModel(object):
 		if 'parent_id' in my_dict:
 			parent_id = my_dict['parent_id']
 
+		if 'path' in my_dict:
+			path = my_dict['path']
+
 		post = PostModel(
 			id,
 			user_id,
@@ -92,7 +105,8 @@ class PostModel(object):
 			created,
 			isedited,
 			message,
-			parent_id
+			parent_id,
+			path
 		)
 
 		return post

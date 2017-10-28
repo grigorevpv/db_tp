@@ -31,14 +31,15 @@ CREATE TABLE threads (
 );
 
 CREATE TABLE posts (
-  post_id serial CONSTRAINT firstkey_p PRIMARY KEY,    -- ID поста
+  post_id serial CONSTRAINT firstkey_p PRIMARY KEY,     -- ID поста
   user_id INTEGER REFERENCES users(user_id),            -- ID пользователя, создавшего пост
   thread_id INTEGER REFERENCES threads(thread_id),      -- ID ветки обсуждения в котором находится сообщение
   forum_id INTEGER REFERENCES forums(forum_id),         -- ID форума в котором находится сообщение
   created TIMESTAMP WITH TIME ZONE,                     -- Дата создания поста
   isEdited BOOLEAN DEFAULT FALSE,                       -- Было ли изменино сообщение
   message TEXT,                                         -- Сообщение поста
-  parent_id INTEGER DEFAULT 0                           -- Идентификатор родительского сообщения
+  parent_id INTEGER DEFAULT 0,                          -- Идентификатор родительского сообщения
+  path     INTEGER []                                   -- Путь до подительского поста
 
 );
 

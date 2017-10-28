@@ -19,6 +19,15 @@ class PostService(object):
 	@staticmethod
 	def create_post(post):
 		try:
+			post_parent = post_repository.select_post_by_id(post.parent_id)
+			path = list()
+			# for num in post_parent.path:
+			# 	path.append(num)
+			path.extend(post_parent.path)
+			post.path = path
+		except:
+			print("post parent is not exist")
+		try:
 			post = post_repository.create_post(post)
 
 			return post, STATUS_CODE['CREATED']
@@ -26,3 +35,73 @@ class PostService(object):
 			message = {"message": "Post didn't created"}
 
 			return message, STATUS_CODE['CONFLICT']
+
+	@staticmethod
+	def select_post_by_id(post_id):
+		try:
+			post = post_repository.select_post_by_id(post_id)
+
+			return post, STATUS_CODE['OK']
+		except:
+			message = {"message": "Didn't find post with id: " + post_id}
+
+			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def get_posts_arr(thread, params):
+		limit = ' ALL '
+		if 'limit' in params:
+			limit = params.get('limit')
+		order = 'asc'
+		if 'desc' in params:
+			order = 'desc' if params.get('desc') == 'true' else 'asc'
+		since = ''
+		if 'since' in params:
+			znak = ' <= ' if order == 'desc' else ' >= '
+			since = 'and created ' + znak + "'" + params.get('since') + "'"
+		sort = 'flat'
+		if 'sort' in params:
+			sort = params.get('sort')
+		order = ' ' + order + ' '
+
+		new_params = dict()
+		new_params['limit'] = limit
+		new_params['order'] = order
+		new_params['sort'] = sort
+		new_params['since'] = since
+
+		if sort == 'flat':
+			if since == '':
+				try:
+					posts_arr = post_repository.posts_flat_sort(thread, params)
+				except:
+					print("[PostService] get_posts_arr flat sort error")
+			else:
+				try:
+					posts_arr = post_repository.posts_flat_sort_since(thread, params)
+				except:
+					print("[PostService] get_posts_arr flat sort with since error")
+		elif sort == 'tree':
+			if since == '':
+				try:
+					posts_arr = post_repository.posts_tree_sort(thread, params)
+				except:
+					print("[PostService] get_posts_arr tree sort error")
+			else:
+				try:
+					posts_arr = post_repository.posts_tree_sort_since(thread, params)
+				except:
+					print("[PostService] get_posts_arr tree sort with since error")
+		elif sort == 'parent_tree':
+			if since == '':
+				try:
+					posts_arr = post_repository.posts_parent_tree_sort(thread, params)
+				except:
+					print("[PostService] get_posts_arr parent_tre sort error")
+			else:
+				try:
+					posts_arr = post_repository.posts_parent_tree_sort_since(thread, params)
+				except:
+					print("[PostService] get_posts_arr parent_tre sort with since error")
+
+
