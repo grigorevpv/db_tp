@@ -116,4 +116,14 @@ class PostService(object):
 					print("[PostService] get_posts_arr parent_tre sort with since error")
 					return message, STATUS_CODE['CONFLICT']
 
+	@staticmethod
+	def update_post(post, message):
+		try:
+			post = post_repository.update_post(post, message)
+			return post, STATUS_CODE['OK']
+		except:
+			message = {"message": "Can't update post with id: " + post.id}
+
+			return message, STATUS_CODE['CONFLICT']
+
 

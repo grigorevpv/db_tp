@@ -242,6 +242,26 @@ class PostRepository(object):
 		finally:
 			cursor.close()
 
+	@staticmethod
+	def update_post(post, message):
+		connect = connectDB()
+		cursor = connect.cursor()
+		isEdited = True
+
+		try:
+			command = '''UPDATE posts SET message = '%s', isedited = %s
+								WHERE post_id = %s RETURNING *;''' % (message, isEdited, post.id)
+			cursor.execute(command)
+			post = cursor.fetchone()
+
+			return post_model.from_tuple(post)
+		except psycopg2.IntegrityError as e:
+			print("This user is already exist")
+			raise
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()
 
 
 

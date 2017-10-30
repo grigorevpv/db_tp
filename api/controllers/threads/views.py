@@ -46,6 +46,8 @@ def create_posts(slug_or_id):
 
 		for post in content:
 			user, status_code = user_service.select_user_by_nickname(post['author'])
+			if status_code == STATUS_CODE['NOT_FOUND']:
+				return make_response(jsonify(user), status_code)
 			forum, status_code = forum_service.select_forum_by_id(message_or_thread.forum_id)
 
 			path = list()
@@ -56,7 +58,14 @@ def create_posts(slug_or_id):
 			post_content['created'] = created_time
 			post_content['message'] = post['message']
 			if post.get('parent') is not None:
-				post_content['parent_id'] = post['parent']
+				try:
+					message_or_parent_post, status_code = post_service.select_post_by_id(post['parent'])
+					if message_or_parent_post.thread_id == message_or_thread.id:
+						post_content['parent_id'] = post['parent']
+					else:
+						return make_response(jsonify({"message": "Parent post was created in another thread"}), STATUS_CODE['CONFLICT'])
+				except:
+					return make_response(jsonify({"message": "Cant't find parent post"}), STATUS_CODE['CONFLICT'])
 			else:
 				post_content['parent_id'] = 0
 			post_content['path'] = path
