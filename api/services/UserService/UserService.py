@@ -55,3 +55,29 @@ class UserService(object):
 			return message, STATUS_CODE['CONFLICT']
 
 		return user, STATUS_CODE['OK']
+
+	@staticmethod
+	def select_users_arr(forum, params):
+		limit, since, desc = 100, None, False
+
+		if 'limit' in params:
+			limit = params.get('limit')
+
+		if 'desc' in params:
+			if params.get('desc') == 'true':
+				desc = True
+
+		if 'since' in params:
+			since = params.get('since')
+
+		new_params = dict()
+		new_params['limit'] = limit
+		new_params['since'] = since
+		new_params['desc'] = desc
+		try:
+			users_arr = user_repository.select_users_arr(forum.id, new_params)
+			return users_arr, STATUS_CODE['OK']
+		except:
+			message = {"message": "Can't select users"}
+
+			return message, STATUS_CODE['CONFLICT']

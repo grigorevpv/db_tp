@@ -104,5 +104,99 @@ class UserRepository(object):
 		finally:
 			cursor.close()
 
+	@staticmethod
+	# посмотреть исключения этого метода (оставить необходимые, остальные удалить)
+	def select_users_arr(forum_id, params):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		if params['since'] is not None:
+			if params['desc']:
+				try:
+					command = SELECT_USERS_SINCE_DESC % (forum_id, forum_id, params['since'], params['limit'])
+					cursor.execute(command)
+					users = cursor.fetchall()
+					if users is None:
+						raise Exception("user is not exist")
+
+					users_arr = []
+					for user in users:
+						user = user_model.from_tuple(user)
+						users_arr.append(user)
+
+					return users_arr
+				except psycopg2.Error as e:
+					print("PostgreSQL Error: " + e.diag.message_primary)
+				except Exception as e:
+					print("IntegrityError")
+					raise
+				finally:
+					cursor.close()
+			else:
+				try:
+					command = SELECT_USERS_SINCE % (forum_id, forum_id, params['since'], params['limit'])
+					cursor.execute(command)
+					users = cursor.fetchall()
+					if users is None:
+						raise Exception("user is not exist")
+
+					users_arr = []
+					for user in users:
+						user = user_model.from_tuple(user)
+						users_arr.append(user)
+
+					return users_arr
+				except psycopg2.Error as e:
+					print("PostgreSQL Error: " + e.diag.message_primary)
+				except Exception as e:
+					print("IntegrityError")
+					raise
+				finally:
+					cursor.close()
+		else:
+			if params['desc']:
+				try:
+					command = SELECT_USERS_DESC % (forum_id, forum_id, params['limit'])
+					cursor.execute(command)
+					users = cursor.fetchall()
+					if users is None:
+						raise Exception("user is not exist")
+
+					users_arr = []
+					for user in users:
+						user = user_model.from_tuple(user)
+						users_arr.append(user)
+
+					return users_arr
+				except psycopg2.Error as e:
+					print("PostgreSQL Error: " + e.diag.message_primary)
+				except Exception as e:
+					print("IntegrityError")
+					raise
+				finally:
+					cursor.close()
+			else:
+				try:
+					command = SELECT_USERS % (forum_id, forum_id, params['limit'])
+					cursor.execute(command)
+					users = cursor.fetchall()
+					if users is None:
+						raise Exception("user is not exist")
+
+					users_arr = []
+					for user in users:
+						user = user_model.from_tuple(user)
+						users_arr.append(user)
+
+					return users_arr
+				except psycopg2.Error as e:
+					print("PostgreSQL Error: " + e.diag.message_primary)
+				except Exception as e:
+					print("IntegrityError")
+					raise
+				finally:
+					cursor.close()
+
+
 
 

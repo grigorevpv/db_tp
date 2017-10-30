@@ -50,8 +50,12 @@ INSERT_THREAD_WITHOUT_SLUG = '''INSERT INTO threads (forum_id, user_id, created,
 INSERT_THREAD_WITHOUT_CREATED_AND_SLUG = '''INSERT INTO threads (forum_id, user_id, message, title)
                                             VALUES (%s, %s, %s, %s) RETURNING *'''
 
-UNION_TABLES = '''SELECT u.nickname, u.about, u.email, u.fullname FROM posts p
+SELECT_USERS = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
                  JOIN users u ON p.user_id = u.user_id
+                 WHERE forum_id = %s
                  UNION
-                 SELECT us.nickname, us.about, us.email, us.fullname FROM threads th
-                 JOIN users us ON th.user_id = us.user_id'''
+                 SELECT us.user_id FROM threads th
+                 JOIN users us ON th.user_id = us.user_id
+                 WHERE forum_id = %s) AND users.nickname < %s
+                 ORDER BY users.nickname COLLATE ucs_basic %s 
+                 LIMIT %s;'''
