@@ -73,3 +73,13 @@ class ThreadService(object):
 				message = {"message": "Can't find thread with slug: " + slug_or_id}
 
 				return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def update_thread(thread, new_thread):
+		try:
+			thread = thread_repository.update_thread(thread, new_thread)
+			return thread, STATUS_CODE['OK']
+		except:
+			message = {"message": "Can't update thread with slug: " + thread.slug}
+
+			return message, STATUS_CODE['CONFLICT']

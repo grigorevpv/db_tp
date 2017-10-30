@@ -10,6 +10,29 @@ thread_model = ThreadModel
 post_model = PostModel
 
 
+def posts_since_limit(content, since, limit):
+    for i in range(len(content) - 1):
+        if content[i][0] == int(since):
+            return content[i+1:i+int(limit)+1]
+    return []
+
+
+def posts_since_limit_parent(content, since, limit):
+    for i in range(len(content) - 1):
+        if content[i][0] == int(since):
+            start = i + 1
+            stop = start
+            flag = 1
+            for j in range(start, len(content)-1):
+                if content[j][7] == 0:
+                    flag += 1
+                if flag > int(limit):
+                    break
+                stop += 1
+            return content[start:stop+2]
+    return []
+
+
 class PostRepository(object):
 	@staticmethod
 	def create_post(post):
@@ -86,11 +109,14 @@ class PostRepository(object):
 		cursor = connect.cursor()
 
 		try:
-			cursor.execute(SELECT_POSTS_FLAT_SINCE_SORT, [thread.id, params['order'], params['order'], ])
+			command = '''SELECT posts.post_id, posts.user_id, posts.thread_id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent_id, posts.path 
+								FROM posts WHERE thread_id = %s ORDER BY created %s, post_id %s;''' % (thread.id, params['order'], params['order'])
+			cursor.execute(command)
 			posts = cursor.fetchall()
 			if posts is None:
 				raise Exception("post is not exist")
 
+			posts = posts_since_limit(posts, params['since'], params['limit'])
 			post_arr = []
 			for post in posts:
 				post_arr.append(post_model.from_tuple(post))
@@ -136,11 +162,14 @@ class PostRepository(object):
 		cursor = connect.cursor()
 
 		try:
-			cursor.execute(SELECT_POSTS_TREE_SORT, [thread.id, params['order'], ])
+			command = '''SELECT posts.post_id, posts.user_id, posts.thread_id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent_id, posts.path 
+								FROM posts WHERE thread_id = %s ORDER BY path %s;''' % (thread.id, params['order'])
+			cursor.execute(command)
 			posts = cursor.fetchall()
 			if posts is None:
 				raise Exception("post is not exist")
 
+			posts = posts_since_limit(posts, params['since'], params['limit'])
 			post_arr = []
 			for post in posts:
 				post_arr.append(post_model.from_tuple(post))
@@ -170,6 +199,36 @@ class PostRepository(object):
 			if posts is None:
 				raise Exception("post is not exist")
 
+			post_arr = []
+			for post in posts:
+				post_arr.append(post_model.from_tuple(post))
+
+			return post_arr
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		except Exception as e:
+			print("IntegrityError")
+			raise
+		finally:
+			cursor.close()
+
+	@staticmethod
+	def posts_parent_tree_sort_since(thread, params):
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			command = '''SELECT posts.post_id, posts.user_id, posts.thread_id, posts.forum_id, 
+									posts.created, posts.isedited, posts.message, posts.parent_id, posts.path 
+									FROM posts WHERE path[1] IN (SELECT posts.post_id FROM posts 
+									WHERE thread_id = %s AND parent_id = 0 ORDER BY post_id %s) 
+									ORDER BY path %s;''' % (thread.id, params['order'], params['order'])
+			cursor.execute(command)
+			posts = cursor.fetchall()
+			if posts is None:
+				raise Exception("post is not exist")
+
+			posts = posts_since_limit_parent(posts, params['since'], params['limit'])
 			post_arr = []
 			for post in posts:
 				post_arr.append(post_model.from_tuple(post))

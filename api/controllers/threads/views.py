@@ -143,9 +143,35 @@ def get_thread_information(slug_or_id):
 
 		return make_response(jsonify(thread_data), code)
 
-
 	if code == STATUS_CODE['NOT_FOUND']:
 		return make_response(jsonify(message_or_thread), code)
+
+
+@threads_blueprint.route('/<slug_or_id>/details', methods=['POST'])
+def update_thread_information(slug_or_id):
+	content = request.get_json(silent=True)
+	thread_content = dict()
+	thread_content['message'] = content['message']
+	thread_content['title'] = content['title']
+	thread = thread_model.from_dict(thread_content)
+
+	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+
+	if code == STATUS_CODE['OK']:
+		message_or_thread, code = thread_service.update_thread(message_or_thread, thread)
+		if code == STATUS_CODE['OK']:
+			user, status_code = user_service.select_user_by_user_id(message_or_thread.user_id)
+			forum, status_code = forum_service.select_forum_by_id(message_or_thread.forum_id)
+			param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
+			param_value_array = [user.nickname, convert_time(message_or_thread.created),
+			                     forum.slug, message_or_thread.id, message_or_thread.message,
+			                     message_or_thread.slug, message_or_thread.title]
+			thread_data = dict(zip(param_name_array, param_value_array))
+			return make_response(jsonify(thread_data), code)
+
+	if code == STATUS_CODE['NOT_FOUND']:
+		return make_response(message_or_thread, code)
+
 
 @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
 def get_posts_information(slug_or_id):
