@@ -278,6 +278,19 @@ class PostRepository(object):
 		finally:
 			cursor.close()
 
+	@staticmethod
+	def delete_posts():
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(DELETE_POSTS_TABLE)
+
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()
+
 
 
 

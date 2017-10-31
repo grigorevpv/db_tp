@@ -129,3 +129,16 @@ class ForumRepository(object):
 			print("PostgreSQL Error: " + e.diag.message_primary)
 		finally:
 			cursor.close()
+
+	@staticmethod
+	def delete_forums():
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(DELETE_FORUMS_TABLE)
+
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()

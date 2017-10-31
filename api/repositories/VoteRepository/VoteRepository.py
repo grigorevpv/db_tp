@@ -96,3 +96,16 @@ class VoteRepository(object):
 			print("PostgreSQL Error: " + e.diag.message_primary)
 		finally:
 			cursor.close()
+
+	@staticmethod
+	def delete_votes():
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(DELETE_VOTES_TABLE)
+
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()
