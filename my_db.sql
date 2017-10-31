@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS posts CASCADE;
 
 CREATE TABLE users (
   user_id  serial CONSTRAINT firstkey_u PRIMARY KEY,    -- ID форума
-  nickname CITEXT COLLATE ucs_basic UNIQUE NOT NULL,    -- Уникальный nick пользователя
+  nickname CITEXT COLLATE "ucs_basic" UNIQUE NOT NULL,    -- Уникальный nick пользователя
   about    TEXT,                                        -- Описание пользователя
   email    CITEXT,                                      -- email пользователя
   fullname TEXT,                                        -- полное имя пользователя
