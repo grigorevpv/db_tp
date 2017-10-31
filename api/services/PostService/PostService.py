@@ -135,3 +135,13 @@ class PostService(object):
 		except:
 			message = {"message": "Posts is not exist"}
 			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def delete_posts():
+
+		try:
+			post_repository.delete_posts()
+			return STATUS_CODE['OK']
+		except:
+			message = {"message": "Posts is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']

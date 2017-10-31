@@ -91,3 +91,13 @@ class UserService(object):
 		except:
 			message = {"message": "Users is not exist"}
 			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def delete_users():
+
+		try:
+			user_repository.delete_users()
+			return STATUS_CODE['OK']
+		except:
+			message = {"message": "Forums is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']

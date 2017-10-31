@@ -72,5 +72,15 @@ class VoteService(object):
 
 			return message, STATUS_CODE['NOT_FOUND']
 
+	@staticmethod
+	def delete_votes():
+
+		try:
+			vote_repository.delete_votes()
+			return STATUS_CODE['OK']
+		except:
+			message = {"message": "Forums is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']
+
 
 

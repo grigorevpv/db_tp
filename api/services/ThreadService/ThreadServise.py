@@ -104,3 +104,13 @@ class ThreadService(object):
 			message = {"message": "Can't find thread with id: " + thread_id}
 
 			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def delete_threads():
+
+		try:
+			thread_repository.delete_threads()
+			return STATUS_CODE['OK']
+		except:
+			message = {"message": "Forums is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']

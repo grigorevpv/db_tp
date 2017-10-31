@@ -106,6 +106,16 @@ class ForumService(object):
 			message = {"message": "Forums is not exist"}
 			return message, STATUS_CODE['NOT_FOUND']
 
+	@staticmethod
+	def delete_forums():
+
+		try:
+			forum_repository.delete_forums()
+			return STATUS_CODE['OK']
+		except:
+			message = {"message": "Forums is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']
+
 
 
 
