@@ -93,3 +93,14 @@ class ThreadService(object):
 		except:
 			message = {"message": "Threads is not exist"}
 			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def select_thread_by_id(thread_id):
+		try:
+			thread = thread_repository.get_thread_by_id(thread_id)
+
+			return thread, STATUS_CODE['OK']
+		except:
+			message = {"message": "Can't find thread with id: " + thread_id}
+
+			return message, STATUS_CODE['NOT_FOUND']

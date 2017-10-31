@@ -183,7 +183,7 @@ def update_thread_information(slug_or_id):
 			return make_response(jsonify(thread_data), code)
 
 	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(message_or_thread, code)
+		return make_response(jsonify(message_or_thread), code)
 
 
 @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
