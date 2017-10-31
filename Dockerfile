@@ -70,3 +70,8 @@ CMD service postgresql start &&\
     cd $WORK/ &&\
     psql -h localhost -U pavel -d students -f my_db.sql &&\
     gunicorn -w 4 -b :5000 db:app
+
+
+#docker build -t grigorev .
+#docker run -p 5000:5000 --name grigorev -t grigorev
+#docker rm -f $(docker ps -a -q)
