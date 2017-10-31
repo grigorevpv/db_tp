@@ -19,3 +19,6 @@ UPDATE_THREAD = '''UPDATE threads SET threads.message = %s, threads.title = %s
 										threads.created, threads.message, threads.slug, threads.title;'''
 
 SELECT_COUNT_THREADS = '''SELECT count(*) as threads_count FROM threads;'''
+
+DELETE_THREADS_TABLE = '''DELETE FROM threads;'''
+

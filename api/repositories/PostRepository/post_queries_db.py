@@ -20,3 +20,5 @@ SELECT_POSTS_TREE_SORT_SINCE = '''SELECT posts.post_id, posts.user_id, posts.thr
 								FROM posts WHERE thread_id = %s ORDER BY path %s;'''
 
 SELECT_COUNT_POSTS = '''SELECT count(*) as posts_count FROM posts;'''
+
+DELETE_POSTS_TABLE = '''DELETE FROM posts;'''

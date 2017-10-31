@@ -11,3 +11,5 @@ UPDATE_VOTE = '''UPDATE votes SET voice = %s WHERE votes.user_id = %s AND votes.
                     RETURNING votes.vote_id, votes.user_id, votes.thread_id, votes.voice;'''
 
 SELECT_COUNT_VOTES = '''SELECT count(*) as votes_count FROM votes;'''
+
+DELETE_VOTES_TABLE = '''DELETE FROM votes;'''

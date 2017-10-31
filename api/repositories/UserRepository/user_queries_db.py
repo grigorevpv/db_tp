@@ -61,3 +61,6 @@ SELECT_USERS_DESC = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FR
                  LIMIT %s;'''
 
 SELECT_COUNT_USERS = '''SELECT count(*) as users_count FROM users;'''
+
+DELETE_USERS_TABLE = '''DELETE FROM users;'''
+

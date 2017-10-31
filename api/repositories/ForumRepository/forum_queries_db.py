@@ -19,3 +19,5 @@ SELECT_COUNT_THREADS_BY_FORUM_ID = '''SELECT count(*) as threads_count FROM thre
 										WHERE forum_id = %s;'''
 
 SELECT_COUNT_FORUMS = '''SELECT count(*) as forums_count FROM forums;'''
+
+DELETE_FORUMS_TABLE = '''DELETE FROM forums;'''
