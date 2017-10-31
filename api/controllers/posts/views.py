@@ -12,7 +12,7 @@ from enquiry.connect import *
 from enquiry.secondary import *
 
 # create new blueprint
-posts_blueprint = Blueprint('posts', 'posts', url_prefix='/post')
+posts_blueprint = Blueprint('posts', 'posts', url_prefix='/api/post')
 
 forum_service = ForumService()
 forum_model = ForumModel

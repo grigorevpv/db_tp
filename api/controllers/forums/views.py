@@ -10,7 +10,7 @@ from enquiry.connect import *
 from enquiry.secondary import *
 
 # create new blueprint
-forums_blueprint = Blueprint('forums', 'forums', url_prefix='/forum')
+forums_blueprint = Blueprint('forums', 'forums', url_prefix='/api/forum')
 
 forum_service = ForumService()
 forum_model = ForumModel

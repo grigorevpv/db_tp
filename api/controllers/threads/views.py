@@ -15,7 +15,7 @@ from enquiry.connect import *
 from enquiry.secondary import *
 
 # create new blueprint
-threads_blueprint = Blueprint('threads', 'threads', url_prefix='/thread')
+threads_blueprint = Blueprint('threads', 'threads', url_prefix='/api/thread')
 
 forum_service = ForumService()
 forum_model = ForumModel

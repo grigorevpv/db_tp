@@ -7,12 +7,13 @@ from api.services.ThreadService.ThreadServise import ThreadService
 from api.models.threads.ThreadModel import ThreadModel
 from api.services.PostService.PostService import PostService
 from api.models.posts.PostModel import PostModel
+from api.services.VoteService.VoteService import VoteService
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
 
 # create new blueprint
-service_blueprint = Blueprint('service', 'service', url_prefix='/service')
+service_blueprint = Blueprint('service', 'service', url_prefix='/api/service')
 
 forum_service = ForumService()
 forum_model = ForumModel
@@ -22,6 +23,7 @@ thread_service = ThreadService()
 thread_model = ThreadModel
 post_service = PostService()
 post_model = PostModel
+vote_service = VoteService()
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
@@ -42,4 +44,15 @@ def get_information():
 	bd_information = dict(zip(param_name_array, param_value_array))
 
 	return make_response(jsonify(bd_information), STATUS_CODE['OK'])
+
+
+@service_blueprint.route('/clear', methods=['POST'])
+def clear_tables():
+	forum_service.delete_forums()
+	thread_service.delete_threads()
+	post_service.delete_posts()
+	user_service.delete_users()
+	vote_service.delete_votes()
+
+	return make_response(jsonify(None), STATUS_CODE['OK'])
 

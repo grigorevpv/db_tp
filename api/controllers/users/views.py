@@ -3,7 +3,7 @@ from api.services.UserService.UserService import UserService
 from api.models.users.UserModel import UserModel
 
 # create new blueprint
-users_blueprint = Blueprint('users', 'users', url_prefix='/user')
+users_blueprint = Blueprint('users', 'users', url_prefix='/api/user')
 
 user_service = UserService()
 user_model = UserModel
