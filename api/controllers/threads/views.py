@@ -98,22 +98,24 @@ def create_vote(slug_or_id):
 
 	if code == STATUS_CODE['OK']:
 		thread, user, message_or_vote, code = vote_service.create_vote(message_or_thread, user, vote)
-		if code == STATUS_CODE['NOT_FOUND']:
 
+		if code == STATUS_CODE['NOT_FOUND']:
 			return make_response(jsonify(message_or_vote), code)
 		if code == STATUS_CODE['OK']:
 			forum, status_code = forum_service.select_forum_by_id(thread.forum_id)
 			count_votes, status_code = vote_service.count_votes_by_thread_id(thread.id)
-			user, status_code = user_service.select_user_by_user_id(thread.user_id)
+			message_or_user, status_code = user_service.select_user_by_user_id(thread.user_id)
+			if status_code == STATUS_CODE['NOT_FOUND']:
+				return make_response(jsonify(message_or_user), status_code)
 
 			if thread.created is not None:
 				param_name_array = ["author", "created", "forum", "id", "message", "slug", "title", "votes"]
-				param_value_array = [user.nickname, convert_time(thread.created),
+				param_value_array = [message_or_user.nickname, convert_time(thread.created),
 				                     forum.slug, thread.id, thread.message,
 				                     thread.slug, thread.title, count_votes]
 			else:
 				param_name_array = ["author", "forum", "id", "message", "slug", "title", "votes"]
-				param_value_array = [user.nickname, forum.slug,
+				param_value_array = [message_or_user.nickname, forum.slug,
 				                     message_or_thread.id, message_or_thread.message,
 				                     message_or_thread.slug, message_or_thread.title, count_votes]
 
@@ -160,13 +162,15 @@ def get_thread_information(slug_or_id):
 def update_thread_information(slug_or_id):
 	content = request.get_json(silent=True)
 	thread_content = dict()
-	thread_content['message'] = content['message']
-	thread_content['title'] = content['title']
-	thread = thread_model.from_dict(thread_content)
+	if 'message' in content:
+		thread_content['message'] = content['message']
+	if 'title' in content:
+		thread_content['title'] = content['title']
 
 	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
 
 	if code == STATUS_CODE['OK']:
+		thread = thread_model.from_dict(thread_content)
 		message_or_thread, code = thread_service.update_thread(message_or_thread, thread)
 		if code == STATUS_CODE['OK']:
 			user, status_code = user_service.select_user_by_user_id(message_or_thread.user_id)

@@ -83,3 +83,13 @@ class ThreadService(object):
 			message = {"message": "Can't update thread with slug: " + thread.slug}
 
 			return message, STATUS_CODE['CONFLICT']
+
+	@staticmethod
+	def count_threads():
+
+		try:
+			message_or_count = thread_repository.count_threads()
+			return message_or_count, STATUS_CODE['OK']
+		except:
+			message = {"message": "Threads is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']

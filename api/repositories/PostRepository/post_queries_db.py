@@ -18,3 +18,5 @@ SELECT_POSTS_TREE_SORT = '''SELECT posts.post_id, posts.user_id, posts.thread_id
 
 SELECT_POSTS_TREE_SORT_SINCE = '''SELECT posts.post_id, posts.user_id, posts.thread_id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent_id, posts.path 
 								FROM posts WHERE thread_id = %s ORDER BY path %s;'''
+
+SELECT_COUNT_POSTS = '''SELECT count(*) as posts_count FROM posts;'''

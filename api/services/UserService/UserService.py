@@ -81,3 +81,13 @@ class UserService(object):
 			message = {"message": "Can't select users"}
 
 			return message, STATUS_CODE['CONFLICT']
+
+	@staticmethod
+	def count_users():
+
+		try:
+			message_or_count = user_repository.count_users()
+			return message_or_count, STATUS_CODE['OK']
+		except:
+			message = {"message": "Users is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']

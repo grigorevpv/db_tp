@@ -28,7 +28,7 @@ class VoteService(object):
 		except:
 			message = {"message": "Can't find user with nickname: " + user.nickname}
 
-			return message, STATUS_CODE['NOT_FOUND']
+			return thread, user,message, STATUS_CODE['NOT_FOUND']
 		try:
 			exist_vote = vote_repository.select_vote(thread.id, user.id)
 			if exist_vote.voice != vote.voice:
@@ -49,7 +49,7 @@ class VoteService(object):
 			except:
 				message = {"message": "Can't create vote, it's exist "}
 
-				return message, STATUS_CODE['CONFLICT']
+				return thread, user, message, STATUS_CODE['CONFLICT']
 
 	@staticmethod
 	def count_votes_by_thread_id(thread_id):
@@ -59,6 +59,16 @@ class VoteService(object):
 			return count_votes, STATUS_CODE['OK']
 		except:
 			message = {"message": "Can't create thread with id: " + thread_id}
+
+			return message, STATUS_CODE['NOT_FOUND']
+
+	@staticmethod
+	def count_votes():
+
+		try:
+			message_or_count = vote_repository.count_votes()
+		except:
+			message = {"message": "Votes is not exist"}
 
 			return message, STATUS_CODE['NOT_FOUND']
 

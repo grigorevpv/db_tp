@@ -59,3 +59,5 @@ SELECT_USERS_DESC = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FR
                  WHERE forum_id = %s)
                  ORDER BY users.nickname COLLATE ucs_basic DESC 
                  LIMIT %s;'''
+
+SELECT_COUNT_USERS = '''SELECT count(*) as users_count FROM users;'''

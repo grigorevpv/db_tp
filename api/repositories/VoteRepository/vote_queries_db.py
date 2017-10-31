@@ -9,3 +9,5 @@ COUNT_VOTES_BY_THREAD_ID = '''SELECT sum(votes.voice) FROM votes WHERE thread_id
 
 UPDATE_VOTE = '''UPDATE votes SET voice = %s WHERE votes.user_id = %s AND votes.thread_id = %s
                     RETURNING votes.vote_id, votes.user_id, votes.thread_id, votes.voice;'''
+
+SELECT_COUNT_VOTES = '''SELECT count(*) as votes_count FROM votes;'''

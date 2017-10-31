@@ -114,3 +114,18 @@ class ForumRepository(object):
 			print("PostgreSQL Error: " + e.diag.message_primary)
 		finally:
 			cursor.close()
+
+	@staticmethod
+	def count_forums():
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_COUNT_FORUMS)
+			count_forums = cursor.fetchone()[0]
+
+			return count_forums
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()

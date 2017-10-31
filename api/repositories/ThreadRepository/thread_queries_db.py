@@ -17,3 +17,5 @@ UPDATE_THREAD = '''UPDATE threads SET threads.message = %s, threads.title = %s
 								WHERE threads.thread_id = %s
 								RETURNING threads.thread_id, threads.forum_id, threads.user_id, 
 										threads.created, threads.message, threads.slug, threads.title;'''
+
+SELECT_COUNT_THREADS = '''SELECT count(*) as threads_count FROM threads;'''

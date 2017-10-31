@@ -263,6 +263,21 @@ class PostRepository(object):
 		finally:
 			cursor.close()
 
+	@staticmethod
+	def count_posts():
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_COUNT_POSTS)
+			count_posts = cursor.fetchone()[0]
+
+			return count_posts
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()
+
 
 
 

@@ -96,6 +96,16 @@ class ForumService(object):
 
 			return message_or_forum, message_or_user, message_or_thread, STATUS_CODE['CREATED']
 
+	@staticmethod
+	def count_forums():
+
+		try:
+			message_or_count = forum_repository.count_forums()
+			return message_or_count, STATUS_CODE['OK']
+		except:
+			message = {"message": "Forums is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']
+
 
 
 

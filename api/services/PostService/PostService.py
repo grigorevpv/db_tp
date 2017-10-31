@@ -126,4 +126,12 @@ class PostService(object):
 
 			return message, STATUS_CODE['CONFLICT']
 
+	@staticmethod
+	def count_posts():
 
+		try:
+			message_or_count = post_repository.count_posts()
+			return message_or_count, STATUS_CODE['OK']
+		except:
+			message = {"message": "Posts is not exist"}
+			return message, STATUS_CODE['NOT_FOUND']

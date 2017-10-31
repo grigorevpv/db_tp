@@ -94,9 +94,16 @@ class ThreadRepository(object):
 		connect = connectDB()
 		cursor = connect.cursor()
 
+		message = new_thread.message
+		if message is None:
+			message = thread.message
+
+		title = new_thread.title
+		if title is None:
+			title = thread.title
 		try:
 			command = '''UPDATE threads SET message = '%s', title = '%s'
-							WHERE thread_id = %s RETURNING *;''' % (str(new_thread.message), str(new_thread.title), thread.id)
+							WHERE thread_id = %s RETURNING *;''' % (str(message), str(title), thread.id)
 			cursor.execute(command)
 			thread = cursor.fetchone()
 
@@ -104,6 +111,21 @@ class ThreadRepository(object):
 		except psycopg2.IntegrityError as e:
 			print("This user is already exist")
 			raise
+		except psycopg2.Error as e:
+			print("PostgreSQL Error: " + e.diag.message_primary)
+		finally:
+			cursor.close()
+
+	@staticmethod
+	def count_threads():
+		connect = connectDB()
+		cursor = connect.cursor()
+
+		try:
+			cursor.execute(SELECT_COUNT_THREADS)
+			count_threads = cursor.fetchone()[0]
+
+			return count_threads
 		except psycopg2.Error as e:
 			print("PostgreSQL Error: " + e.diag.message_primary)
 		finally:

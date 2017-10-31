@@ -17,3 +17,5 @@ SELECT_COUNT_POSTS_BY_FORUM_ID = '''SELECT count(*) as posts_count FROM posts
 
 SELECT_COUNT_THREADS_BY_FORUM_ID = '''SELECT count(*) as threads_count FROM threads 
 										WHERE forum_id = %s;'''
+
+SELECT_COUNT_FORUMS = '''SELECT count(*) as forums_count FROM forums;'''
