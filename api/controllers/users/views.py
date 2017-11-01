@@ -33,6 +33,8 @@ def create_user(nickname):
 		for user in cursor.fetchall():
 			users.append(dict(zip(['nickname', 'about', 'email', 'fullname'], user[1:])))
 		return make_response(jsonify(users), STATUS_CODE['CONFLICT'])
+	finally:
+		cursor.close()
 
 
 @users_blueprint.route('/<nickname>/profile', methods=['GET'])
@@ -43,38 +45,48 @@ def get_user_profile(nickname):
 	cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
 	user = cursor.fetchone()
 	if user is None:
+		cursor.close()
 		return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}), STATUS_CODE['NOT_FOUND'])
 
 	content = dict()
 	content['nickname'], content['about'], content['email'], content['fullname'] = user[1:]
+	cursor.close()
 	return make_response(jsonify(content), STATUS_CODE['OK'])
 
 
 @users_blueprint.route('/<nickname>/profile', methods=['POST'])
 def change_user_profile(nickname):
 	content = request.get_json(silent=True)
+	connect = connectDB()
+	cursor = connect.cursor()
 
-	message_or_user, code = user_service.select_user_by_nickname(nickname)
+	cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
+	user = cursor.fetchone()
+	if user is None:
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}),
+							 STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['NOT_FOUND']:
+	if 'nickname' not in content:
+		content['nickname'] = user[1]
 
-		return make_response(jsonify(message_or_user), code)
+	if 'about' not in content:
+		content['about'] = user[2]
 
-	if code == STATUS_CODE['OK']:
-		content['id'] = message_or_user.id
-		new_user = user_model.from_dict(content)
-		message_or_user.update_cls(new_user)
+	if 'email' not in content:
+		content['email'] = user[3]
 
-		message_or_user, code = user_service.update_user_by_nickname(message_or_user)
+	if 'fullname' not in content:
+		content['fullname'] = user[4]
 
-		if code == STATUS_CODE['OK']:
-			param_name_array = ["nickname", "about", "email", "fullname"]
-			param_value_array = [message_or_user.nickname, message_or_user.about, message_or_user.email,
-								 message_or_user.fullname]
-			message_or_user = dict(zip(param_name_array, param_value_array))
+	try:
+		cursor.execute(UPDATE_USER_BY_NICKNAME, [content['about'], content['email'], content['fullname'], content['nickname'], ])
+		updated_user = cursor.fetchone()
+		content['nickname'], content['about'], content['email'], content['fullname'] = updated_user[1:]
+		cursor.close()
+		return make_response(jsonify(content), STATUS_CODE['OK'])
+	except:
+		cursor.close()
+		return make_response(jsonify(content), STATUS_CODE['CONFLICT'])
 
-			return make_response(jsonify(message_or_user), code)
 
-		if code == STATUS_CODE['CONFLICT']:
-
-			return make_response(jsonify(message_or_user), code)
