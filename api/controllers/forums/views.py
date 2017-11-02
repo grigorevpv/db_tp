@@ -5,6 +5,8 @@ from api.services.UserService.UserService import UserService
 from api.models.users.UserModel import UserModel
 from api.services.ThreadService.ThreadServise import ThreadService
 from api.models.threads.ThreadModel import ThreadModel
+from api.repositories.connect import PostgresDataContext
+from api.repositories.ForumRepository.forum_queries_db import *
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
@@ -18,6 +20,7 @@ user_service = UserService()
 user_model = UserModel
 thread_service = ThreadService()
 thread_model = ThreadModel
+data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
@@ -25,37 +28,32 @@ STATUS_CODE = {
 	'CONFLICT': 409
 }
 
+
 @forums_blueprint.route('/create', methods=['POST'])
 def create_forum():
 	content = request.get_json(silent=True)
-	forum = forum_model.from_dict(content)
+	connect, cursor = data_context.create_connection()
 
-	message_or_user, code = user_service.select_user_by_nickname(content['user'])
+	cursor.execute(SELECT_USERS_BY_NICKNAME, [content['user'] ])
+	user = cursor.fetchone()
+	if user is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find user with nickname: " + content['user']}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		message_or_forum, code = forum_service.create_forum(forum, message_or_user)
-		if code == STATUS_CODE['CREATED']:
-			count_posts = forum_service.count_posts_by_forum_id(message_or_forum)
-			count_threads = forum_service.count_threads_by_forum_id(message_or_forum)
-
-			param_name_array = ["posts", "slug", "threads", "title", "user"]
-			param_value_array = [count_posts, message_or_forum.slug, count_threads, message_or_forum.title, message_or_user.nickname]
-			created_forum_data = dict(zip(param_name_array, param_value_array))
-
-			return make_response(jsonify(created_forum_data), code)
-		if code == STATUS_CODE['CONFLICT']:
-			forum, status_code = forum_service.select_forum_by_slug(forum.slug)
-			count_posts = forum_service.count_posts_by_forum_id(forum)
-			count_threads = forum_service.count_threads_by_forum_id(forum)
-
-			param_name_array = ["posts", "slug", "threads", "title", "user"]
-			param_value_array = [count_posts, forum.slug, count_threads, forum.title, message_or_user.nickname]
-			exist_forum_data = dict(zip(param_name_array, param_value_array))
-
-			return make_response(jsonify(exist_forum_data), code)
-	if code == STATUS_CODE['NOT_FOUND']:
-
-		return make_response(jsonify(message_or_user), code)
+	try:
+		cursor.execute(INSERT_FORUM, [user['user_id'], content['slug'], content['title'], user['nickname'] ])
+		returning_forum = cursor.fetchone()
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify(returning_forum), STATUS_CODE['CREATED'])
+	except:
+		cursor.execute(SELECT_FORUM_BY_SLUG, [content['slug'], ])
+		returning_forum = cursor.fetchone()
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify(returning_forum), STATUS_CODE['CONFLICT'])
 
 
 @forums_blueprint.route('/<slug>/create', methods=['POST'])

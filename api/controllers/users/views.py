@@ -2,7 +2,7 @@ from flask import Blueprint, request, make_response, jsonify
 from api.services.UserService.UserService import UserService
 from api.repositories.UserRepository.user_queries_db import *
 from api.models.users.UserModel import UserModel
-from api.repositories.connect import connectDB, PostgresDataContext
+from api.repositories.connect import PostgresDataContext
 
 # create new blueprint
 users_blueprint = Blueprint('users', 'users', url_prefix='/api/user')

@@ -14,10 +14,13 @@ CREATE TABLE users (
 );
 
 CREATE TABLE forums (
-  forum_id serial CONSTRAINT firstkey_f PRIMARY KEY,   -- ID форума
+  forum_id serial CONSTRAINT firstkey_f PRIMARY KEY,                     -- ID форума
   user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,           -- ID пользователя, создавшего форум
-  slug CITEXT UNIQUE NOT NULL,                         -- Человекопонятный URL (уникальное поле)
-  title TEXT                                           -- Название форума
+  posts INTEGER DEFAULT 0,                                                         -- Количество постов в форуме
+  slug CITEXT UNIQUE NOT NULL,                                           -- Человекопонятный URL (уникальное поле)
+  threads INTEGER DEFAULT 0,                                                       -- Количество тредов в форуме
+  title TEXT,                                                            -- Название форума
+  "user" CITEXT                                                            -- Имя пользователя, создавшего форум
 );
 
 CREATE TABLE threads (

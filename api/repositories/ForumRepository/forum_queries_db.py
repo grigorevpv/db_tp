@@ -1,12 +1,12 @@
 SELECT_FORUM_BY_SLUG = '''SELECT forums.forum_id, forums.user_id, forums.slug, forums.title 
 							FROM forums WHERE slug = %s;'''
 
-SELECT_FORUM_BY_ID = '''SELECT forums.forum_id, forums.user_id, forums.slug, forums.title 
+SELECT_FORUM_BY_ID = '''SELECT forums.forum_id, forums.user_id, forums.posts, forums.slug, forums.threads, forums.title, forums.user 
 								FROM forums WHERE forum_id = %s;'''
 
-INSERT_FORUM = '''INSERT INTO forums (user_id, slug, title)
-					VALUES (%s, %s, %s) 
-					RETURNING forums.forum_id, forums.user_id, forums.slug, forums.title;'''
+INSERT_FORUM = '''INSERT INTO forums (user_id, slug, title, "user")
+					VALUES (%s, %s, %s, %s) 
+					RETURNING forums.forum_id, forums.user_id, forums.posts, forums.slug, forums.threads, forums.title, forums.user;'''
 
 INSERT_THREAD = '''INSERT INTO threads (forum_id, user_id, created, message, slug, title) 
 					VALUES (%s, %s, %s, %s, %s, %s)
