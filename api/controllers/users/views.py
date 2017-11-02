@@ -90,3 +90,4 @@ def change_user_profile(nickname):
 		return make_response(jsonify(content), STATUS_CODE['CONFLICT'])
 
 
+
