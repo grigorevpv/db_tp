@@ -33,8 +33,6 @@ def create_user(nickname):
         users = []
         cursor.execute(SELECT_USERS_BY_NICKNAME_OR_EMAIL, [content['nickname'], content['email'], ])
         data = cursor.fetchall()
-        # for user in cursor.fetchall():
-        #     users.append(dict(zip(['nickname', 'about', 'email', 'fullname'], user[1:])))
         data_context.put_connection(connect)
         cursor.close()
         return make_response(jsonify(data), STATUS_CODE['CONFLICT'])
@@ -51,8 +49,6 @@ def get_user_profile(nickname):
         cursor.close()
         return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}), STATUS_CODE['NOT_FOUND'])
 
-    # content = dict()
-    # content['nickname'], content['about'], content['email'], content['fullname'] = user[1:]
     data_context.put_connection(connect)
     cursor.close()
     return make_response(jsonify(user), STATUS_CODE['OK'])
@@ -61,35 +57,36 @@ def get_user_profile(nickname):
 @users_blueprint.route('/<nickname>/profile', methods=['POST'])
 def change_user_profile(nickname):
     content = request.get_json(silent=True)
-    connect = connectDB()
-    cursor = connect.cursor()
+    connect, cursor = data_context.create_connection()
 
     cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
     user = cursor.fetchone()
     if user is None:
+        data_context.put_connection(connect)
         cursor.close()
         return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}),
                              STATUS_CODE['NOT_FOUND'])
 
     if 'nickname' not in content:
-        content['nickname'] = user[1]
+        content['nickname'] = user['nickname']
 
     if 'about' not in content:
-        content['about'] = user[2]
+        content['about'] = user['about']
 
     if 'email' not in content:
-        content['email'] = user[3]
+        content['email'] = user['email']
 
     if 'fullname' not in content:
-        content['fullname'] = user[4]
+        content['fullname'] = user['fullname']
 
     try:
         cursor.execute(UPDATE_USER_BY_NICKNAME, [content['about'], content['email'], content['fullname'], content['nickname'], ])
         updated_user = cursor.fetchone()
-        content['nickname'], content['about'], content['email'], content['fullname'] = updated_user[1:]
+        data_context.put_connection(connect)
         cursor.close()
-        return make_response(jsonify(content), STATUS_CODE['OK'])
+        return make_response(jsonify(updated_user), STATUS_CODE['OK'])
     except:
+        data_context.put_connection(connect)
         cursor.close()
         return make_response(jsonify(content), STATUS_CODE['CONFLICT'])
 
