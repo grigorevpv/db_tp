@@ -78,13 +78,26 @@ def create_thread(slug):
 								STATUS_CODE['NOT_FOUND'])
 
 	try:
-		cursor.execute(INSERT_THREAD, [forum["forum_id"], user["user_id"], user["nickname"], content["created"], forum["slug"], content["message"], content["slug"], content["title"], ])
+		command = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title) 
+					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING *;''' % (forum["forum_id"], user["user_id"], user["nickname"],
+								   content["created"], forum["slug"], content["message"],
+								   content["slug"], content["title"])
+
+		cursor.execute(command)
 		thread = cursor.fetchone()
-		return make_response(jsonify(thread), STATUS_CODE['CREATED'])
+		param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
+		param_value_array = [thread["author"], convert_time(thread["created"]),
+							 thread["forum"], thread["thread_id"], thread["message"],
+							 thread["slug"], thread["title"]]
+		return make_response(jsonify(dict(zip(param_name_array, param_value_array))), STATUS_CODE['CREATED'])
 	except:
 		cursor.execute(SELECT_THREAD_BY_SLUG, content["slug"])
 		thread = cursor.fetchone()
-		return make_response(jsonify(thread), STATUS_CODE['CONFLICT'])
+		param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
+		param_value_array = [thread["author"], convert_time(thread["created"]),
+		                     thread["forum"], thread["thread_id"], thread["message"],
+		                     thread["slug"], thread["title"]]
+		return make_response(jsonify(dict(zip(param_name_array, param_value_array))), STATUS_CODE['CONFLICT'])
 	finally:
 		data_context.put_connection(connect)
 		cursor.close()

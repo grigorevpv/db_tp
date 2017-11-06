@@ -10,6 +10,9 @@ from api.services.VoteService.VoteService import VoteService
 from api.models.votes.VoteModel import VoteModel
 from api.services.PostService.PostService import PostService
 from api.models.posts.PostModel import PostModel
+from api.repositories.connect import PostgresDataContext
+from api.repositories.ThreadRepository.thread_queries_db import *
+from api.repositories.PostRepository.post_queries_db import *
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
@@ -27,6 +30,7 @@ post_service = PostService()
 post_model = PostModel
 vote_service = VoteService()
 vote_model = VoteModel
+data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
@@ -34,56 +38,140 @@ STATUS_CODE = {
 	'CONFLICT': 409
 }
 
+
 @threads_blueprint.route('/<slug_or_id>/create', methods=['POST'])
 def create_posts(slug_or_id):
 	content = request.get_json(silent=True)
+	connect, cursor = data_context.create_connection()
 
-	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+	if slug_or_id.isdigit():
+		cursor.execute(SELECT_THREAD_BY_ID, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
+	else:
+		cursor.execute(SELECT_THREAD_BY_SLUG, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		created_threads_arr = []
-		created_time = datetime.now()
+	created_threads_arr = []
+	created_time = datetime.now()
 
-		for post in content:
-			user, status_code = user_service.select_user_by_nickname(post['author'])
-			if status_code == STATUS_CODE['NOT_FOUND']:
-				return make_response(jsonify(user), status_code)
-			forum, status_code = forum_service.select_forum_by_id(message_or_thread.forum_id)
+	for post in content:
+		cursor.execute(SELECT_USERS_BY_NICKNAME, [post['author']])
+		user = cursor.fetchone()
+		if user is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find user with nickname: " + post['author']}),
+								 STATUS_CODE['NOT_FOUND'])
 
-			path = list()
-			post_content = dict()
-			post_content['user_id'] = user.id
-			post_content['thread_id'] = message_or_thread.id
-			post_content['forum_id'] = message_or_thread.forum_id
-			post_content['created'] = created_time
-			post_content['message'] = post['message']
-			if post.get('parent') is not None:
-				try:
-					message_or_parent_post, status_code = post_service.select_post_by_id(post['parent'])
-					if message_or_parent_post.thread_id == message_or_thread.id:
-						post_content['parent_id'] = post['parent']
-					else:
-						return make_response(jsonify({"message": "Parent post was created in another thread"}), STATUS_CODE['CONFLICT'])
-				except:
-					return make_response(jsonify({"message": "Cant't find parent post"}), STATUS_CODE['CONFLICT'])
+		cursor.execute(SELECT_FORUM_BY_FORUM_ID, [thread["forum_id"]])
+		forum = cursor.fetchone()
+		if user is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find forum with forum_id: " + thread["forum_id"]}),
+								 STATUS_CODE['NOT_FOUND'])
+
+		post_path = list()
+		parent_id = 0
+		if post.get('parent') is not None:
+			parent_id = post['parent']
+			cursor.execute(SELECT_POST_BY_ID, [post['parent'], ])
+			parent_post = cursor.fetchone()
+			if post is None:
+				data_context.put_connection(connect)
+				cursor.close()
+				return make_response(jsonify({"message": "Didn't find post with id: " + post['parent']}),
+				                     STATUS_CODE['NOT_FOUND'])
 			else:
-				post_content['parent_id'] = 0
-			post_content['path'] = path
-			post = post_model.from_dict(post_content)
+				post_path.extend(parent_post["path"])
 
-			created_post, status_code = post_service.create_post(post)
+		cursor.execute(SELECT_NEXT_VAL)
+		post_id = cursor.fetchone()["nextval"]
+		post_path.append(post_id)
+		cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["thread_id"], forum["forum_id"], parent_id, created_time,
+		                  post["message"], post_path, ])
+		returning_post = cursor.fetchone()
+		param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
+		                     "parent", "thread"]
+		param_value_array = [user["nickname"],
+		                     convert_time(created_time),
+		                     forum["slug"],
+		                     returning_post["post_id"],
+		                      returning_post["isedited"],
+		                     returning_post["message"],
+		                     returning_post["parent_id"],
+		                     thread["thread_id"]]
+		created_thread_data = dict(zip( param_name_array, param_value_array))
+		created_threads_arr.append(created_thread_data)
 
-			param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
-								"parent", "thread"]
-			param_value_array = [user.nickname, convert_time(created_post.created), forum.slug, created_post.id, created_post.isedited,
-			                     created_post.message, created_post.parent_id, message_or_thread.id]
-			created_thread_data = dict(zip(param_name_array, param_value_array))
-			created_threads_arr.append(created_thread_data)
+	return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])
 
-		return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])
-	if code == STATUS_CODE['NOT_FOUND']:
 
-		return make_response(jsonify(message_or_thread), code)
+
+
+
+
+
+
+
+
+
+	# message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+	#
+	# if code == STATUS_CODE['OK']:
+	# 	created_threads_arr = []
+	# 	created_time = datetime.now()
+	#
+	# 	for post in content:
+	# 		user, status_code = user_service.select_user_by_nickname(post['author'])
+	# 		if status_code == STATUS_CODE['NOT_FOUND']:
+	# 			return make_response(jsonify(user), status_code)
+	# 		forum, status_code = forum_service.select_forum_by_id(message_or_thread.forum_id)
+	#
+	# 		path = list()
+	# 		post_content = dict()
+	# 		post_content['user_id'] = user.id
+	# 		post_content['thread_id'] = message_or_thread.id
+	# 		post_content['forum_id'] = message_or_thread.forum_id
+	# 		post_content['created'] = created_time
+	# 		post_content['message'] = post['message']
+	# 		if post.get('parent') is not None:
+	# 			try:
+	# 				message_or_parent_post, status_code = post_service.select_post_by_id(post['parent'])
+	# 				if message_or_parent_post.thread_id == message_or_thread.id:
+	# 					post_content['parent_id'] = post['parent']
+	# 				else:
+	# 					return make_response(jsonify({"message": "Parent post was created in another thread"}), STATUS_CODE['CONFLICT'])
+	# 			except:
+	# 				return make_response(jsonify({"message": "Cant't find parent post"}), STATUS_CODE['CONFLICT'])
+	# 		else:
+	# 			post_content['parent_id'] = 0
+	# 		post_content['path'] = path
+	# 		post = post_model.from_dict(post_content)
+	#
+	# 		created_post, status_code = post_service.create_post(post)
+	#
+	# 		param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
+	# 							"parent", "thread"]
+	# 		param_value_array = [user.nickname, convert_time(created_post.created), forum.slug, created_post.id, created_post.isedited,
+	# 		                     created_post.message, created_post.parent_id, message_or_thread.id]
+	# 		created_thread_data = dict(zip(param_name_array, param_value_array))
+	# 		created_threads_arr.append(created_thread_data)
+	#
+	# 	return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])
+	# if code == STATUS_CODE['NOT_FOUND']:
+	#
+	# 	return make_response(jsonify(message_or_thread), code)
 
 
 @threads_blueprint.route('/<slug_or_id>/vote', methods=['POST'])

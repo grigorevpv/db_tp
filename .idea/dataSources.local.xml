@@ -2,7 +2,11 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="students@localhost" uuid="e03ccd64-b3ad-4aa7-83a0-62814fc2a280">
-      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <database-info product="PostgreSQL" version="10.0" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4 JDBC4 (build 1201)">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>postgres</user-name>
       <introspection-schemas>students:public</introspection-schemas>
     </data-source>
   </component>

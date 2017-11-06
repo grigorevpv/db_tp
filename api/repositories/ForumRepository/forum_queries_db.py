@@ -8,10 +8,13 @@ INSERT_FORUM = '''INSERT INTO forums (user_id, slug, title, "user")
 					VALUES (%s, %s, %s, %s) 
 					RETURNING forums.forum_id, forums.user_id, forums.posts, forums.slug, forums.threads, forums.title, forums.user;'''
 
+# INSERT_THREAD = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title)
+# 					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')
+# 					RETURNING threads.thread_id, threads.forum_id, threads.user_id, threads.author, threads.created, threads.forum,
+# 								threads.message, threads.slug, threads.title, threads.votes;'''
+
 INSERT_THREAD = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title) 
-					VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-					RETURNING threads.thread_id, threads.forum_id, threads.user_id, threads.author, threads.created, threads.forum,
-								threads.message, threads.slug, threads.title, threads.votes;'''
+					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING *;'''
 
 SELECT_COUNT_POSTS_BY_FORUM_ID = '''SELECT count(*) as posts_count FROM posts 
 										WHERE forum_id = %s;'''
