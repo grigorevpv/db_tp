@@ -10,6 +10,7 @@ from api.repositories.ForumRepository.forum_queries_db import *
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
+import datetime
 
 # create new blueprint
 forums_blueprint = Blueprint('forums', 'forums', url_prefix='/api/forum')
@@ -78,18 +79,24 @@ def create_thread(slug):
 								STATUS_CODE['NOT_FOUND'])
 
 	try:
-		command = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title) 
-					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING *;''' % (forum["forum_id"], user["user_id"], user["nickname"],
-								   content["created"], forum["slug"], content["message"],
+		if content.get("slug") is None:
+			content["slug"] = ""
+		if content.get("created") is None:
+			command = '''INSERT INTO threads (forum_id, user_id, author, forum, message, slug, title)
+								VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s')	RETURNING id, author, created, forum, message, slug, title;''' % \
+			          (forum["forum_id"], user["user_id"], user["nickname"],
+						forum["slug"], content["message"], content["slug"], content["title"])
+		else:
+			command = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title)
+					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING id, author, created, forum, message, slug, title;''' % (forum["forum_id"], user["user_id"], user["nickname"],
+		                    content["created"], forum["slug"], content["message"],
 								   content["slug"], content["title"])
 
 		cursor.execute(command)
 		thread = cursor.fetchone()
-		param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
-		param_value_array = [thread["author"], convert_time(thread["created"]),
-							 thread["forum"], thread["thread_id"], thread["message"],
-							 thread["slug"], thread["title"]]
-		return make_response(jsonify(dict(zip(param_name_array, param_value_array))), STATUS_CODE['CREATED'])
+		thread['created'] = convert_time(thread['created'])
+
+		return make_response(jsonify(thread), STATUS_CODE['CREATED'])
 	except:
 		cursor.execute(SELECT_THREAD_BY_SLUG, content["slug"])
 		thread = cursor.fetchone()
@@ -97,7 +104,8 @@ def create_thread(slug):
 		param_value_array = [thread["author"], convert_time(thread["created"]),
 		                     thread["forum"], thread["thread_id"], thread["message"],
 		                     thread["slug"], thread["title"]]
-		return make_response(jsonify(dict(zip(param_name_array, param_value_array))), STATUS_CODE['CONFLICT'])
+		thread_data = dict(zip(param_name_array, param_value_array))
+		return make_response(jsonify(thread_data), STATUS_CODE['CONFLICT'])
 	finally:
 		data_context.put_connection(connect)
 		cursor.close()
@@ -152,7 +160,7 @@ def create_thread(slug):
 	# 	created_thread_data = dict(zip(param_name_array, param_value_array))
 	#
 	# 	return make_response(jsonify(created_thread_data), code)
-
+	#
 
 @forums_blueprint.route('/<slug>/details', methods=['GET'])
 def get_forum_information(slug):

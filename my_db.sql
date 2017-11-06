@@ -24,14 +24,14 @@ CREATE TABLE forums (
 );
 
 CREATE TABLE threads (
-  thread_id serial CONSTRAINT firstkey_th PRIMARY KEY,                    -- ID ветки обсуждения
+  id serial CONSTRAINT firstkey_th PRIMARY KEY,                    -- ID ветки обсуждения
   forum_id  INTEGER REFERENCES forums(forum_id) ON DELETE CASCADE,        -- ID форума, к которому относится тред
   user_id   INTEGER REFERENCES users(user_id) ON DELETE CASCADE,          -- ID пользователя, создавшего ветку обсуждения
   author    CITEXT,                                                       -- Имя пользователя, создавшего форум
-  created   TIMESTAMP WITH TIME ZONE,                                     -- Дата создания ветки описания
+  created   TIMESTAMP WITH TIME ZONE DEFAULT now(),                                     -- Дата создания ветки описания
   forum     CITEXT,                                                       -- Человекопонятный URL для идентификации форума
   message   TEXT,                                                         -- Описание ветки обсуждения
-  slug      CITEXT UNIQUE,                                                -- Человекопонятный URL
+  slug      CITEXT DEFAULT NULL,                                                -- Человекопонятный URL
   title     TEXT NOT NULL,                                                -- Заголовок ветки обсуждения
   votes     SMALLINT DEFAULT 0
 );
@@ -39,9 +39,9 @@ CREATE TABLE threads (
 CREATE TABLE posts (
   post_id serial CONSTRAINT firstkey_p PRIMARY KEY,                       -- ID поста
   user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,            -- ID пользователя, создавшего пост
-  thread_id INTEGER REFERENCES threads(thread_id) ON DELETE CASCADE,      -- ID ветки обсуждения в котором находится сообщение
+  thread_id INTEGER REFERENCES threads(id) ON DELETE CASCADE,      -- ID ветки обсуждения в котором находится сообщение
   forum_id INTEGER REFERENCES forums(forum_id) ON DELETE CASCADE,         -- ID форума в котором находится сообщение
-  created TIMESTAMP WITH TIME ZONE,                                       -- Дата создания поста
+  created TIMESTAMP WITH TIME ZONE DEFAULT now(),                                       -- Дата создания поста
   isEdited BOOLEAN DEFAULT FALSE,                                         -- Было ли изменино сообщение
   message TEXT,                                                           -- Сообщение поста
   parent_id INTEGER DEFAULT 0,                                            -- Идентификатор родительского сообщения
@@ -52,19 +52,6 @@ CREATE TABLE posts (
 CREATE TABLE votes (
   vote_id   serial CONSTRAINT firstkey_v PRIMARY KEY,                     -- ID голоса
   user_id   INTEGER REFERENCES users(user_id) ON DELETE CASCADE,          -- ID проголосовавшего юзера
-  thread_id INTEGER REFERENCES threads(thread_id) ON DELETE CASCADE,      -- ID треда, в котором проголосовали
+  thread_id INTEGER REFERENCES threads(id) ON DELETE CASCADE,      -- ID треда, в котором проголосовали
   voice     SMALLINT                                                      -- Значение голоса (принимает значение -1 или 1)
 );
-
-
-
-
-
-
-
-
-
-
-
-
-
