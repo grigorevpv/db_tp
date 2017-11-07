@@ -206,29 +206,39 @@ def get_thread_information(slug_or_id):
 @threads_blueprint.route('/<slug_or_id>/details', methods=['POST'])
 def update_thread_information(slug_or_id):
 	content = request.get_json(silent=True)
-	thread_content = dict()
-	if 'message' in content:
-		thread_content['message'] = content['message']
-	if 'title' in content:
-		thread_content['title'] = content['title']
+	connect, cursor = data_context.create_connection()
 
-	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+	if slug_or_id.isdigit():
+		cursor.execute(SELECT_THREAD_BY_ID, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
+	else:
+		cursor.execute(SELECT_THREAD_BY_SLUG, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		thread = thread_model.from_dict(thread_content)
-		message_or_thread, code = thread_service.update_thread(message_or_thread, thread)
-		if code == STATUS_CODE['OK']:
-			user, status_code = user_service.select_user_by_user_id(message_or_thread.user_id)
-			forum, status_code = forum_service.select_forum_by_id(message_or_thread.forum_id)
-			param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
-			param_value_array = [user.nickname, convert_time(message_or_thread.created),
-			                     forum.slug, message_or_thread.id, message_or_thread.message,
-			                     message_or_thread.slug, message_or_thread.title]
-			thread_data = dict(zip(param_name_array, param_value_array))
-			return make_response(jsonify(thread_data), code)
+	if 'message' not in content:
+		content['message'] = thread['message']
+	if 'title' not in content:
+		content['title'] = thread['title']
 
-	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(jsonify(message_or_thread), code)
+	command = '''UPDATE threads SET message = '%s', title = '%s'
+								WHERE id = %s RETURNING *;''' % (content['message'], content['title'], thread["id"])
+	cursor.execute(command)
+	thread = cursor.fetchone()
+	thread["created"] = convert_time(thread["created"])
+
+	data_context.put_connection(connect)
+	cursor.close()
+	return make_response(jsonify(thread), STATUS_CODE['OK'])
 
 
 @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
