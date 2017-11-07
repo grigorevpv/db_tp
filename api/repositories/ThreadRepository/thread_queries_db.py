@@ -14,7 +14,7 @@ COUNT_VOTES_BY_THREAD_ID = '''SELECT sum(voice) as votes_count FROM votes
 # 							FROM threads WHERE slug = %s;'''
 
 SELECT_THREAD_BY_ID = '''SELECT *
-							FROM threads WHERE id = %s;'''
+							FROM threads WHERE threads.id = %s;'''
 
 SELECT_THREAD_BY_SLUG = '''SELECT * 
 							FROM threads WHERE slug = %s;'''

@@ -7,7 +7,7 @@ from psycopg2.pool import ThreadedConnectionPool
 class PostgresDataContext(object):
 
 	def __init__(self):
-		self._pool = ThreadedConnectionPool(1, 8, database='students', user='postgres',
+		self._pool = ThreadedConnectionPool(1, -1, database='students', user='postgres',
 											password='lomogi99', host='localhost')
 
 	def _get_connection(self):
@@ -21,8 +21,6 @@ class PostgresDataContext(object):
 		conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 		cursor = conn.cursor(cursor_factory=RealDictCursor)
 		return conn, cursor
-
-
 
 def connectDB():
 	try:

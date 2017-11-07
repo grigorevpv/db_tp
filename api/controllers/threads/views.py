@@ -100,21 +100,23 @@ def create_posts(slug_or_id):
 		post_id = cursor.fetchone()["nextval"]
 		post_path.append(post_id)
 		cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["id"], forum["forum_id"], parent_id, created_time,
-		                  post["message"], post_path, ])
+		                  post["message"], post_path, user["nickname"], forum["slug"] ])
 		returning_post = cursor.fetchone()
 		param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
 		                     "parent", "thread"]
-		param_value_array = [user["nickname"],
+		param_value_array = [returning_post["author"],
 		                     convert_time(created_time),
-		                     forum["slug"],
-		                     returning_post["post_id"],
+		                     returning_post["forum"],
+		                     returning_post["id"],
 		                      returning_post["isedited"],
 		                     returning_post["message"],
-		                     returning_post["parent_id"],
-		                     thread["id"]]
+		                     returning_post["parent"],
+		                     returning_post["thread"]]
 		created_thread_data = dict(zip( param_name_array, param_value_array))
 		created_threads_arr.append(created_thread_data)
 
+	data_context.put_connection(connect)
+	cursor.close()
 	return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])
 
 
@@ -140,12 +142,12 @@ def create_vote(slug_or_id):
 			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
 								 STATUS_CODE['NOT_FOUND'])
 
-	cursor.execute(SELECT_USERS_BY_NICKNAME, [content['nickname']])
+	cursor.execute(SELECT_USERS_BY_NICKNAME, [content["nickname"]])
 	user = cursor.fetchone()
 	if user is None:
 		data_context.put_connection(connect)
 		cursor.close()
-		return make_response(jsonify({"message": "Can't find user with nickname: " + post['author']}),
+		return make_response(jsonify({"message": "Can't find user with nickname: " + content["nickname"]}),
 		                     STATUS_CODE['NOT_FOUND'])
 
 	cursor.execute(SELECT_VOTE_BY_THREAD_AND_USER_ID, [thread["id"], user["user_id"]])
@@ -169,77 +171,36 @@ def create_vote(slug_or_id):
 	return make_response(jsonify(thread), STATUS_CODE['OK'])
 
 
-# @threads_blueprint.route('/<slug_or_id>/vote', methods=['POST'])
-# def create_vote(slug_or_id):
-# 	content = request.get_json(silent=True)
-# 	user_content = dict()
-# 	user_content['nickname'] = content['nickname']
-# 	user = user_model.from_dict(user_content)
-# 	vote = vote_model.from_dict(content)
-#
-# 	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
-#
-# 	if code == STATUS_CODE['OK']:
-# 		thread, user, message_or_vote, code = vote_service.create_vote(message_or_thread, user, vote)
-#
-# 		if code == STATUS_CODE['NOT_FOUND']:
-# 			return make_response(jsonify(message_or_vote), code)
-# 		if code == STATUS_CODE['OK']:
-# 			forum, status_code = forum_service.select_forum_by_id(thread.forum_id)
-# 			count_votes, status_code = vote_service.count_votes_by_thread_id(thread.id)
-# 			message_or_user, status_code = user_service.select_user_by_user_id(thread.user_id)
-# 			if status_code == STATUS_CODE['NOT_FOUND']:
-# 				return make_response(jsonify(message_or_user), status_code)
-#
-# 			if thread.created is not None:
-# 				param_name_array = ["author", "created", "forum", "id", "message", "slug", "title", "votes"]
-# 				param_value_array = [message_or_user.nickname, convert_time(thread.created),
-# 				                     forum.slug, thread.id, thread.message,
-# 				                     thread.slug, thread.title, count_votes]
-# 			else:
-# 				param_name_array = ["author", "forum", "id", "message", "slug", "title", "votes"]
-# 				param_value_array = [message_or_user.nickname, forum.slug,
-# 				                     message_or_thread.id, message_or_thread.message,
-# 				                     message_or_thread.slug, message_or_thread.title, count_votes]
-#
-# 			thread_data = dict(zip(param_name_array, param_value_array))
-#
-# 			return make_response(jsonify(thread_data), code)
-#
-# 	if code == STATUS_CODE['NOT_FOUND']:
-#
-# 		return make_response(jsonify(message_or_thread), code)
-
-
 @threads_blueprint.route('/<slug_or_id>/details', methods=['GET'])
 def get_thread_information(slug_or_id):
-	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+	connect, cursor = data_context.create_connection()
 
-	if code == STATUS_CODE['OK']:
-		user, status_code = user_service.select_user_by_user_id(message_or_thread.user_id)
-		forum, status_code = forum_service.select_forum_by_id(message_or_thread.forum_id)
-		try:
-			count_votes, status_code = vote_service.count_votes_by_thread_id(message_or_thread.id)
-		except:
-			count_votes = 0
+	if slug_or_id.isdigit():
+		cursor.execute(SELECT_THREAD_BY_ID, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
+	else:
+		cursor.execute(SELECT_THREAD_BY_SLUG, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
 
-		if message_or_thread.created is not None:
-			param_name_array = ["author", "created", "forum", "id", "message", "slug", "title", "votes"]
-			param_value_array = [user.nickname, convert_time(message_or_thread.created),
-			                     forum.slug, message_or_thread.id, message_or_thread.message,
-			                     message_or_thread.slug, message_or_thread.title, count_votes]
-		else:
-			param_name_array = ["author", "forum", "id", "message", "slug", "title", "votes"]
-			param_value_array = [user.nickname, forum.slug,
-			                     message_or_thread.id, message_or_thread.message,
-			                     message_or_thread.slug, message_or_thread.title, count_votes]
+	cursor.execute(COUNT_VOTES_BY_THREAD_ID, [thread["id"], ])
+	count_votes = cursor.fetchone()["votes_count"]
 
-		thread_data = dict(zip(param_name_array, param_value_array))
+	thread["votes"] = count_votes
+	thread["created"] = convert_time(thread["created"])
 
-		return make_response(jsonify(thread_data), code)
-
-	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(jsonify(message_or_thread), code)
+	data_context.put_connection(connect)
+	cursor.close()
+	return make_response(jsonify(thread), STATUS_CODE['OK'])
 
 
 @threads_blueprint.route('/<slug_or_id>/details', methods=['POST'])
@@ -273,25 +234,138 @@ def update_thread_information(slug_or_id):
 @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
 def get_posts_information(slug_or_id):
 	params = request.args
-	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+	connect, cursor = data_context.create_connection()
+	if slug_or_id.isdigit():
+		command = SELECT_THREAD_BY_ID % (int(slug_or_id))
+		cursor.execute(command)
+		thread = cursor.fetchone()
 
-	if code == STATUS_CODE['OK']:
-		forum, code = forum_service.select_forum_by_id(message_or_thread.forum_id)
-		message_or_posts_arr, code = post_service.get_posts_arr(message_or_thread, params)
-		posts_arr = []
-		param_name_array = ["author", "created", "forum", "id", "message", "parent", "thread"]
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
+	else:
+		cursor.execute(SELECT_THREAD_BY_SLUG, [slug_or_id, ])
+		thread = cursor.fetchone()
+		if thread is None:
+			data_context.put_connection(connect)
+			cursor.close()
+			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+								 STATUS_CODE['NOT_FOUND'])
 
-		for post in message_or_posts_arr:
-			user, status_code = user_service.select_user_by_user_id(post.user_id)
-			param_value_array = [user.nickname, convert_time(post.created), forum.slug,
-			                     post.id, post.message, post.parent_id, post.thread_id]
-			post = dict(zip(param_name_array, param_value_array))
-			posts_arr.append(post)
+	limit = ' ALL '
+	if 'limit' in params:
+		limit = params.get('limit')
+	order = 'asc'
+	if 'desc' in params:
+		order = 'desc' if params.get('desc') == 'true' else 'asc'
+	since = 0
+	if 'since' in params:
+		since = params.get('since')
+	sort = 'flat'
+	if 'sort' in params:
+		sort = params.get('sort')
+	order = ' ' + order + ' '
 
-		return make_response(jsonify(posts_arr), code)
+	posts = []
+	if sort == 'flat':
+		if since == 0:
+			command = '''SELECT author, created, forum, id, message, parent, thread FROM posts WHERE thread = %s ORDER BY created %s, id %s LIMIT %s;''' % (
+							thread["id"], order, order, limit)
+			cursor.execute(command)
+			posts = cursor.fetchall()
+		else:
+			command = '''SELECT author, created, forum, id, message, parent, thread FROM posts WHERE thread = %s ORDER BY created %s, id %s;''' % (
+							thread["id"], order, order)
+			cursor.execute(command)
+			posts = cursor.fetchall()
+			posts = posts_since_limit(posts, since, limit)
+	elif sort == 'tree':
+		if since == 0:
+			command = '''SELECT author, created, forum, id, message, parent, thread FROM posts WHERE thread = %s ORDER BY path %s, id %s LIMIT %s;''' % (
+							thread["id"], order, order, limit)
+			cursor.execute(command)
+			posts = cursor.fetchall()
+		else:
+			command = '''SELECT author, created, forum, id, message, parent, thread FROM posts WHERE thread = %s ORDER BY path %s;''' % (
+							thread["id"], order)
+			cursor.execute(command)
+			posts = cursor.fetchall()
+			posts = posts_since_limit(posts, since, limit)
+	elif sort == 'parent_tree':
+		if since == 0:
+			command = '''SELECT author, created, forum, id, message, parent, thread FROM posts WHERE path[1] IN (SELECT posts.id FROM posts 
+						 WHERE thread = %s AND parent = 0 ORDER BY id %s 
+						 LIMIT %s OFFSET %s) ORDER BY path %s;''' % (
+							thread["id"], order, limit, since, order)
+			cursor.execute(command)
+			posts = cursor.fetchall()
+		else:
+			command = '''SELECT author, created, forum, id, message, parent, thread FROM posts WHERE path[1] IN (SELECT posts.id FROM posts 
+						 WHERE thread = %s AND parent = 0 ORDER BY id %s) 
+						 ORDER BY path %s;''' % (thread["id"], order, order)
+			cursor.execute(command)
+			posts = cursor.fetchall()
+			posts = posts_since_limit_parent(posts, params['since'], params['limit'])
 
-	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(jsonify(message_or_thread), code)
+	post_arr = []
+	for post in posts:
+		post["created"] = convert_time(post["created"])
+		post_arr.append(post)
+
+	data_context.put_connection(connect)
+	cursor.close()
+	return make_response(jsonify(post_arr), STATUS_CODE['OK'])
+
+
+
+
+
+# @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
+# def get_posts_information(slug_or_id):
+# 	params = request.args
+# 	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
+#
+# 	if code == STATUS_CODE['OK']:
+# 		forum, code = forum_service.select_forum_by_id(message_or_thread.forum_id)
+# 		message_or_posts_arr, code = post_service.get_posts_arr(message_or_thread, params)
+# 		posts_arr = []
+# 		param_name_array = ["author", "created", "forum", "id", "message", "parent", "thread"]
+#
+# 		for post in message_or_posts_arr:
+# 			user, status_code = user_service.select_user_by_user_id(post.user_id)
+# 			param_value_array = [user.nickname, convert_time(post.created), forum.slug,
+# 			                     post.id, post.message, post.parent_id, post.thread_id]
+# 			post = dict(zip(param_name_array, param_value_array))
+# 			posts_arr.append(post)
+#
+# 		return make_response(jsonify(posts_arr), code)
+#
+# 	if code == STATUS_CODE['NOT_FOUND']:
+# 		return make_response(jsonify(message_or_thread), code)
+
+def posts_since_limit(content, since, limit):
+    for i in range(len(content) - 1):
+        if content[i]["id"] == int(since):
+            return content[i+1:i+int(limit)+1]
+    return []
+
+
+def posts_since_limit_parent(content, since, limit):
+    for i in range(len(content) - 1):
+        if content[i]["id"] == int(since):
+            start = i + 1
+            stop = start
+            flag = 1
+            for j in range(start, len(content)-1):
+                if content[j]["parent"] == 0:
+                    flag += 1
+                if flag > int(limit):
+                    break
+                stop += 1
+            return content[start:stop+2]
+    return []
 
 
 

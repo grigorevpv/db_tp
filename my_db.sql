@@ -37,14 +37,16 @@ CREATE TABLE threads (
 );
 
 CREATE TABLE posts (
-  post_id serial CONSTRAINT firstkey_p PRIMARY KEY,                       -- ID поста
+  id serial CONSTRAINT firstkey_p PRIMARY KEY,                       -- ID поста
   user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,            -- ID пользователя, создавшего пост
-  thread_id INTEGER REFERENCES threads(id) ON DELETE CASCADE,      -- ID ветки обсуждения в котором находится сообщение
+  thread INTEGER REFERENCES threads(id) ON DELETE CASCADE,             -- ID ветки обсуждения в котором находится сообщение
   forum_id INTEGER REFERENCES forums(forum_id) ON DELETE CASCADE,         -- ID форума в котором находится сообщение
-  created TIMESTAMP WITH TIME ZONE DEFAULT now(),                                       -- Дата создания поста
+  author CITEXT,                                                          -- Имя автора поста
+  created TIMESTAMP WITH TIME ZONE DEFAULT now(),                         -- Дата создания поста
+  forum CITEXT,                                                           -- Идентификатор форума
   isEdited BOOLEAN DEFAULT FALSE,                                         -- Было ли изменино сообщение
   message TEXT,                                                           -- Сообщение поста
-  parent_id INTEGER DEFAULT 0,                                            -- Идентификатор родительского сообщения
+  parent INTEGER DEFAULT 0,                                            -- Идентификатор родительского сообщения
   path     INTEGER []                                                     -- Путь до подительского поста
 
 );
