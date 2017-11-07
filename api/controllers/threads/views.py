@@ -81,6 +81,15 @@ def create_posts(slug_or_id):
 			return make_response(jsonify({"message": "Can't find forum with forum_id: " + thread["forum_id"]}),
 								 STATUS_CODE['NOT_FOUND'])
 
+		# if post.get("slug") is not None:
+		# 	cursor.execute( SELECT_THREAD_BY_SLUG, [post["slug"], ] )
+		# 	returning_thread = cursor.fetchone()
+		# 	if returning_thread is not None:
+		# 		data_context.put_connection( connect )
+		# 		cursor.close()
+		# 		return make_response( jsonify( {"message": "This thread is exist slug: " + post["slug"]} ),
+		# 		                      STATUS_CODE[ 'CONFLICT' ] )
+
 		post_path = list()
 		parent_id = 0
 		if post.get('parent') is not None:
@@ -98,7 +107,7 @@ def create_posts(slug_or_id):
 		cursor.execute(SELECT_NEXT_VAL)
 		post_id = cursor.fetchone()["nextval"]
 		post_path.append(post_id)
-		cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["thread_id"], forum["forum_id"], parent_id, created_time,
+		cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["id"], forum["forum_id"], parent_id, created_time,
 		                  post["message"], post_path, ])
 		returning_post = cursor.fetchone()
 		param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
@@ -110,7 +119,7 @@ def create_posts(slug_or_id):
 		                      returning_post["isedited"],
 		                     returning_post["message"],
 		                     returning_post["parent_id"],
-		                     thread["thread_id"]]
+		                     thread["id"]]
 		created_thread_data = dict(zip( param_name_array, param_value_array))
 		created_threads_arr.append(created_thread_data)
 

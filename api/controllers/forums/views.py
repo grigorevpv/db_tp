@@ -72,95 +72,44 @@ def create_thread(slug):
 
 	cursor.execute(SELECT_FORUM_BY_SLUG, [slug, ])
 	forum = cursor.fetchone()
-	if user is None:
+	if forum is None:
 		data_context.put_connection(connect)
 		cursor.close()
 		return make_response(jsonify({"message": "Can't find forum with slug: " + slug}),
 								STATUS_CODE['NOT_FOUND'])
 
-	try:
-		if content.get("slug") is None:
-			content["slug"] = ""
-		if content.get("created") is None:
-			command = '''INSERT INTO threads (forum_id, user_id, author, forum, message, slug, title)
-								VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s')	RETURNING id, author, created, forum, message, slug, title;''' % \
-			          (forum["forum_id"], user["user_id"], user["nickname"],
-						forum["slug"], content["message"], content["slug"], content["title"])
-		else:
-			command = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title)
-					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING id, author, created, forum, message, slug, title;''' % (forum["forum_id"], user["user_id"], user["nickname"],
-		                    content["created"], forum["slug"], content["message"],
-								   content["slug"], content["title"])
+	if content.get("slug") is not None:
+		cursor.execute( SELECT_THREAD_BY_SLUG, [content["slug"], ] )
+		returning_thread = cursor.fetchone()
+		if returning_thread is not None:
+			returning_thread[ 'created' ] = convert_time( returning_thread[ 'created' ] )
+			data_context.put_connection( connect )
+			cursor.close()
+			return make_response( jsonify( returning_thread ),
+			                      STATUS_CODE[ 'CONFLICT' ] )
+	else:
+		content[ "slug" ] = ""
 
-		cursor.execute(command)
-		thread = cursor.fetchone()
-		thread['created'] = convert_time(thread['created'])
+	if content.get("created") is None:
+		command = '''INSERT INTO threads (forum_id, user_id, author, forum, message, slug, title)
+							VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s')	RETURNING id, author, created, forum, message, slug, title;''' % \
+		          (forum["forum_id"], user["user_id"], user["nickname"],
+					forum["slug"], content["message"], content["slug"], content["title"])
+	else:
+		command = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title)
+				VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING id, author, created, forum, message, slug, title;''' % (forum["forum_id"], user["user_id"], user["nickname"],
+	                    content["created"], forum["slug"], content["message"],
+							   content["slug"], content["title"])
 
-		return make_response(jsonify(thread), STATUS_CODE['CREATED'])
-	except:
-		cursor.execute(SELECT_THREAD_BY_SLUG, content["slug"])
-		thread = cursor.fetchone()
-		param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
-		param_value_array = [thread["author"], convert_time(thread["created"]),
-		                     thread["forum"], thread["thread_id"], thread["message"],
-		                     thread["slug"], thread["title"]]
-		thread_data = dict(zip(param_name_array, param_value_array))
-		return make_response(jsonify(thread_data), STATUS_CODE['CONFLICT'])
-	finally:
-		data_context.put_connection(connect)
-		cursor.close()
+	cursor.execute(command)
+	thread = cursor.fetchone()
+	thread['created'] = convert_time(thread['created'])
 
+	data_context.put_connection( connect )
+	cursor.close()
+	return make_response(jsonify(thread), STATUS_CODE['CREATED'])
 
 
-
-
-
-	# user_content = dict()
-	# forum_content = dict()
-	# forum_content['slug'] = slug
-	# user_content['nickname'] = content['author']
-	# user = user_model.from_dict(user_content)
-	# forum = forum_model.from_dict(forum_content)
-	# thread = thread_model.from_dict(content)
-	#
-	# forum, user, message_or_thread, code = forum_service.create_thread(user, forum, thread)
-	#
-	# if code == STATUS_CODE['NOT_FOUND']:
-	#
-	# 	return make_response(jsonify(message_or_thread), code)
-	#
-	# if code == STATUS_CODE['CONFLICT']:
-	# 	if message_or_thread.created is not None:
-	# 		param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
-	# 		param_value_array = [user.nickname, convert_time(message_or_thread.created),
-	# 								forum.slug, message_or_thread.id, message_or_thread.message,
-	# 								message_or_thread.slug, message_or_thread.title]
-	# 	else:
-	# 		param_name_array = ["author", "forum", "id", "message", "slug", "title"]
-	# 		param_value_array = [user.nickname, forum.slug,
-	# 							message_or_thread.id, message_or_thread.message,
-	# 							message_or_thread.slug, message_or_thread.title]
-	#
-	# 	exist_thread_data = dict(zip(param_name_array, param_value_array))
-	#
-	# 	return make_response(jsonify(exist_thread_data), code)
-	#
-	# if code == STATUS_CODE['CREATED']:
-	# 	if message_or_thread.created is not None:
-	# 		param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
-	# 		param_value_array = [user.nickname, convert_time(message_or_thread.created),
-	# 								forum.slug, message_or_thread.id, message_or_thread.message,
-	# 								message_or_thread.slug, message_or_thread.title]
-	# 	else:
-	# 		param_name_array = ["author", "forum", "id", "message", "slug", "title"]
-	# 		param_value_array = [user.nickname, forum.slug,
-	# 							message_or_thread.id, message_or_thread.message,
-	# 							message_or_thread.slug, message_or_thread.title]
-	#
-	# 	created_thread_data = dict(zip(param_name_array, param_value_array))
-	#
-	# 	return make_response(jsonify(created_thread_data), code)
-	#
 
 @forums_blueprint.route('/<slug>/details', methods=['GET'])
 def get_forum_information(slug):
@@ -185,20 +134,43 @@ def get_forum_information(slug):
 
 @forums_blueprint.route('/<slug>/threads', methods=['GET'])
 def get_list_of_thread(slug):
-	parameters = request.args
+	params= request.args
+	connect, cursor = data_context.create_connection()
 
-	message_or_forum, code = forum_service.select_forum_by_slug(slug)
+	cursor.execute( SELECT_FORUM_BY_SLUG, [ slug, ] )
+	forum = cursor.fetchone()
+	if forum is None:
+		data_context.put_connection( connect )
+		cursor.close()
+		return make_response( jsonify( {"message": "Can't find forum with slug: " + slug} ),
+		                      STATUS_CODE[ 'NOT_FOUND' ] )
 
-	if code == STATUS_CODE['OK']:
-		threads, status_code = thread_service.select_threads_by_forum_id(message_or_forum, parameters)
+	limit = ' ALL '
+	if 'limit' in params:
+		limit = params.get( 'limit' )
+	order = 'asc'
+	if 'desc' in params:
+		order = 'desc' if params.get( 'desc' ) == 'true' else 'asc'
+	since = ''
+	if 'since' in params:
+		znak = ' <= ' if order == 'desc' else ' >= '
+		time = " '%s' " % (params.get( 'since' ))
+		since = 'and created ' + znak + time
 
-		if status_code == STATUS_CODE['OK']:
+	order = ' ' + order + ' '
 
-			return make_response(jsonify(threads), code)
+	command = SELECT_THREADS_BY_FORUM_ID % (forum["forum_id"], since, order, limit)
+	cursor.execute(command)
+	threads = cursor.fetchall()
+	threads_arr = []
 
-	if code == STATUS_CODE['NOT_FOUND']:
+	for thread in threads:
+		thread["created"] = convert_time(thread["created"])
+		threads_arr.append(thread)
 
-		return make_response(jsonify(message_or_forum), code)
+	data_context.put_connection( connect )
+	cursor.close()
+	return make_response(jsonify(threads_arr), STATUS_CODE['OK'])
 
 
 @forums_blueprint.route('/<slug>/users', methods=['GET'])
