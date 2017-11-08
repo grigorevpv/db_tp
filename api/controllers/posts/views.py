@@ -1,4 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
+
+from api.repositories.connect import PostgresDataContext
 from api.services.ForumService.ForumService import ForumService
 from api.models.forums.ForumModel import ForumModel
 from api.services.UserService.UserService import UserService
@@ -7,6 +9,10 @@ from api.services.ThreadService.ThreadServise import ThreadService
 from api.models.threads.ThreadModel import ThreadModel
 from api.services.PostService.PostService import PostService
 from api.models.posts.PostModel import PostModel
+from api.repositories.PostRepository.post_queries_db import *
+from api.repositories.UserRepository.user_queries_db import *
+from api.repositories.ForumRepository.forum_queries_db import *
+from api.repositories.ThreadRepository.thread_queries_db import *
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
@@ -22,6 +28,7 @@ thread_service = ThreadService()
 thread_model = ThreadModel
 post_service = PostService()
 post_model = PostModel
+data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
@@ -33,82 +40,105 @@ STATUS_CODE = {
 @posts_blueprint.route('/<id>/details', methods=['GET'])
 def get_post_details_get(id):
 	params = request.args.getlist('related')
+	connect, cursor = data_context.create_connection()
 
-	message_or_post, code = post_service.select_post_by_id(id)
+	command = '''SELECT * FROM posts WHERE id = %s;''' %(int(id))
+	cursor.execute(command)
+	post = cursor.fetchone()
+	if post is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find post with id: " + id}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		message_or_user, code = user_service.select_user_by_user_id(message_or_post.user_id)
-		message_or_forum, code = forum_service.select_forum_by_id(message_or_post.forum_id)
-		user, forum, thread, post = ({}, {}, {}, {})
-		for val in params:
-			for key in val.split(','):
-				if 'user' == key:
-					param_name_array = ["about", "email", "fullname", "nickname"]
-					param_value_array = [message_or_user.about, message_or_user.email,
-										message_or_user.fullname, message_or_user.nickname]
-					user = dict(zip(param_name_array, param_value_array))
-				if 'forum' == key:
-					count_posts = forum_service.count_posts_by_forum_id(message_or_forum)
-					count_threads = forum_service.count_threads_by_forum_id(message_or_forum)
-					forum_user, code = user_service.select_user_by_user_id(message_or_forum.user_id)
-					param_name_array = ["posts", "slug", "threads", "title", "user"]
-					param_value_array = [count_posts, message_or_forum.slug, count_threads,
-										message_or_forum.title, forum_user.nickname]
-					forum = dict(zip(param_name_array, param_value_array))
-				if 'thread' == key:
-					message_or_thread, code = thread_service.select_thread_by_id(message_or_post.thread_id)
-					thread_user, code = user_service.select_user_by_user_id(message_or_thread.user_id)
-					param_name_array = ["author", "created", "forum", "id", "message", "slug", "title"]
-					param_value_array = [thread_user.nickname, convert_time(message_or_thread.created),
-										message_or_forum.slug, message_or_thread.id, message_or_thread.message,
-										message_or_thread.slug, message_or_thread.title]
-					thread = dict(zip(param_name_array, param_value_array))
+	cursor.execute(SELECT_USER_BY_USER_ID, [post["user_id"], ])
+	post_user = cursor.fetchone()
+	if post_user is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find user with id: " + post["user_id"]}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-		param_name_array = ["author", "created", "forum", "id", "isEdited", "message", "parent", "thread"]
-		param_value_array = [message_or_user.nickname, convert_time(message_or_post.created),
-							message_or_forum.slug, message_or_post.id, message_or_post.isedited,
-							message_or_post.message, message_or_post.parent_id, message_or_post.thread_id]
-		post = dict(zip(param_name_array, param_value_array))
+	cursor.execute(SELECT_FORUM_BY_FORUM_ID, [post["forum_id"], ])
+	post_forum = cursor.fetchone()
+	if post_forum is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find forum with id: " + post["forum_id"]}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-		post_data = dict()
+	user, forum, thread = ({}, {}, {})
+	for val in params:
+		for key in val.split(','):
+			if 'user' == key:
+				user = post_user
+			if 'forum' == key:
+				cursor.execute(SELECT_COUNT_POSTS_BY_FORUM_ID, [post["forum_id"], ])
+				count_posts = cursor.fetchone()["posts_count"]
+				cursor.execute(SELECT_COUNT_THREADS_BY_FORUM_ID, [post["forum_id"], ])
+				count_threads = cursor.fetchone()["threads_count"]
 
-		if len(user) != 0:
-			post_data['author'] = user
-		if len(forum) != 0:
-			post_data['forum'] = forum
-		if len(thread) != 0:
-			post_data['thread'] = thread
-		post_data['post'] = post
+				param_name_array = ["posts", "slug", "threads", "title", "user"]
+				param_value_array = [count_posts, post_forum["slug"], count_threads,
+				                     post_forum["title"], post_forum["user"]]
+				forum = dict(zip(param_name_array, param_value_array))
+			if 'thread' == key:
+				cursor.execute(SELECT_THREAD_BY_ID, [post["thread"], ])
+				thread = cursor.fetchone()
+				if thread is None:
+					data_context.put_connection(connect)
+					cursor.close()
+					return make_response(jsonify({"message": "Can't find thread with nickname: " + nickname}),
+					                     STATUS_CODE['NOT_FOUND'])
+				thread["created"] = convert_time(thread["created"])
 
-		return make_response(jsonify(post_data), code)
 
-	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(jsonify(message_or_post), code)
+	param_name_array = ["author", "created", "forum", "id", "isEdited", "message", "parent", "thread"]
+	param_value_array = [post_user["nickname"], convert_time(post["created"]),
+	                     post_forum["slug"], post["id"], post["isedited"],
+						 post["message"], post["parent"], post["thread"]]
+	post = dict(zip(param_name_array, param_value_array))
+
+	post_data = dict()
+
+	if len(user) != 0:
+		post_data['author'] = user
+	if len(forum) != 0:
+		post_data['forum'] = forum
+	if len(thread) != 0:
+		post_data['thread'] = thread
+	post_data['post'] = post
+
+	data_context.put_connection(connect)
+	cursor.close()
+	return make_response(jsonify(post_data), STATUS_CODE['OK'])
 
 
 @posts_blueprint.route('/<id>/details', methods=['POST'])
 def get_post_details_post(id):
 	content = request.get_json(silent=True)
+	connect, cursor = data_context.create_connection()
 
-	message_or_post, code = post_service.select_post_by_id(id)
+	command = '''SELECT * FROM posts WHERE id = %s;''' % (int(id))
+	cursor.execute(command)
+	post = cursor.fetchone()
+	if post is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find post with id: " + id}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		if 'message' in content:
-			if message_or_post.message != content['message']:
-				message_or_post, code = post_service.update_post(message_or_post, content['message'])
+	if 'message' in content:
+		if post["message"] != content['message']:
+			command = '''UPDATE posts SET message = '%s', isedited = %s
+											WHERE id = %s RETURNING *;''' % (content['message'], True, post["id"])
+			cursor.execute(command)
+			post = cursor.fetchone()
 
-		if code == STATUS_CODE['OK']:
-			message_or_user, code = user_service.select_user_by_user_id(message_or_post.user_id)
-			message_or_forum, code = forum_service.select_forum_by_id(message_or_post.forum_id)
-			param_name_array = ["author", "created", "forum", "id", "isEdited", "message", "parent", "thread"]
-			param_value_array = [message_or_user.nickname, convert_time(message_or_post.created),
-			                     message_or_forum.slug, message_or_post.id, message_or_post.isedited,
-			                     message_or_post.message, message_or_post.parent_id, message_or_post.thread_id]
-			post = dict(zip(param_name_array, param_value_array))
-			return make_response(jsonify(post), code)
+	post["created"] = convert_time(post["created"])
+	post["isEdited"] = post["isedited"]
 
-	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(jsonify(message_or_post), code)
+	return make_response(jsonify(post), STATUS_CODE['OK'])
 
 
 

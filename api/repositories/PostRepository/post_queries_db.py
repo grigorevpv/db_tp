@@ -5,8 +5,10 @@ INSERT_POST = '''INSERT INTO posts (id, user_id, thread, forum_id, parent, creat
 # SELECT_POST_BY_ID = '''SELECT posts.id, posts.user_id, posts.thread_id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent_id, posts.path
 # 								FROM posts WHERE post_id = %s;'''
 
-SELECT_POST_BY_ID = '''SELECT posts.id, posts.user_id, posts.id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent, posts.path 
-								FROM posts WHERE id = %s;'''
+# SELECT_POST_BY_ID = '''SELECT posts.id, posts.user_id, posts.id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent, posts.path
+# 								FROM posts WHERE id = %s;'''
+
+SELECT_POST_BY_ID = '''SELECT * FROM posts WHERE id = %s;'''
 
 SELECT_NEXT_VAL = '''SELECT nextval('posts_id_seq');'''
 

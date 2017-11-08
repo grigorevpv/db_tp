@@ -88,13 +88,19 @@ def create_posts(slug_or_id):
 			parent_id = post['parent']
 			cursor.execute(SELECT_POST_BY_ID, [post['parent'], ])
 			parent_post = cursor.fetchone()
-			if post is None:
+			if parent_post is None:
 				data_context.put_connection(connect)
 				cursor.close()
-				return make_response(jsonify({"message": "Didn't find post with id: " + post['parent']}),
-				                     STATUS_CODE['NOT_FOUND'])
+				return make_response(jsonify({"message": "Parent post was created in another thread"}),
+					                     STATUS_CODE['CONFLICT'])
 			else:
-				post_path.extend(parent_post["path"])
+				if parent_post["thread"] == thread["id"]:
+					post_path.extend(parent_post["path"])
+				else:
+					data_context.put_connection(connect)
+					cursor.close()
+					return make_response(jsonify({"message": "Parent post was created in another thread"}),
+					                     STATUS_CODE['CONFLICT'])
 
 		cursor.execute(SELECT_NEXT_VAL)
 		post_id = cursor.fetchone()["nextval"]
