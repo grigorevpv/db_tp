@@ -113,23 +113,50 @@ def create_thread(slug):
 
 @forums_blueprint.route('/<slug>/details', methods=['GET'])
 def get_forum_information(slug):
+	params = request.args
+	connect, cursor = data_context.create_connection()
 
-	message_or_forum, code = forum_service.select_forum_by_slug(slug)
+	cursor.execute(SELECT_FORUM_BY_SLUG, [slug, ])
+	forum = cursor.fetchone()
+	if forum is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find forum with slug: " + slug}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		count_posts = forum_service.count_posts_by_forum_id(message_or_forum)
-		count_threads = forum_service.count_threads_by_forum_id(message_or_forum)
-		user, status_code = user_service.select_user_by_user_id(message_or_forum.user_id)
+	cursor.execute(SELECT_COUNT_POSTS_BY_FORUM_ID, [forum["forum_id"], ])
+	count_posts = cursor.fetchone()["posts_count"]
+	forum["posts"] = count_posts
 
-		param_name_array = ["posts", "slug", "threads", "title", "user"]
-		param_value_array = [count_posts, message_or_forum.slug, count_threads, message_or_forum.title, user.nickname]
-		exist_forum_data = dict(zip(param_name_array, param_value_array))
+	cursor.execute(SELECT_COUNT_THREADS_BY_FORUM_ID, [forum["forum_id"], ])
+	count_threads = cursor.fetchone()["threads_count"]
+	forum["threads"] = count_threads
 
-		return make_response(jsonify(exist_forum_data), code)
+	data_context.put_connection(connect)
+	cursor.close()
+	return make_response(jsonify(forum), STATUS_CODE['OK'])
 
-	if code == STATUS_CODE['NOT_FOUND']:
 
-		return make_response(jsonify(message_or_forum), code)
+
+# @forums_blueprint.route('/<slug>/details', methods=['GET'])
+# def get_forum_information(slug):
+#
+# 	message_or_forum, code = forum_service.select_forum_by_slug(slug)
+#
+# 	if code == STATUS_CODE['OK']:
+# 		count_posts = forum_service.count_posts_by_forum_id(message_or_forum)
+# 		count_threads = forum_service.count_threads_by_forum_id(message_or_forum)
+# 		user, status_code = user_service.select_user_by_user_id(message_or_forum.user_id)
+#
+# 		param_name_array = ["posts", "slug", "threads", "title", "user"]
+# 		param_value_array = [count_posts, message_or_forum.slug, count_threads, message_or_forum.title, user.nickname]
+# 		exist_forum_data = dict(zip(param_name_array, param_value_array))
+#
+# 		return make_response(jsonify(exist_forum_data), code)
+#
+# 	if code == STATUS_CODE['NOT_FOUND']:
+#
+# 		return make_response(jsonify(message_or_forum), code)
 
 
 @forums_blueprint.route('/<slug>/threads', methods=['GET'])

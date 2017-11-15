@@ -36,7 +36,7 @@ import string
 # 	print(f.text)
 # 	print(f.status_code)
 
-url = "http://localhost:5000/api/thread/1/posts?limit=2"
+url = "http://localhost:8080/images"
 
 # data2 = {"slug": "sluggg", "limit": "100", "desc": "true"}
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
