@@ -7,6 +7,7 @@ from api.services.ThreadService.ThreadServise import ThreadService
 from api.models.threads.ThreadModel import ThreadModel
 from api.repositories.connect import PostgresDataContext
 from api.repositories.ForumRepository.forum_queries_db import *
+from api.repositories.UserRepository.user_queries_db import *
 from enquiry.queries_db import *
 from enquiry.connect import *
 from enquiry.secondary import *
@@ -137,28 +138,6 @@ def get_forum_information(slug):
 	return make_response(jsonify(forum), STATUS_CODE['OK'])
 
 
-
-# @forums_blueprint.route('/<slug>/details', methods=['GET'])
-# def get_forum_information(slug):
-#
-# 	message_or_forum, code = forum_service.select_forum_by_slug(slug)
-#
-# 	if code == STATUS_CODE['OK']:
-# 		count_posts = forum_service.count_posts_by_forum_id(message_or_forum)
-# 		count_threads = forum_service.count_threads_by_forum_id(message_or_forum)
-# 		user, status_code = user_service.select_user_by_user_id(message_or_forum.user_id)
-#
-# 		param_name_array = ["posts", "slug", "threads", "title", "user"]
-# 		param_value_array = [count_posts, message_or_forum.slug, count_threads, message_or_forum.title, user.nickname]
-# 		exist_forum_data = dict(zip(param_name_array, param_value_array))
-#
-# 		return make_response(jsonify(exist_forum_data), code)
-#
-# 	if code == STATUS_CODE['NOT_FOUND']:
-#
-# 		return make_response(jsonify(message_or_forum), code)
-
-
 @forums_blueprint.route('/<slug>/threads', methods=['GET'])
 def get_list_of_thread(slug):
 	params= request.args
@@ -203,26 +182,95 @@ def get_list_of_thread(slug):
 @forums_blueprint.route('/<slug>/users', methods=['GET'])
 def get_list_of_users(slug):
 	params = request.args
+	connect, cursor = data_context.create_connection()
 
-	message_or_forum, code = forum_service.select_forum_by_slug(slug)
+	cursor.execute(SELECT_FORUM_BY_SLUG, [slug, ])
+	forum = cursor.fetchone()
+	if forum is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find forum with slug: " + slug}),
+		                     STATUS_CODE['NOT_FOUND'])
 
-	if code == STATUS_CODE['OK']:
-		message_or_users, code = user_service.select_users_arr(message_or_forum, params)
+	users, limit, since, desc = None, 100, None, False
 
-		if code == STATUS_CODE['OK']:
-			param_name_array = ["about", "email", "fullname", "nickname"]
+	if 'limit' in params:
+		limit = params.get('limit')
+	if 'desc' in params:
+		if params.get('desc') == 'true':
+			desc = True
+	if 'since' in params:
+		since = params.get('since')
 
-			user_arr = []
-			for user in message_or_users:
-				param_value_array = [user.about, user.email,
-										user.fullname, user.nickname]
-				user_data = dict(zip(param_name_array, param_value_array))
-				user_arr.append(user_data)
-
-			return make_response(jsonify(user_arr), code)
+	if since is not None:
+		if desc:
+			command = SELECT_USERS_SINCE_DESC % (forum["forum_id"], forum["forum_id"], since, limit)
+			cursor.execute(command)
+			users = cursor.fetchall()
 		else:
-			return make_response(jsonify(message_or_users), code)
+			command = SELECT_USERS_SINCE % (forum["forum_id"], forum["forum_id"], since, limit)
+			cursor.execute(command)
+			users = cursor.fetchall()
 
-	if code == STATUS_CODE['NOT_FOUND']:
-		return make_response(jsonify(message_or_forum), code)
+	else:
+		if desc:
+			command = SELECT_USERS_DESC % (forum["forum_id"], forum["forum_id"], limit)
+			cursor.execute(command)
+			users = cursor.fetchall()
+			if users is None:
+				raise Exception("user is not exist")
+		else:
+			command = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
+                 JOIN users u ON p.user_id = u.user_id
+                 WHERE forum_id = %s
+                 UNION
+                 SELECT us.user_id FROM threads th
+                 JOIN users us ON th.user_id = us.user_id
+                 WHERE forum_id = %s)
+                 ORDER BY users.nickname COLLATE ucs_basic 
+                 LIMIT %s;''' % (forum["forum_id"], forum["forum_id"], limit)
+			cursor.execute(command)
+			users = cursor.fetchall()
+
+	if users is None:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find users"}),
+		                     STATUS_CODE['NOT_FOUND'])
+
+	users_arr = []
+	for user in users:
+		users_arr.append(user)
+
+	data_context.put_connection(connect)
+	cursor.close()
+	return make_response(jsonify(users_arr), STATUS_CODE['OK'])
+
+
+
+# @forums_blueprint.route('/<slug>/users', methods=['GET'])
+# def get_list_of_users(slug):
+# 	params = request.args
+#
+# 	message_or_forum, code = forum_service.select_forum_by_slug(slug)
+#
+# 	if code == STATUS_CODE['OK']:
+# 		message_or_users, code = user_service.select_users_arr(message_or_forum, params)
+#
+# 		if code == STATUS_CODE['OK']:
+# 			param_name_array = ["about", "email", "fullname", "nickname"]
+#
+# 			user_arr = []
+# 			for user in message_or_users:
+# 				param_value_array = [user.about, user.email,
+# 										user.fullname, user.nickname]
+# 				user_data = dict(zip(param_name_array, param_value_array))
+# 				user_arr.append(user_data)
+#
+# 			return make_response(jsonify(user_arr), code)
+# 		else:
+# 			return make_response(jsonify(message_or_users), code)
+#
+# 	if code == STATUS_CODE['NOT_FOUND']:
+# 		return make_response(jsonify(message_or_forum), code)
 
