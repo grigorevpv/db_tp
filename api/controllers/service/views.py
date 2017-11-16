@@ -4,6 +4,7 @@ from api.repositories.ForumRepository.forum_queries_db import *
 from api.repositories.ThreadRepository.thread_queries_db import *
 from api.repositories.PostRepository.post_queries_db import *
 from api.repositories.UserRepository.user_queries_db import *
+from api.repositories.VoteRepository.vote_queries_db import *
 from api.services.ForumService.ForumService import ForumService
 from api.models.forums.ForumModel import ForumModel
 from api.services.UserService.UserService import UserService
@@ -60,27 +61,17 @@ def get_information():
 	return make_response(jsonify(bd_information), STATUS_CODE['OK'])
 
 
-# @service_blueprint.route('/status', methods=['GET'])
-# def get_information():
-# 	count_forums, code = forum_service.count_forums()
-# 	count_threads, code = thread_service.count_threads()
-# 	count_posts, code = post_service.count_posts()
-# 	count_users, code = user_service.count_users()
-#
-# 	param_name_array = ["forum", "post", "thread", "user"]
-# 	param_value_array = [count_forums, count_posts, count_threads, count_users]
-# 	bd_information = dict(zip(param_name_array, param_value_array))
-#
-# 	return make_response(jsonify(bd_information), STATUS_CODE['OK'])
-
-
 @service_blueprint.route('/clear', methods=['POST'])
 def clear_tables():
-	forum_service.delete_forums()
-	thread_service.delete_threads()
-	post_service.delete_posts()
-	user_service.delete_users()
-	vote_service.delete_votes()
+	connect, cursor = data_context.create_connection()
 
+	cursor.execute(DELETE_FORUMS_TABLE)
+	cursor.execute(DELETE_THREADS_TABLE)
+	cursor.execute(DELETE_POSTS_TABLE)
+	cursor.execute(DELETE_USERS_TABLE)
+	cursor.execute(DELETE_VOTES_TABLE)
+
+	data_context.put_connection(connect)
+	cursor.close()
 	return make_response(jsonify(None), STATUS_CODE['OK'])
 
