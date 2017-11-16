@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/forums/views.py" afterPath="$PROJECT_DIR$/api/controllers/forums/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/posts/views.py" afterPath="$PROJECT_DIR$/api/controllers/posts/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/service/views.py" afterPath="$PROJECT_DIR$/api/controllers/service/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api/controllers/threads/views.py" afterPath="$PROJECT_DIR$/api/controllers/threads/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/report.html" afterPath="$PROJECT_DIR$/tests/report.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,7 +19,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/db_tp$ex_dev.coverage" NAME="ex_dev Coverage Results" MODIFIED="1509620215853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/db_tp$ex.coverage" NAME="ex Coverage Results" MODIFIED="1510219923799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1510839945809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1510842218575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/db_tp$UserModel.coverage" NAME="UserModel Coverage Results" MODIFIED="1508588024728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api/models/users" />
   </component>
   <component name="DatabaseView">
@@ -80,28 +83,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/api/controllers/service/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-906">
-              <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="13" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="58" selection-end-column="2" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -167,12 +149,12 @@
         <option value="$PROJECT_DIR$/api/repositories/connect.py" />
         <option value="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" />
         <option value="$PROJECT_DIR$/api/repositories/PostRepository/post_queries_db.py" />
-        <option value="$PROJECT_DIR$/api/controllers/threads/views.py" />
         <option value="$PROJECT_DIR$/ex.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql" />
         <option value="$PROJECT_DIR$/api/controllers/forums/views.py" />
         <option value="$PROJECT_DIR$/api/controllers/posts/views.py" />
         <option value="$PROJECT_DIR$/api/controllers/service/views.py" />
+        <option value="$PROJECT_DIR$/api/controllers/threads/views.py" />
       </list>
     </option>
   </component>
@@ -222,7 +204,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -469,6 +450,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1049,30 +1031,36 @@
       <option name="project" value="LOCAL" />
       <updated>1510839765180</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="rewrite service/clear [POST] using connection pool">
+      <created>1510840016047</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1510840016047</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="-11" width="1922" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27908218" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3210913" sideWeight="0.50208336" order="5" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2022412" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30860215" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2580645" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27588046" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2022412" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37419355" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30860215" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37419355" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2580645" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1112,7 +1100,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add delete commands for Repositories" />
     <MESSAGE value="add delete commands for Services" />
     <MESSAGE value="all work" />
     <MESSAGE value="add Dockerfile" />
@@ -1137,7 +1124,8 @@
     <MESSAGE value="rewrite forum/&lt;slug&gt;/details [GET] using connection pool" />
     <MESSAGE value="rewrite forum/&lt;slug&gt;/users [GET] using connection pool" />
     <MESSAGE value="rewrite service/status [GET] using connection pool" />
-    <option name="LAST_COMMIT_MESSAGE" value="rewrite service/status [GET] using connection pool" />
+    <MESSAGE value="rewrite service/clear [POST] using connection pool" />
+    <option name="LAST_COMMIT_MESSAGE" value="rewrite service/clear [POST] using connection pool" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1314,13 +1302,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/users/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1358,7 +1339,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
           <caret line="4" column="26" lean-forward="false" selection-start-line="4" selection-start-column="26" selection-end-line="4" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="LargeFileEditor">
@@ -1367,18 +1347,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/threads/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="312" column="0" lean-forward="false" selection-start-line="312" selection-start-column="0" selection-end-line="312" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
           <caret line="1597" column="0" lean-forward="false" selection-start-line="1597" selection-start-column="0" selection-end-line="1597" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1386,7 +1358,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1399,7 +1370,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1412,7 +1382,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1421,49 +1390,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4940">
-          <caret line="247" column="0" lean-forward="false" selection-start-line="247" selection-start-column="0" selection-end-line="247" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-            <marker date="1510839231343" expanded="true" signature="3337:3525" ph="INSERT INTO threads... " />
-            <marker date="1510839231343" expanded="true" signature="3698:3898" ph="INSERT INTO threads... " />
-            <marker date="1510839231343" expanded="true" signature="7648:8061" ph="SELECT * FRO... users" />
-            <marker date="1510839231343" expanded="true" signature="7686:7805" ph="SELECT u.use... posts" />
-            <marker date="1510839231343" expanded="true" signature="7848:7974" ph="SELECT us.us... threads" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/posts/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="88" column="20" lean-forward="false" selection-start-line="88" selection-start-column="20" selection-end-line="89" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
-            <marker date="1510839566635" expanded="true" signature="1559:1590" ph="SELECT * FRO... posts" />
-            <marker date="1510839566635" expanded="true" signature="1559:1592" ph="SELECT * FRO... posts" />
-            <marker date="1510839566635" expanded="true" signature="4445:4476" ph="SELECT * FRO... posts" />
-            <marker date="1510839566635" expanded="true" signature="4835:4918" ph="UPDATE posts... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/repositories/ForumRepository/forum_queries_db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="469">
           <caret line="24" column="56" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="56" />
-          <folding>
-            <marker date="1509907231361" expanded="true" signature="26:127" ph="SELECT forum... forums" />
-            <marker date="1509907231361" expanded="true" signature="157:306" ph="SELECT forum... forums" />
-            <marker date="1509907231361" expanded="true" signature="330:526" ph="INSERT INTO forums... " />
-            <marker date="1509907231361" expanded="true" signature="911:1066" ph="INSERT INTO threads... " />
-            <marker date="1509907231361" expanded="true" signature="1108:1180" ph="SELECT count... posts" />
-            <marker date="1509907231361" expanded="true" signature="1224:1300" ph="SELECT count... threads" />
-            <marker date="1509907231361" expanded="true" signature="1331:1374" ph="SELECT count... forums" />
-            <marker date="1509907231361" expanded="true" signature="1405:1423" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1471,16 +1401,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="389">
           <caret line="26" column="58" lean-forward="false" selection-start-line="26" selection-start-column="45" selection-end-line="26" selection-end-column="58" />
-          <folding>
-            <marker date="1510076980036" expanded="true" signature="32:232" ph="SELECT threa... threads" />
-            <marker date="1510076980036" expanded="true" signature="268:341" ph="SELECT sum(v... votes" />
-            <marker date="1510076980036" expanded="true" signature="762:812" ph="SELECT * FRO... threads" />
-            <marker date="1510076980036" expanded="true" signature="845:890" ph="SELECT * FRO... threads" />
-            <marker date="1510076980036" expanded="true" signature="915:1142" ph="UPDATE threa... " />
-            <marker date="1510076980036" expanded="true" signature="1174:1219" ph="SELECT count... threads" />
-            <marker date="1510076980036" expanded="true" signature="1251:1270" ph="DELETE FROM " />
-            <marker date="1510076980036" expanded="true" signature="1299:1481" ph="SELECT posts... posts" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1488,45 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="469">
           <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="54" />
-          <folding>
-            <marker date="1510089956219" expanded="true" signature="17:184" ph="INSERT INTO posts... " />
-            <marker date="1510089956219" expanded="true" signature="615:648" ph="SELECT * FRO... posts" />
-            <marker date="1510089956219" expanded="true" signature="739:937" ph="SELECT posts... posts" />
-            <marker date="1510089956219" expanded="true" signature="977:1166" ph="SELECT posts... posts" />
-            <marker date="1510089956219" expanded="true" signature="1200:1388" ph="SELECT posts... posts" />
-            <marker date="1510089956219" expanded="true" signature="1428:1607" ph="SELECT posts... posts" />
-            <marker date="1510089956219" expanded="true" signature="1637:1678" ph="SELECT count... posts" />
-            <marker date="1510089956219" expanded="true" signature="1708:1725" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="62" column="54" lean-forward="false" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="54" />
-          <folding>
-            <marker date="1509617830015" expanded="true" signature="29:153" ph="SELECT users... users" />
-            <marker date="1509617830015" expanded="true" signature="189:264" ph="SELECT user_... %s" />
-            <marker date="1509617830015" expanded="true" signature="300:441" ph="SELECT users... users" />
-            <marker date="1509617830015" expanded="true" signature="486:651" ph="SELECT users... users" />
-            <marker date="1509617830015" expanded="true" signature="686:906" ph="UPDATE users... " />
-            <marker date="1509617830015" expanded="true" signature="929:1129" ph="INSERT INTO users... " />
-            <marker date="1509617830015" expanded="true" signature="1164:1610" ph="SELECT * FRO... users" />
-            <marker date="1509617830015" expanded="true" signature="1202:1323" ph="SELECT u.use... posts" />
-            <marker date="1509617830015" expanded="true" signature="1364:1492" ph="SELECT us.us... threads" />
-            <marker date="1509617830015" expanded="true" signature="1640:2081" ph="SELECT * FRO... users" />
-            <marker date="1509617830015" expanded="true" signature="1678:1799" ph="SELECT u.use... posts" />
-            <marker date="1509617830015" expanded="true" signature="1840:1968" ph="SELECT us.us... threads" />
-            <marker date="1509617830015" expanded="true" signature="2105:2520" ph="SELECT * FRO... users" />
-            <marker date="1509617830015" expanded="true" signature="2143:2264" ph="SELECT u.use... posts" />
-            <marker date="1509617830015" expanded="true" signature="2305:2433" ph="SELECT us.us... threads" />
-            <marker date="1509617830015" expanded="true" signature="2549:2969" ph="SELECT * FRO... users" />
-            <marker date="1509617830015" expanded="true" signature="2587:2708" ph="SELECT u.use... posts" />
-            <marker date="1509617830015" expanded="true" signature="2749:2877" ph="SELECT us.us... threads" />
-            <marker date="1509617830015" expanded="true" signature="2999:3040" ph="SELECT count... users" />
-            <marker date="1509617830015" expanded="true" signature="3070:3087" ph="DELETE FROM " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1534,7 +1415,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="112" column="35" lean-forward="true" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1542,9 +1422,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="138" column="47" lean-forward="true" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1552,7 +1429,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="402">
           <caret line="111" column="34" lean-forward="false" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1560,10 +1436,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="139" column="12" lean-forward="false" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <marker date="1509617830011" expanded="true" signature="2578:2665" ph="UPDATE threa... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1571,18 +1443,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="295">
           <caret line="286" column="12" lean-forward="false" selection-start-line="286" selection-start-column="12" selection-end-line="286" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <marker date="1509617830011" expanded="true" signature="2330:2552" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="3164:3378" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="4036:4258" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="4869:5068" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="5716:6050" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="5907:6003" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="6685:7004" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="6878:6975" ph="SELECT posts... posts" />
-            <marker date="1509617830011" expanded="true" signature="7682:7767" ph="UPDATE posts... " />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1590,7 +1450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
           <caret line="142" column="37" lean-forward="false" selection-start-line="142" selection-start-column="37" selection-end-line="142" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1598,7 +1457,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="416">
           <caret line="98" column="37" lean-forward="false" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1606,9 +1464,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="305">
           <caret line="220" column="12" lean-forward="false" selection-start-line="220" selection-start-column="12" selection-end-line="220" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1616,7 +1471,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1624,23 +1478,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql">
+    <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="13" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="58" selection-end-column="2" />
-          <folding />
+        <state relative-caret-position="240">
+          <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/posts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1460">
+          <caret line="73" column="107" lean-forward="false" selection-start-line="73" selection-start-column="107" selection-end-line="73" selection-end-column="107" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/service/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-906">
-          <caret line="6" column="61" lean-forward="false" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
-          <folding />
+        <state relative-caret-position="-466">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/threads/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="920">
+          <caret line="46" column="36" lean-forward="true" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="61" />
         </state>
       </provider>
     </entry>

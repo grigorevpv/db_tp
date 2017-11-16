@@ -1,15 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
 
 from api.repositories.connect import PostgresDataContext
-from api.services.ForumService.ForumService import ForumService
-from api.models.forums.ForumModel import ForumModel
-from api.services.UserService.UserService import UserService
-from api.models.users.UserModel import UserModel
-from api.services.ThreadService.ThreadServise import ThreadService
-from api.models.threads.ThreadModel import ThreadModel
-from api.services.PostService.PostService import PostService
-from api.models.posts.PostModel import PostModel
-from api.repositories.PostRepository.post_queries_db import *
 from api.repositories.UserRepository.user_queries_db import *
 from api.repositories.ForumRepository.forum_queries_db import *
 from api.repositories.ThreadRepository.thread_queries_db import *
@@ -20,14 +11,6 @@ from enquiry.secondary import *
 # create new blueprint
 posts_blueprint = Blueprint('posts', 'posts', url_prefix='/api/post')
 
-forum_service = ForumService()
-forum_model = ForumModel
-user_service = UserService()
-user_model = UserModel
-thread_service = ThreadService()
-thread_model = ThreadModel
-post_service = PostService()
-post_model = PostModel
 data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
@@ -88,7 +71,7 @@ def get_post_details_get(id):
 				if thread is None:
 					data_context.put_connection(connect)
 					cursor.close()
-					return make_response(jsonify({"message": "Can't find thread with nickname: " + nickname}),
+					return make_response(jsonify({"message": "Can't find thread with id: " + post["thread"]}),
 					                     STATUS_CODE['NOT_FOUND'])
 				thread["created"] = convert_time(thread["created"])
 

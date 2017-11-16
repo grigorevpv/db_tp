@@ -1,36 +1,15 @@
 from datetime import datetime
 from flask import Blueprint, request, make_response, jsonify
-from api.services.ForumService.ForumService import ForumService
-from api.models.forums.ForumModel import ForumModel
-from api.services.UserService.UserService import UserService
-from api.models.users.UserModel import UserModel
-from api.services.ThreadService.ThreadServise import ThreadService
-from api.models.threads.ThreadModel import ThreadModel
-from api.services.VoteService.VoteService import VoteService
-from api.models.votes.VoteModel import VoteModel
-from api.services.PostService.PostService import PostService
-from api.models.posts.PostModel import PostModel
 from api.repositories.connect import PostgresDataContext
 from api.repositories.ThreadRepository.thread_queries_db import *
 from api.repositories.PostRepository.post_queries_db import *
 from api.repositories.VoteRepository.vote_queries_db import *
 from enquiry.queries_db import *
-from enquiry.connect import *
 from enquiry.secondary import *
 
 # create new blueprint
 threads_blueprint = Blueprint('threads', 'threads', url_prefix='/api/thread')
 
-forum_service = ForumService()
-forum_model = ForumModel
-user_service = UserService()
-user_model = UserModel
-thread_service = ThreadService()
-thread_model = ThreadModel
-post_service = PostService()
-post_model = PostModel
-vote_service = VoteService()
-vote_model = VoteModel
 data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
@@ -335,53 +314,27 @@ def get_posts_information(slug_or_id):
 	return make_response(jsonify(post_arr), STATUS_CODE['OK'])
 
 
-
-
-
-# @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
-# def get_posts_information(slug_or_id):
-# 	params = request.args
-# 	message_or_thread, code = thread_service.select_thread_by_slug_or_id(slug_or_id)
-#
-# 	if code == STATUS_CODE['OK']:
-# 		forum, code = forum_service.select_forum_by_id(message_or_thread.forum_id)
-# 		message_or_posts_arr, code = post_service.get_posts_arr(message_or_thread, params)
-# 		posts_arr = []
-# 		param_name_array = ["author", "created", "forum", "id", "message", "parent", "thread"]
-#
-# 		for post in message_or_posts_arr:
-# 			user, status_code = user_service.select_user_by_user_id(post.user_id)
-# 			param_value_array = [user.nickname, convert_time(post.created), forum.slug,
-# 			                     post.id, post.message, post.parent_id, post.thread_id]
-# 			post = dict(zip(param_name_array, param_value_array))
-# 			posts_arr.append(post)
-#
-# 		return make_response(jsonify(posts_arr), code)
-#
-# 	if code == STATUS_CODE['NOT_FOUND']:
-# 		return make_response(jsonify(message_or_thread), code)
-
 def posts_since_limit(content, since, limit):
-    for i in range(len(content) - 1):
-        if content[i]["id"] == int(since):
-            return content[i+1:i+int(limit)+1]
-    return []
+	for i in range(len(content) - 1):
+		if content[i]["id"] == int(since):
+			return content[i+1:i+int(limit)+1]
+	return []
 
 
 def posts_since_limit_parent(content, since, limit):
-    for i in range(len(content) - 1):
-        if content[i]["id"] == int(since):
-            start = i + 1
-            stop = start
-            flag = 1
-            for j in range(start, len(content)-1):
-                if content[j]["parent"] == 0:
-                    flag += 1
-                if flag > int(limit):
-                    break
-                stop += 1
-            return content[start:stop+2]
-    return []
+	for i in range(len(content) - 1):
+		if content[i]["id"] == int(since):
+			start = i + 1
+			stop = start
+			flag = 1
+			for j in range(start, len(content)-1):
+				if content[j]["parent"] == 0:
+					flag += 1
+				if flag > int(limit):
+					break
+				stop += 1
+			return content[start:stop+2]
+	return []
 
 
 

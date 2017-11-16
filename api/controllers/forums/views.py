@@ -1,27 +1,13 @@
 from flask import Blueprint, request, make_response, jsonify
-from api.services.ForumService.ForumService import ForumService
-from api.models.forums.ForumModel import ForumModel
-from api.services.UserService.UserService import UserService
-from api.models.users.UserModel import UserModel
-from api.services.ThreadService.ThreadServise import ThreadService
-from api.models.threads.ThreadModel import ThreadModel
 from api.repositories.connect import PostgresDataContext
 from api.repositories.ForumRepository.forum_queries_db import *
 from api.repositories.UserRepository.user_queries_db import *
 from enquiry.queries_db import *
-from enquiry.connect import *
 from enquiry.secondary import *
-import datetime
 
 # create new blueprint
 forums_blueprint = Blueprint('forums', 'forums', url_prefix='/api/forum')
 
-forum_service = ForumService()
-forum_model = ForumModel
-user_service = UserService()
-user_model = UserModel
-thread_service = ThreadService()
-thread_model = ThreadModel
 data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
