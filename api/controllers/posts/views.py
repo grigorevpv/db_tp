@@ -138,6 +138,8 @@ def get_post_details_post(id):
 	post["created"] = convert_time(post["created"])
 	post["isEdited"] = post["isedited"]
 
+	data_context.put_connection(connect)
+	cursor.close()
 	return make_response(jsonify(post), STATUS_CODE['OK'])
 
 

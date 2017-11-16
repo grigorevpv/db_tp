@@ -1,4 +1,9 @@
 from flask import Blueprint, request, make_response, jsonify
+from api.repositories.connect import PostgresDataContext
+from api.repositories.ForumRepository.forum_queries_db import *
+from api.repositories.ThreadRepository.thread_queries_db import *
+from api.repositories.PostRepository.post_queries_db import *
+from api.repositories.UserRepository.user_queries_db import *
 from api.services.ForumService.ForumService import ForumService
 from api.models.forums.ForumModel import ForumModel
 from api.services.UserService.UserService import UserService
@@ -24,6 +29,7 @@ thread_model = ThreadModel
 post_service = PostService()
 post_model = PostModel
 vote_service = VoteService()
+data_context = PostgresDataContext()
 STATUS_CODE = {
 	'OK': 200,
 	'CREATED': 201,
@@ -34,16 +40,38 @@ STATUS_CODE = {
 
 @service_blueprint.route('/status', methods=['GET'])
 def get_information():
-	count_forums, code = forum_service.count_forums()
-	count_threads, code = thread_service.count_threads()
-	count_posts, code = post_service.count_posts()
-	count_users, code = user_service.count_users()
+	connect, cursor = data_context.create_connection()
+
+	cursor.execute(SELECT_COUNT_FORUMS)
+	count_forums = cursor.fetchone()["forums_count"]
+	cursor.execute(SELECT_COUNT_THREADS)
+	count_threads = cursor.fetchone()["threads_count"]
+	cursor.execute(SELECT_COUNT_POSTS)
+	count_posts = cursor.fetchone()["posts_count"]
+	cursor.execute(SELECT_COUNT_USERS)
+	count_users = cursor.fetchone()["users_count"]
 
 	param_name_array = ["forum", "post", "thread", "user"]
 	param_value_array = [count_forums, count_posts, count_threads, count_users]
 	bd_information = dict(zip(param_name_array, param_value_array))
 
+	data_context.put_connection(connect)
+	cursor.close()
 	return make_response(jsonify(bd_information), STATUS_CODE['OK'])
+
+
+# @service_blueprint.route('/status', methods=['GET'])
+# def get_information():
+# 	count_forums, code = forum_service.count_forums()
+# 	count_threads, code = thread_service.count_threads()
+# 	count_posts, code = post_service.count_posts()
+# 	count_users, code = user_service.count_users()
+#
+# 	param_name_array = ["forum", "post", "thread", "user"]
+# 	param_value_array = [count_forums, count_posts, count_threads, count_users]
+# 	bd_information = dict(zip(param_name_array, param_value_array))
+#
+# 	return make_response(jsonify(bd_information), STATUS_CODE['OK'])
 
 
 @service_blueprint.route('/clear', methods=['POST'])

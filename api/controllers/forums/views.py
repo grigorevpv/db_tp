@@ -247,30 +247,3 @@ def get_list_of_users(slug):
 	return make_response(jsonify(users_arr), STATUS_CODE['OK'])
 
 
-
-# @forums_blueprint.route('/<slug>/users', methods=['GET'])
-# def get_list_of_users(slug):
-# 	params = request.args
-#
-# 	message_or_forum, code = forum_service.select_forum_by_slug(slug)
-#
-# 	if code == STATUS_CODE['OK']:
-# 		message_or_users, code = user_service.select_users_arr(message_or_forum, params)
-#
-# 		if code == STATUS_CODE['OK']:
-# 			param_name_array = ["about", "email", "fullname", "nickname"]
-#
-# 			user_arr = []
-# 			for user in message_or_users:
-# 				param_value_array = [user.about, user.email,
-# 										user.fullname, user.nickname]
-# 				user_data = dict(zip(param_name_array, param_value_array))
-# 				user_arr.append(user_data)
-#
-# 			return make_response(jsonify(user_arr), code)
-# 		else:
-# 			return make_response(jsonify(message_or_users), code)
-#
-# 	if code == STATUS_CODE['NOT_FOUND']:
-# 		return make_response(jsonify(message_or_forum), code)
-
