@@ -56,7 +56,6 @@ def get_user_profile(nickname):
 
 @users_blueprint.route('/<nickname>/profile', methods=['POST'])
 def change_user_profile(nickname):
-    content = request.get_json(silent=True)
     connect, cursor = data_context.create_connection()
 
     cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
@@ -66,6 +65,8 @@ def change_user_profile(nickname):
         cursor.close()
         return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}),
                              STATUS_CODE['NOT_FOUND'])
+
+    content = request.get_json(silent=True)
 
     if 'nickname' not in content:
         content['nickname'] = user['nickname']
