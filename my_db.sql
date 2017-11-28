@@ -57,3 +57,29 @@ CREATE TABLE votes (
   thread_id INTEGER REFERENCES threads(id) ON DELETE CASCADE,      -- ID треда, в котором проголосовали
   voice     SMALLINT                                                      -- Значение голоса (принимает значение -1 или 1)
 );
+
+CREATE OR REPLACE FUNCTION increment_conut_posts()
+  RETURNS TRIGGER AS $emp_post$
+BEGIN
+  UPDATE forums
+    SET posts = posts + 1
+    WHERE forum_id = NEW.forum_id;
+  RETURN NEW;
+END;
+$emp_post$ LANGUAGE plpgsql;
+
+CREATE TRIGGER count_posts_in_forum AFTER INSERT ON posts
+  FOR EACH ROW EXECUTE PROCEDURE increment_conut_posts();
+
+CREATE OR REPLACE FUNCTION increment_conut_threads()
+  RETURNS TRIGGER AS $emp_threads$
+BEGIN
+  UPDATE forums
+    SET threads = threads + 1
+    WHERE forum_id = NEW.forum_id;
+  RETURN NEW;
+END;
+$emp_threads$ LANGUAGE plpgsql;
+
+CREATE TRIGGER count_threads_in_forum AFTER INSERT ON threads
+  FOR EACH ROW EXECUTE PROCEDURE increment_conut_threads();
