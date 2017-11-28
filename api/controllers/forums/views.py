@@ -111,14 +111,6 @@ def get_forum_information(slug):
 		return make_response(jsonify({"message": "Can't find forum with slug: " + slug}),
 		                     STATUS_CODE['NOT_FOUND'])
 
-	# cursor.execute(SELECT_COUNT_POSTS_BY_FORUM_ID, [forum["forum_id"], ])
-	# count_posts = cursor.fetchone()["posts_count"]
-	# forum["posts"] = count_posts
-	#
-	# cursor.execute(SELECT_COUNT_THREADS_BY_FORUM_ID, [forum["forum_id"], ])
-	# count_threads = cursor.fetchone()["threads_count"]
-	# forum["threads"] = count_threads
-
 	data_context.put_connection(connect)
 	cursor.close()
 	return make_response(jsonify(forum), STATUS_CODE['OK'])
