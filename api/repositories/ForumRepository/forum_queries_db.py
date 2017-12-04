@@ -1,3 +1,4 @@
+# +
 SELECT_FORUM_BY_SLUG = '''SELECT forums.forum_id, forums.user_id, forums.slug, forums.title, forums.posts, forums.threads 
 							FROM forums WHERE slug = %s;'''
 
@@ -15,6 +16,10 @@ INSERT_FORUM = '''INSERT INTO forums (user_id, slug, title, "user")
 
 INSERT_THREAD = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title) 
 					VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	RETURNING *;'''
+
+ADD_THREAD = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title)
+				VALUES (%s, %s, '%s', '%s', '%s', '%s', %s, '%s')	
+				RETURNING id, author, created, forum, message, slug, title;'''
 
 SELECT_COUNT_POSTS_BY_FORUM_ID = '''SELECT count(*) as posts_count FROM posts 
 										WHERE forum_id = %s;'''

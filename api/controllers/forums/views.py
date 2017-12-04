@@ -65,6 +65,8 @@ def create_thread(slug):
 		return make_response(jsonify({"message": "Can't find forum with slug: " + slug}),
 								STATUS_CODE['NOT_FOUND'])
 
+
+
 	if content.get("slug") is not None:
 		cursor.execute( SELECT_THREAD_BY_SLUG, [content["slug"], ] )
 		returning_thread = cursor.fetchone()
@@ -88,10 +90,28 @@ def create_thread(slug):
 	                    content["created"], forum["slug"], content["message"],
 							   content["slug"], content["title"])
 
+	# try:
+	# 	time = None if content.get("created") is None else content['created']
+	# 	slug = None if content.get('slug') is None else content['slug']
+	# 	# command = ADD_THREAD % (forum["forum_id"], user["user_id"], user["nickname"],
+	# 	#                             time,
+	# 	#                             forum["slug"], content["message"],
+	# 	#                             slug, content["title"])
+	# 	cursor.execute(ADD_THREAD, (forum["forum_id"], user["user_id"], user["nickname"],
+	# 	                            None,
+	# 	                            forum["slug"], content["message"],
+	# 	                            None,
+	# 	                            content["title"]) )
+	# 	# cursor.execute(command)
+	# 	thread = cursor.fetchone()
+	# 	if thread['slug'] == 'None': thread.pop('slug')
+	# 	thread['created'] = convert_time(thread['created'])
+	# except:
+	# 	print("error")
+
 	cursor.execute(command)
 	thread = cursor.fetchone()
 	thread['created'] = convert_time(thread['created'])
-
 	data_context.put_connection( connect )
 	cursor.close()
 	return make_response(jsonify(thread), STATUS_CODE['CREATED'])
@@ -100,7 +120,6 @@ def create_thread(slug):
 
 @forums_blueprint.route('/<slug>/details', methods=['GET'])
 def get_forum_information(slug):
-	params = request.args
 	connect, cursor = data_context.create_connection()
 
 	cursor.execute(SELECT_FORUM_BY_SLUG, [slug, ])

@@ -31,3 +31,7 @@ DELETE_THREADS_TABLE = '''DELETE FROM threads;'''
 SELECT_POST_BY_ID = '''SELECT posts.post_id, posts.user_id, posts.thread_id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent_id, posts.path 
 								FROM posts WHERE post_id = %s;'''
 
+ADD_THREAD = '''INSERT INTO threads (forum_id, user_id, author, created, forum, message, slug, title)
+				VALUES (%s, %s, '%s', '%s', '%s', '%s', '%s', '%s')	
+				RETURNING id, author, created, forum, message, slug, title;'''
+
