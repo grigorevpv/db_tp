@@ -5,6 +5,8 @@ from api.repositories.UserRepository.user_queries_db import *
 from enquiry.queries_db import *
 from enquiry.secondary import *
 
+
+
 # create new blueprint
 forums_blueprint = Blueprint('forums', 'forums', url_prefix='/api/forum')
 
@@ -15,6 +17,7 @@ STATUS_CODE = {
 	'NOT_FOUND': 404,
 	'CONFLICT': 409
 }
+
 
 
 @forums_blueprint.route('/create', methods=['POST'])
