@@ -7,7 +7,7 @@ from psycopg2.pool import ThreadedConnectionPool
 class PostgresDataContext(object):
 
 	def __init__(self):
-		self._pool = ThreadedConnectionPool(1, -1, database='students', user='postgres',
+		self._pool = ThreadedConnectionPool(1, -1, database="forums", user="pavel",
 											password='lomogi99', host='localhost')
 
 	def _get_connection(self):
@@ -24,7 +24,8 @@ class PostgresDataContext(object):
 
 def connectDB():
 	try:
-		connect = psycopg2.connect(host="localhost", database="students", user="postgres", password="lomogi99")
+		connect = psycopg2.connect(host="localhost", database="forums", user="pavel", password="lomogi99")
+		# connect = psycopg2.connect(host="localhost", database="students", user="postgres", password="lomogi99")
 		connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 	except (Exception, psycopg2.DatabaseError) as error:
 		print(error)

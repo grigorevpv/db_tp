@@ -53,7 +53,44 @@ CREATE TABLE posts (
 
 CREATE TABLE votes (
   vote_id   serial CONSTRAINT firstkey_v PRIMARY KEY,                     -- ID голоса
-  user_id   INTEGER REFERENCES users(user_id) ON DELETE CASCADE,          -- ID проголосовавшего юзера
-  thread_id INTEGER REFERENCES threads(id) ON DELETE CASCADE,      -- ID треда, в котором проголосовали
+  user_id   INTEGER NOT NULL REFERENCES users(user_id) ON DELETE CASCADE,          -- ID проголосовавшего юзера
+  thread_id INTEGER NOT NULL REFERENCES threads(id) ON DELETE CASCADE,             -- ID треда, в котором проголосовали
   voice     SMALLINT                                                      -- Значение голоса (принимает значение -1 или 1)
 );
+
+ALTER TABLE votes
+    ADD CONSTRAINT vote_user_thread
+    UNIQUE(user_id, thread_id);
+
+
+--==================================== TRIGGERS ====================================
+
+CREATE OR REPLACE FUNCTION update_thread_votes()
+  RETURNS TRIGGER AS $$
+BEGIN
+  IF (TG_OP = 'UPDATE')
+      THEN
+        IF NEW.voice != OLD.voice
+            THEN UPDATE threads
+                 SET votes = votes + (2 * NEW.voice)
+                 WHERE threads.id = NEW.thread_id;
+                 RETURN NEW;
+        ELSE
+            RETURN NEW;
+        END IF;
+
+  ELSE
+
+    UPDATE threads
+    SET votes = votes + NEW.voice
+    WHERE threads.id = NEW.thread_id;
+    RETURN NEW;
+  END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_thread_votes
+  AFTER INSERT OR UPDATE
+  ON votes
+  FOR EACH ROW
+EXECUTE PROCEDURE update_thread_votes();

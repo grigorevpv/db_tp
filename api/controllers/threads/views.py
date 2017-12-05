@@ -110,50 +110,89 @@ def create_vote(slug_or_id):
 	content = request.get_json(silent=True)
 	connect, cursor = data_context.create_connection()
 
-	if slug_or_id.isdigit():
-		cursor.execute(SELECT_THREAD_BY_ID, [slug_or_id, ])
-		thread = cursor.fetchone()
-		if thread is None:
-			data_context.put_connection(connect)
-			cursor.close()
-			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
-								 STATUS_CODE['NOT_FOUND'])
-	else:
-		cursor.execute(SELECT_THREAD_BY_SLUG, [slug_or_id, ])
-		thread = cursor.fetchone()
-		if thread is None:
-			data_context.put_connection(connect)
-			cursor.close()
-			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
-								 STATUS_CODE['NOT_FOUND'])
+	try:
+		if slug_or_id.isdigit():
+			cursor.execute(INSERT_VOTE_BY_THREAD_ID, [content['nickname'], slug_or_id, content['voice']],)
+			data = cursor.fetchone()
+			if data is None:
+				data_context.put_connection(connect)
+				cursor.close()
+				return make_response(jsonify({"message": "Can't find thread or user"}),
+				                     STATUS_CODE['NOT_FOUND'])
 
-	cursor.execute(SELECT_USERS_BY_NICKNAME, [content["nickname"]])
-	user = cursor.fetchone()
-	if user is None:
+		else:
+			cursor.execute(INSERT_VOTE_BY_THREAD_SLUG, [content['nickname'], slug_or_id, content['voice']], )
+			data = cursor.fetchone()
+			if data is None:
+				data_context.put_connection(connect)
+				cursor.close()
+				return make_response(jsonify({"message": "Can't find thread or user"}),
+				                     STATUS_CODE['NOT_FOUND'])
+
+		# Получаем значение поля thread
+		cursor.execute(SELECT_THREAD_BY_ID, [data['thread_id'], ])
+		thread = cursor.fetchone()
+		thread["created"] = convert_time(thread["created"])
 		data_context.put_connection(connect)
 		cursor.close()
-		return make_response(jsonify({"message": "Can't find user with nickname: " + content["nickname"]}),
+		return make_response(jsonify(thread), STATUS_CODE['OK'])
+
+	except:
+		data_context.put_connection(connect)
+		cursor.close()
+		return make_response(jsonify({"message": "Can't find thread or user"}),
 		                     STATUS_CODE['NOT_FOUND'])
 
-	cursor.execute(SELECT_VOTE_BY_THREAD_AND_USER_ID, [thread["id"], user["user_id"]])
-	vote = cursor.fetchone()
-	if vote is None:
-		cursor.execute(INSERT_VOTE, [user["user_id"], thread["id"], content["voice"], ])
-		vote = cursor.fetchone()
-	else:
-		if vote["voice"] != content["voice"]:
-			cursor.execute(UPDATE_VOTE, [content["voice"], user["user_id"], thread["id"], ])
-			vote = cursor.fetchone()
 
-	cursor.execute(COUNT_VOTES_BY_THREAD_ID, [thread["id"], ])
-	count_votes = cursor.fetchone()["votes_count"]
-
-	thread["votes"] = count_votes
-	thread["created"] = convert_time(thread["created"])
-
-	data_context.put_connection(connect)
-	cursor.close()
-	return make_response(jsonify(thread), STATUS_CODE['OK'])
+# @threads_blueprint.route('/<slug_or_id>/vote', methods=['POST'])
+# def create_vote(slug_or_id):
+# 	content = request.get_json(silent=True)
+# 	connect, cursor = data_context.create_connection()
+#
+# 	if slug_or_id.isdigit():
+# 		cursor.execute(SELECT_THREAD_BY_ID, [slug_or_id, ])
+# 		thread = cursor.fetchone()
+# 		if thread is None:
+# 			data_context.put_connection(connect)
+# 			cursor.close()
+# 			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+# 								 STATUS_CODE['NOT_FOUND'])
+# 	else:
+# 		cursor.execute(SELECT_THREAD_BY_SLUG, [slug_or_id, ])
+# 		thread = cursor.fetchone()
+# 		if thread is None:
+# 			data_context.put_connection(connect)
+# 			cursor.close()
+# 			return make_response(jsonify({"message": "Can't find thread with id: " + slug_or_id}),
+# 								 STATUS_CODE['NOT_FOUND'])
+#
+# 	cursor.execute(SELECT_USERS_BY_NICKNAME, [content["nickname"]])
+# 	user = cursor.fetchone()
+# 	if user is None:
+# 		data_context.put_connection(connect)
+# 		cursor.close()
+# 		return make_response(jsonify({"message": "Can't find user with nickname: " + content["nickname"]}),
+# 		                     STATUS_CODE['NOT_FOUND'])
+#
+# 	cursor.execute(SELECT_VOTE_BY_THREAD_AND_USER_ID, [thread["id"], user["user_id"]])
+# 	vote = cursor.fetchone()
+# 	if vote is None:
+# 		cursor.execute(INSERT_VOTE, [user["user_id"], thread["id"], content["voice"], ])
+# 		vote = cursor.fetchone()
+# 	else:
+# 		if vote["voice"] != content["voice"]:
+# 			cursor.execute(UPDATE_VOTE, [content["voice"], user["user_id"], thread["id"], ])
+# 			vote = cursor.fetchone()
+#
+# 	cursor.execute(COUNT_VOTES_BY_THREAD_ID, [thread["id"], ])
+# 	count_votes = cursor.fetchone()["votes_count"]
+#
+# 	thread["votes"] = count_votes
+# 	thread["created"] = convert_time(thread["created"])
+#
+# 	data_context.put_connection(connect)
+# 	cursor.close()
+# 	return make_response(jsonify(thread), STATUS_CODE['OK'])
 
 
 @threads_blueprint.route('/<slug_or_id>/details', methods=['GET'])

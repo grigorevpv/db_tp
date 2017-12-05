@@ -31,3 +31,39 @@ DELETE_THREADS_TABLE = '''DELETE FROM threads;'''
 SELECT_POST_BY_ID = '''SELECT posts.post_id, posts.user_id, posts.thread_id, posts.forum_id, posts.created, posts.isedited, posts.message, posts.parent_id, posts.path 
 								FROM posts WHERE post_id = %s;'''
 
+INSERT_VOTE_BY_THREAD_SLUG = '''
+								INSERT INTO votes (user_id, thread_id, voice)
+								    VALUES (
+								                (
+								                    SELECT users.user_id
+								                    FROM users
+								                    WHERE users.nickname = %s
+								                ),
+								                (
+								                    SELECT threads.id
+								                    FROM threads
+								                    WHERE threads.slug = %s
+								                ),
+								                %s
+								            )
+    							ON CONFLICT ON CONSTRAINT vote_user_thread
+							    DO UPDATE SET voice = EXCLUDED.voice
+							    RETURNING votes.thread_id;
+							    '''
+
+INSERT_VOTE_BY_THREAD_ID = '''
+								INSERT INTO votes (user_id, thread_id, voice)
+								    VALUES (
+								                (
+								                    SELECT users.user_id
+								                    FROM users
+								                    WHERE users.nickname = %s
+								                ),
+								                %s,
+								                %s
+								            )
+    							ON CONFLICT ON CONSTRAINT vote_user_thread
+							    DO UPDATE SET voice = EXCLUDED.voice
+							    RETURNING votes.thread_id;
+							    '''
+
