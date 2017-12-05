@@ -15,14 +15,26 @@ STATUS_CODE = {
     'CONFLICT': 409
 }
 
+users_blueprint = Blueprint('users', 'users', url_prefix='/api/user')
+
 
 class UserBlueprint(BaseBlueprint):
     def __init__(self):
         super().__init__()
-        self._name = 'users'
+        # self._name = 'users'
+        self._context = PostgresDataContext()
+        self._blueprint = Blueprint('users', 'users', url_prefix='/')
+        self._create_blueprint()
+
+    # @property
+    # def _name(self):
+    #     return 'users'
+
+    def getBlueprint(self):
+        return self._blueprint
 
     def _create_blueprint(self):
-        blueprint = Blueprint(self._name, __name__)
+        blueprint = self._blueprint
 
         @blueprint.route('user/<nickname>/create', methods=['POST'])
         def create_user(nickname):
@@ -44,7 +56,25 @@ class UserBlueprint(BaseBlueprint):
                 cursor.close()
                 return make_response(jsonify(data), STATUS_CODE['CONFLICT'])
 
-        return blueprint
+        @blueprint.route('user/<nickname>/profile', methods=['GET'])
+        def get_user_profile(nickname):
+            connect, cursor = data_context.create_connection()
+
+            cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
+            user = cursor.fetchone()
+            if user is None:
+                data_context.put_connection(connect)
+                cursor.close()
+                return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}), STATUS_CODE['NOT_FOUND'])
+
+            data_context.put_connection(connect)
+            cursor.close()
+            return make_response(jsonify(user), STATUS_CODE['OK'])
+
+        self._blueprint = blueprint
+
+
+
 
 
 # # create new blueprint
