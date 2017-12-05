@@ -25,6 +25,7 @@ class UserBlueprint(BaseBlueprint):
         self._context = PostgresDataContext()
         self._blueprint = Blueprint('users', 'users', url_prefix='/')
         self._create_blueprint()
+        self._connect, self._cursor = None, None
 
     # @property
     # def _name(self):
@@ -40,35 +41,34 @@ class UserBlueprint(BaseBlueprint):
         def create_user(nickname):
             content = request.get_json(silent=True)
             content['nickname'] = nickname
-            connect, cursor = data_context.create_connection()
+            self._connect, self._cursor = self._context.create_connection()
 
             try:
-                cursor.execute(INSERT_USER,
+                self._cursor.execute(INSERT_USER,
                                [content['nickname'], content['about'], content['email'], content['fullname'], ])
-                data_context.put_connection(connect)
-                cursor.close()
+                self._context.put_connection(self._connect)
+                self._cursor.close()
                 return make_response(jsonify(content), STATUS_CODE['CREATED'])
             except:
-                users = []
-                cursor.execute(SELECT_USERS_BY_NICKNAME_OR_EMAIL, [content['nickname'], content['email'], ])
-                data = cursor.fetchall()
-                data_context.put_connection(connect)
-                cursor.close()
+                self._cursor.execute(SELECT_USERS_BY_NICKNAME_OR_EMAIL, [content['nickname'], content['email'], ])
+                data = self._cursor.fetchall()
+                self._context.put_connection(self._connect)
+                self._cursor.close()
                 return make_response(jsonify(data), STATUS_CODE['CONFLICT'])
 
         @blueprint.route('user/<nickname>/profile', methods=['GET'])
         def get_user_profile(nickname):
-            connect, cursor = data_context.create_connection()
+            self._connect, self._cursor = self._context.create_connection()
 
-            cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
-            user = cursor.fetchone()
+            self._cursor.execute(SELECT_USERS_BY_NICKNAME, [nickname, ])
+            user = self._cursor.fetchone()
             if user is None:
-                data_context.put_connection(connect)
-                cursor.close()
+                self._context.put_connection(self._connect)
+                self._cursor.close()
                 return make_response(jsonify({"message": "Can't find user with nickname: " + nickname}), STATUS_CODE['NOT_FOUND'])
 
-            data_context.put_connection(connect)
-            cursor.close()
+            self._context.put_connection(self._connect)
+            self._cursor.close()
             return make_response(jsonify(user), STATUS_CODE['OK'])
 
         self._blueprint = blueprint

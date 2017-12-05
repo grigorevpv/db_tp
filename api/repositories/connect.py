@@ -13,10 +13,10 @@ class PostgresDataContext(object):
     def _get_connection(self):
         return self._pool.getconn()
 
-    def _put_connection(self, conn):
+    def put_connection(self, conn):
         self._pool.putconn(conn=conn)
 
-    def _create_connection(self):
+    def create_connection(self):
         conn = self._get_connection()
         conn.set_isolation_level(ISOLATION_LEVEL_READ_COMMITTED)
         cursor = conn.cursor(cursor_factory=RealDictCursor)

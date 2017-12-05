@@ -10,8 +10,7 @@ SELECT_USERS_BY_NICKNAME = '''SELECT users.user_id, users.nickname, users.about,
                               FROM users 
                               WHERE users.nickname = %s;'''
 
-SELECT_USERS_BY_NICKNAME_OR_EMAIL = '''SELECT users.user_id, users.nickname, users.about, users.email, users.fullname 
-                                         FROM users WHERE users.nickname = %s OR users.email = %s;'''
+SELECT_USERS_BY_NICKNAME_OR_EMAIL = '''SELECT users.user_id, users.nickname, users.about, users.email, users.fullname FROM users WHERE users.nickname = %s OR users.email = %s;'''
 
 UPDATE_USER_BY_NICKNAME = '''UPDATE users SET about = %s, email = %s, fullname = %s
                                 WHERE nickname = %s
