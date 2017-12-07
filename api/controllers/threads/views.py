@@ -306,7 +306,7 @@ def get_posts_information(slug_or_id):
             data = cursor.execute(FLAT_SORT_SINCE_LIMIT, [thread['id'], since, limit])
 
         elif limit is not None and since is not None and desc is not None:
-            data = cursor.execute(FLAT_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, desc, desc, limit])
+            data = cursor.execute(FLAT_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
 
         elif limit is None and since is None and desc is not None:
             data = cursor.execute(FLAT_SORT_DESC, [thread['id'], desc, desc])
@@ -314,7 +314,48 @@ def get_posts_information(slug_or_id):
         elif limit is None and since is None and desc is None:
             data = cursor.execute(FLAT_SORT, [thread['id']])
 
+    elif sort == 'tree':
+        if limit is not None and since is None and desc is None:
+            data = cursor.execute(TREE_SORT_LIMIT, [thread['id'], limit])
 
+        elif limit is not None and since is None and desc is not None:
+            data = cursor.execute(TREE_SORT_LIMIT_DESC, [thread['id'], desc, desc, limit])
+
+        elif limit is not None and since is not None and desc is None:
+            data = cursor.execute(TREE_SORT_SINCE_LIMIT, [thread['id'], since, limit])
+
+        elif limit is not None and since is not None and desc is not None:
+            data = cursor.execute(TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
+
+        elif limit is None and since is None and desc is not None:
+            data = cursor.execute(TREE_SORT_DESC, [thread['id'], desc, desc])
+
+        elif limit is None and since is None and desc is None:
+            data = cursor.execute(TREE_SORT, [thread['id']])
+
+    # PARENT_TREE SORT
+    # TODO CREATE INDEX for thread_id and parent_id
+    elif sort == 'parent_tree':
+        if limit is not None and since is None and desc is None:
+            data = cursor.execute('get_posts_for_thread_parent_tree_limit', [thread_id, limit])
+
+        elif limit is not None and since is None and desc is not None:
+            data = cursor.execute('get_posts_for_thread_parent_tree_limit_desc',
+                                          [thread_id, limit, desc])
+
+        elif limit is not None and since is not None and desc is None:
+            data = cursor.execute('get_posts_for_thread_parent_tree_since_limit',
+                                          [thread_id, since, limit])
+
+        elif limit is not None and since is not None and desc is not None:
+            data = cursor.execute('get_posts_for_thread_parent_tree_since_limit_desc',
+                                          [thread_id, since, limit, desc])
+
+        elif limit is None and since is None and desc is not None:
+            data = cursor.execute('get_posts_for_thread_parent_tree_desc', [thread_id, desc])
+
+        elif limit is None and since is None and desc is None:
+            data = cursor.execute('get_posts_for_thread_parent_tree', [thread_id])
 
 
     post_arr = []
