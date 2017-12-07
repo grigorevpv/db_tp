@@ -67,3 +67,309 @@ INSERT_VOTE_BY_THREAD_ID = '''
 							    RETURNING votes.thread_id;
 							    '''
 
+FLAT_SORT = '''
+                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                  posts.parent, posts.message, posts.created, posts.isedited
+                FROM posts
+                WHERE posts.thread = %s
+                ORDER BY posts.id;
+            '''
+
+FLAT_SORT_DESC = '''
+                    SELECT posts.id, posts.thread, posts.forum, posts.author,
+                      posts.parent, posts.message, posts.created, posts.isedited
+                    FROM posts
+                    WHERE posts.thread = %s
+                    ORDER BY CASE %s
+                                WHEN false THEN posts.id
+                                ELSE NULL
+                             END ASC,
+                
+                             CASE %s
+                                WHEN true THEN posts.id
+                                ELSE NULL
+                             END DESC;  
+                    '''
+
+FLAT_SORT_LIMIT = '''
+                    SELECT posts.id, posts.thread, posts.forum, posts.author,
+                      posts.parent, posts.message, posts.created, posts.isedited
+                    FROM posts
+                    WHERE posts.thread = %s
+                    ORDER BY posts.id
+                    LIMIT %s;
+                    '''
+
+FLAT_SORT_LIMIT_DESC = '''
+                            SELECT posts.id, posts.thread, posts.forum, posts.author,
+                              posts.parent, posts.message, posts.created, posts.isedited
+                            FROM posts
+                            WHERE posts.thread = %s
+                            ORDER BY CASE %s
+                                        WHEN false THEN posts.id
+                                        ELSE NULL
+                                     END ASC,
+                        
+                                     CASE %s
+                                        WHEN true THEN posts.id
+                                        ELSE NULL
+                                     END DESC
+                            LIMIT %s;
+                        '''
+
+FLAT_SORT_SINCE_LIMIT = '''
+                            SELECT posts.id, posts.thread, posts.forum, posts.author,
+                              posts.parent, posts.message, posts.created, posts.isedited
+                            FROM posts
+                            WHERE posts.thread = %s AND posts.id > %s
+                            ORDER BY posts.id
+                            LIMIT %s;
+                        '''
+
+FLAT_SORT_SINCE_LIMIT_DESC = '''
+                                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                  posts.parent, posts.message, posts.created, posts.isedited
+                                FROM posts
+                                WHERE posts.thread = %s AND CASE %s
+                                    WHEN false THEN posts.id > %s
+                                    WHEN true  THEN posts.id < %s
+                                END
+                                ORDER BY CASE %s
+                                            WHEN false THEN posts.id
+                                            ELSE NULL
+                                         END ASC,
+                            
+                                         CASE %s
+                                            WHEN true THEN posts.id
+                                            ELSE NULL
+                                         END DESC
+                                LIMIT %s;
+                                '''
+
+PARENT_SORT = '''
+                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                    posts.parent, posts.message, posts.created, posts.isedited
+                FROM posts
+                WHERE posts.thread = %s
+                ORDER BY posts.path;
+                '''
+
+PARENT_SORT_DESC = '''
+                        SELECT posts.id, posts.thread, posts.forum, posts.author,
+                          posts.parent, posts.message, posts.created, posts.isedited
+                        FROM posts
+                        WHERE posts.thread = %s
+                        ORDER BY CASE %s
+                                    WHEN false THEN posts.path
+                                    ELSE NULL
+                                 END ASC,
+                    
+                                 CASE %s
+                                    WHEN true THEN  posts.path
+                                    ELSE NULL
+                                 END DESC;
+                    '''
+
+PARENT_SORT_LIMIT = '''
+                        SELECT posts.id, posts.thread, posts.forum, posts.author,
+                          posts.parent, posts.message, posts.created, posts.isedited
+                        FROM posts
+                        WHERE posts.thread = %s
+                          AND posts.path[1] IN (
+                                            SELECT p.path[1]
+                                            FROM posts p
+                                            WHERE p.thread = %s AND p.parent = 0
+                                            ORDER BY p.id
+                                            LIMIT %s
+                                        )
+                        ORDER BY posts.path;
+                    '''
+
+PARENT_SORT_LIMIT_DESC = '''
+                            SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                posts.parent, posts.message, posts.created, posts.isedited
+                            FROM posts
+                            WHERE posts.thread = %s
+                              AND posts.path[1] IN (
+                                                SELECT p.path[1]
+                                                FROM posts p
+                                                WHERE p.thread = %s
+                                                      AND p.parent = 0
+                                                ORDER BY CASE %s
+                                                            WHEN false THEN p.id
+                                                            ELSE NULL
+                                                         END ASC,
+                        
+                                                         CASE %s
+                                                            WHEN true THEN  p.id
+                                                            ELSE NULL
+                                                         END DESC
+                                                LIMIT %s
+                                            )
+                            ORDER BY CASE %s
+                                        WHEN false THEN posts.path
+                                        ELSE NULL
+                                     END ASC,
+                        
+                                     CASE %s
+                                        WHEN true THEN  posts.path
+                                        ELSE NULL
+                                     END DESC;
+                            '''
+
+PARENT_SORT_SINCE_LIMIT = '''
+                                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                    posts.parent, posts.message, posts.created, posts.isedited
+                                FROM posts
+                                WHERE posts.thread = %s
+                                  AND posts.path[1] IN (
+                                                    SELECT p.path[1]
+                                                    FROM posts p
+                                                    WHERE p.thread = %s
+                                                          AND p.parent = 0
+                                                          AND p.path > (
+                                                                            SELECT pr.path
+                                                                            FROM posts pr
+                                                                            WHERE pr.post = %s
+                                                                        )
+                            
+                                                    ORDER BY p.id
+                                                    LIMIT %s
+                                                )
+                                ORDER BY posts.path;  
+                            '''
+
+PARENT_SORT_SINCE_LIMIT_DESC = '''
+                                    SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                      posts.parent, posts.message, posts.created, posts.isedited
+                                    FROM posts
+                                    WHERE posts.thread = %s
+                                      AND posts.path[1] IN (
+                                                        SELECT pr.path[1]
+                                                        FROM posts pr
+                                                        WHERE pr.thread = %s
+                                                              AND pr.parent = 0
+                                                              AND CASE %s
+                                                                      WHEN false THEN pr.path > (
+                                                                                                 SELECT p_sub.path
+                                                                                                 FROM posts p_sub
+                                                                                                 WHERE p_sub.id = %s
+                                                                                                )
+                                                                      WHEN true  THEN pr.path < (
+                                                                                                 SELECT p_sub.path
+                                                                                                 FROM posts p_sub
+                                                                                                 WHERE p_sub.id = %s
+                                                                                                )
+                                                              END
+                                
+                                                        ORDER BY CASE %s
+                                                                    WHEN false THEN pr.id
+                                                                    ELSE NULL
+                                                                 END ASC,
+                                
+                                                                 CASE %s
+                                                                    WHEN true THEN  pr.id
+                                                                    ELSE NULL
+                                                                 END DESC
+                                                        LIMIT %s
+                                                    )
+                                    ORDER BY CASE %s
+                                                WHEN false THEN posts.path
+                                                ELSE NULL
+                                             END ASC,
+                                
+                                             CASE %s
+                                                WHEN true THEN  posts.path
+                                                ELSE NULL
+                                             END DESC;
+                                '''
+
+TREE_SORT = '''
+                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                    posts.parent, posts.message, posts.created, posts.isedited
+                FROM posts
+                WHERE posts.thread = %s
+                ORDER BY posts.path;
+            '''
+
+TREE_SORT_DESC = '''
+                     SELECT posts.id, posts.thread, posts.forum, posts.author,
+                        posts.parent, posts.message, posts.created, posts.isedited
+                    FROM posts
+                    WHERE posts.thread = %s
+                    ORDER BY CASE %s
+                                WHEN false THEN posts.path
+                                ELSE NULL
+                             END ASC,
+                
+                             CASE %s
+                                WHEN true  THEN posts.path
+                                ELSE NULL
+                             END DESC;
+                    '''
+
+TREE_SORT_LIMIT = '''
+                        SELECT posts.id, posts.thread, posts.forum, posts.author,
+                            posts.parent, posts.message, posts.created, posts.isedited
+                        FROM posts
+                        WHERE posts.thread = %s
+                        ORDER BY posts.path
+                        LIMIT %s; 
+                    '''
+
+TREE_SORT_LIMIT_DESC = '''
+                            SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                posts.parent, posts.message, posts.created, posts.isedited
+                            FROM posts
+                            WHERE posts.thread = %s
+                            ORDER BY CASE %s
+                                    WHEN false THEN posts.path
+                                    ELSE NULL
+                                 END ASC,
+                            
+                                 CASE %s
+                                    WHEN true  THEN posts.path
+                                    ELSE NULL
+                                 END DESC
+                            LIMIT %s;
+                        '''
+
+TREE_SORT_SINCE_LIMIT = '''
+                                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                    posts.parent, posts.message, posts.created, posts.isedited
+                                FROM posts
+                                WHERE posts.thread = %s AND posts.path > (SELECT p.path
+                                                                              FROM posts p
+                                                                              WHERE p.id = %s)
+                                ORDER BY posts.path
+                                LIMIT %s;
+                        '''
+
+TREE_SORT_SINCE_LIMIT_DESC = '''
+                                SELECT posts.id, posts.thread, posts.forum, posts.author,
+                                    posts.parent, posts.message, posts.created, posts.isedited
+                                FROM posts
+                                WHERE posts.thread = %s AND CASE %s
+                                  
+                                                                        WHEN false THEN posts.path > (
+                                                                                                  SELECT p.path
+                                                                                                  FROM posts p
+                                                                                                  WHERE p.post_id = %s
+                                                                                                 )
+                                                                        WHEN true  THEN posts.path < (
+                                                                                                  SELECT p.path
+                                                                                                  FROM posts p
+                                                                                                  WHERE p.post_id = %s
+                                                                                                 )
+                                                                    END
+                                ORDER BY CASE %s
+                                            WHEN false THEN posts.path
+                                            ELSE NULL
+                                         END ASC,
+                            
+                                         CASE %s
+                                            WHEN true THEN  posts.path
+                                            ELSE NULL
+                                         END DESC
+                                LIMIT %s;
+                                '''
