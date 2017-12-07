@@ -333,39 +333,37 @@ def get_posts_information(slug_or_id):
         elif limit is None and since is None and desc is None:
             data = cursor.execute(TREE_SORT, [thread['id']])
 
-    # PARENT_TREE SORT
-    # TODO CREATE INDEX for thread_id and parent_id
     elif sort == 'parent_tree':
         if limit is not None and since is None and desc is None:
-            data = cursor.execute('get_posts_for_thread_parent_tree_limit', [thread_id, limit])
+            data = cursor.execute(PARENT_SORT_LIMIT, [thread['id'], thread['id'], limit])
 
         elif limit is not None and since is None and desc is not None:
-            data = cursor.execute('get_posts_for_thread_parent_tree_limit_desc',
-                                          [thread_id, limit, desc])
+            data = cursor.execute(PARENT_SORT_LIMIT_DESC, [thread['id'], thread['id'], limit, desc, desc])
 
         elif limit is not None and since is not None and desc is None:
-            data = cursor.execute('get_posts_for_thread_parent_tree_since_limit',
-                                          [thread_id, since, limit])
+            data = cursor.execute(PARENT_SORT_SINCE_LIMIT, [thread['id'], thread['id'], since, limit])
 
         elif limit is not None and since is not None and desc is not None:
-            data = cursor.execute('get_posts_for_thread_parent_tree_since_limit_desc',
-                                          [thread_id, since, limit, desc])
+            data = cursor.execute(PARENT_SORT_SINCE_LIMIT_DESC, [thread['id'], thread['id'], desc, since,
+                                                                 since, desc, desc, limit, desc, desc])
 
         elif limit is None and since is None and desc is not None:
-            data = cursor.execute('get_posts_for_thread_parent_tree_desc', [thread_id, desc])
+            data = cursor.execute(PARENT_SORT_DESC, [thread['id'], desc, desc])
 
         elif limit is None and since is None and desc is None:
-            data = cursor.execute('get_posts_for_thread_parent_tree', [thread_id])
+            data = cursor.execute(PARENT_SORT, [thread['id']])
 
+    # for post in data:
+    #     post['created'] = post['created'].astimezone(self._tz).isoformat()
+    #     post['isEdited'] = post['isedited']
+    #     del post['isedited']
 
-    post_arr = []
-    for post in posts:
+    for post in data:
         post["created"] = convert_time(post["created"])
-        post_arr.append(post)
 
     data_context.put_connection(connect)
     cursor.close()
-    return make_response(jsonify(post_arr), STATUS_CODE['OK'])
+    return make_response(jsonify(data), STATUS_CODE['OK'])
 
 
 # @threads_blueprint.route('/<slug_or_id>/posts', methods=['GET'])
