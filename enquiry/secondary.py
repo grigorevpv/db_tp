@@ -4,8 +4,8 @@ import pytz
 def convert_time(created):
     if created is None:
         return 'Null'
-    zone = pytz.timezone('Europe/London')
-    # zone = pytz.timezone('Europe/Moscow')
+    # zone = pytz.timezone('Europe/London')
+    zone = pytz.timezone('Europe/Moscow')
     if created.tzinfo is None:
         created = zone.localize(created)
     utc_time = created.astimezone(pytz.utc)

@@ -295,68 +295,83 @@ def get_posts_information(slug_or_id):
 
     data = None
 
-    if sort == 'flat' or sort is None:
-        if limit is not None and since is None and desc is None:
-            data = cursor.execute(FLAT_SORT_LIMIT, [thread['id'], limit])
+    try:
+        if sort == 'flat' or sort is None:
+            if limit is not None and since is None and desc is None:
+                cursor.execute(FLAT_SORT_LIMIT, [thread['id'], limit])
 
-        elif limit is not None and since is None and desc is not None:
-            data = cursor.execute(FLAT_SORT_LIMIT_DESC, [thread['id'], desc, desc, limit])
+            elif limit is not None and since is None and desc is not None:
+                command = FLAT_SORT_LIMIT_DESC %(thread['id'], desc, desc, limit)
+                # cursor.execute(FLAT_SORT_LIMIT_DESC, [thread['id'], desc, desc, limit])
+                cursor.execute(command)
 
-        elif limit is not None and since is not None and desc is None:
-            data = cursor.execute(FLAT_SORT_SINCE_LIMIT, [thread['id'], since, limit])
+            elif limit is not None and since is not None and desc is None:
+                cursor.execute(FLAT_SORT_SINCE_LIMIT, [thread['id'], since, limit])
 
-        elif limit is not None and since is not None and desc is not None:
-            data = cursor.execute(FLAT_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
+            elif limit is not None and since is not None and desc is not None:
+                command = FLAT_SORT_SINCE_LIMIT_DESC %(thread['id'], desc, since, since, desc, desc, limit)
+                # cursor.execute(FLAT_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
+                cursor.execute(command)
 
-        elif limit is None and since is None and desc is not None:
-            data = cursor.execute(FLAT_SORT_DESC, [thread['id'], desc, desc])
+            elif limit is None and since is None and desc is not None:
+                cursor.execute(FLAT_SORT_DESC, [thread['id'], desc, desc])
 
-        elif limit is None and since is None and desc is None:
-            data = cursor.execute(FLAT_SORT, [thread['id']])
+            elif limit is None and since is None and desc is None:
+                cursor.execute(FLAT_SORT, [thread['id']])
 
-    elif sort == 'tree':
-        if limit is not None and since is None and desc is None:
-            data = cursor.execute(TREE_SORT_LIMIT, [thread['id'], limit])
+        elif sort == 'tree':
+            if limit is not None and since is None and desc is None:
+                cursor.execute(TREE_SORT_LIMIT, [thread['id'], limit])
 
-        elif limit is not None and since is None and desc is not None:
-            data = cursor.execute(TREE_SORT_LIMIT_DESC, [thread['id'], desc, desc, limit])
+            elif limit is not None and since is None and desc is not None:
+                command = TREE_SORT_LIMIT_DESC %(thread['id'], desc, desc, limit)
+                # cursor.execute(TREE_SORT_LIMIT_DESC, [thread['id'], desc, desc, limit])
+                cursor.execute(command)
 
-        elif limit is not None and since is not None and desc is None:
-            data = cursor.execute(TREE_SORT_SINCE_LIMIT, [thread['id'], since, limit])
+            elif limit is not None and since is not None and desc is None:
+                cursor.execute(TREE_SORT_SINCE_LIMIT, [thread['id'], since, limit])
 
-        elif limit is not None and since is not None and desc is not None:
-            data = cursor.execute(TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
+            elif limit is not None and since is not None and desc is not None:
+                command = TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit]
+                cursor.execute(TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
 
-        elif limit is None and since is None and desc is not None:
-            data = cursor.execute(TREE_SORT_DESC, [thread['id'], desc, desc])
+            elif limit is None and since is None and desc is not None:
+                cursor.execute(TREE_SORT_DESC, [thread['id'], desc, desc])
 
-        elif limit is None and since is None and desc is None:
-            data = cursor.execute(TREE_SORT, [thread['id']])
+            elif limit is None and since is None and desc is None:
+                cursor.execute(TREE_SORT, [thread['id']])
 
-    elif sort == 'parent_tree':
-        if limit is not None and since is None and desc is None:
-            data = cursor.execute(PARENT_SORT_LIMIT, [thread['id'], thread['id'], limit])
+        elif sort == 'parent_tree':
+            if limit is not None and since is None and desc is None:
+                cursor.execute(PARENT_SORT_LIMIT, [thread['id'], thread['id'], limit])
 
-        elif limit is not None and since is None and desc is not None:
-            data = cursor.execute(PARENT_SORT_LIMIT_DESC, [thread['id'], thread['id'], limit, desc, desc])
+            elif limit is not None and since is None and desc is not None:
+                command = PARENT_SORT_LIMIT_DESC %(thread['id'], thread['id'], desc, desc, limit, desc, desc)
+                # cursor.execute(PARENT_SORT_LIMIT_DESC, [thread['id'], thread['id'], limit, desc, desc])
+                cursor.execute(command)
 
-        elif limit is not None and since is not None and desc is None:
-            data = cursor.execute(PARENT_SORT_SINCE_LIMIT, [thread['id'], thread['id'], since, limit])
+            elif limit is not None and since is not None and desc is None:
+                # command = PARENT_SORT_SINCE_LIMIT %(thread['id'], thread['id'], since, limit)
+                cursor.execute(PARENT_SORT_SINCE_LIMIT, [thread['id'], thread['id'], since, limit])
+                # cursor.execute(command)
 
-        elif limit is not None and since is not None and desc is not None:
-            data = cursor.execute(PARENT_SORT_SINCE_LIMIT_DESC, [thread['id'], thread['id'], desc, since,
-                                                                 since, desc, desc, limit, desc, desc])
+            elif limit is not None and since is not None and desc is not None:
+                command = PARENT_SORT_SINCE_LIMIT_DESC %(thread['id'], thread['id'], desc, since,
+                                                                     since, desc, desc, limit, desc, desc)
+                # cursor.execute(PARENT_SORT_SINCE_LIMIT_DESC, [thread['id'], thread['id'], desc, since,
+                #                                                      since, desc, desc, limit, desc, desc])
+                cursor.execute(command)
 
-        elif limit is None and since is None and desc is not None:
-            data = cursor.execute(PARENT_SORT_DESC, [thread['id'], desc, desc])
+            elif limit is None and since is None and desc is not None:
+                cursor.execute(PARENT_SORT_DESC, [thread['id'], desc, desc])
 
-        elif limit is None and since is None and desc is None:
-            data = cursor.execute(PARENT_SORT, [thread['id']])
+            elif limit is None and since is None and desc is None:
+                cursor.execute(PARENT_SORT, [thread['id']])
 
-    # for post in data:
-    #     post['created'] = post['created'].astimezone(self._tz).isoformat()
-    #     post['isEdited'] = post['isedited']
-    #     del post['isedited']
+    except:
+        print('sort error')
+
+    data = cursor.fetchall()
 
     for post in data:
         post["created"] = convert_time(post["created"])

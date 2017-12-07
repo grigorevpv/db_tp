@@ -230,7 +230,7 @@ PARENT_SORT_SINCE_LIMIT = '''
                                                           AND p.path > (
                                                                             SELECT pr.path
                                                                             FROM posts pr
-                                                                            WHERE pr.post = %s
+                                                                            WHERE pr.id = %s
                                                                         )
                             
                                                     ORDER BY p.id
