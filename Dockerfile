@@ -2,8 +2,8 @@ FROM ubuntu:16.04
 
 MAINTAINER Grigorev Pavel
 
-#ENV http_proxy http://10.100.122.141:3128/
-#ENV https_proxy https://10.100.122.141:3128/
+ENV http_proxy http://10.100.122.141:3128/
+ENV https_proxy https://10.100.122.141:3128/
 
 # Обвновление списка пакетов
 RUN apt-get -y update
@@ -72,7 +72,7 @@ ENV PGPASSWORD lomogi99
 CMD service postgresql start &&\
     cd $WORK/ &&\
     psql -h localhost -U pavel -d forums -f my_db.sql &&\
-    gunicorn -w 4 -b :5000 db:app
+    gunicorn -w 4 -t 180 -b :5000 db:app
 
 
 #docker build -t grigorev .
