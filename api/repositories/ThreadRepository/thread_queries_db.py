@@ -354,12 +354,12 @@ TREE_SORT_SINCE_LIMIT_DESC = '''
                                                                         WHEN false THEN posts.path > (
                                                                                                   SELECT p.path
                                                                                                   FROM posts p
-                                                                                                  WHERE p.post_id = %s
+                                                                                                  WHERE p.id = %s
                                                                                                  )
                                                                         WHEN true  THEN posts.path < (
                                                                                                   SELECT p.path
                                                                                                   FROM posts p
-                                                                                                  WHERE p.post_id = %s
+                                                                                                  WHERE p.id = %s
                                                                                                  )
                                                                     END
                                 ORDER BY CASE %s

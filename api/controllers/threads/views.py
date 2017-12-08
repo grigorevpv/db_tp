@@ -332,8 +332,9 @@ def get_posts_information(slug_or_id):
                 cursor.execute(TREE_SORT_SINCE_LIMIT, [thread['id'], since, limit])
 
             elif limit is not None and since is not None and desc is not None:
-                command = TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit]
-                cursor.execute(TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
+                command = TREE_SORT_SINCE_LIMIT_DESC %(thread['id'], desc, since, since, desc, desc, limit)
+                cursor.execute(command)
+                # cursor.execute(TREE_SORT_SINCE_LIMIT_DESC, [thread['id'], desc, since, since, desc, desc, limit])
 
             elif limit is None and since is None and desc is not None:
                 cursor.execute(TREE_SORT_DESC, [thread['id'], desc, desc])

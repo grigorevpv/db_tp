@@ -2,6 +2,9 @@ FROM ubuntu:16.04
 
 MAINTAINER Grigorev Pavel
 
+#ENV http_proxy http://10.100.122.141:3128/
+#ENV https_proxy https://10.100.122.141:3128/
+
 # Обвновление списка пакетов
 RUN apt-get -y update
 
