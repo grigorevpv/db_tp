@@ -1,0 +1,1510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/api/controllers/threads/views.py" afterPath="$PROJECT_DIR$/api/controllers/threads/views.py" />
+      <change beforePath="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" afterPath="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" />
+      <change beforePath="$PROJECT_DIR$/enquiry/secondary.py" afterPath="$PROJECT_DIR$/enquiry/secondary.py" />
+      <change beforePath="$PROJECT_DIR$/tests/report.html" afterPath="$PROJECT_DIR$/tests/report.html" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/db_tp$UserModel.coverage" NAME="UserModel Coverage Results" MODIFIED="1508588024728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api/models/users" />
+    <SUITE FILE_PATH="coverage/db_tp$ex.coverage" NAME="ex Coverage Results" MODIFIED="1510219923799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/db_tp$ex_dev.coverage" NAME="ex_dev Coverage Results" MODIFIED="1509620215853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1512664079854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_TABLE_DETAILS" value="true" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <expand>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="forums@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="forums@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="forums@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="forums: database" type="6d9b600a:PostgresImplModel$Database" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="forums@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="forums: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="forums@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="forums: database" type="6d9b600a:PostgresImplModel$Database" />
+        <item name="public: schema" type="a16502c0:PostgresImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/controllers/threads/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="472">
+              <caret line="334" column="107" lean-forward="false" selection-start-line="334" selection-start-column="107" selection-end-line="334" selection-end-column="107" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+                <marker date="1512664140511" expanded="true" signature="10531:10612" ph="UPDATE threads... " />
+                <marker date="1512664140511" expanded="true" signature="17911:18032" ph="SELECT autho... posts" />
+                <marker date="1512664140511" expanded="true" signature="18217:18329" ph="SELECT autho... posts" />
+                <marker date="1512664140511" expanded="true" signature="18604:18722" ph="SELECT autho... posts" />
+                <marker date="1512664140511" expanded="true" signature="18907:19009" ph="SELECT autho... posts" />
+                <marker date="1512664140511" expanded="true" signature="19284:19499" ph="SELECT autho... posts" />
+                <marker date="1512664140511" expanded="true" signature="19691:19887" ph="SELECT autho... posts" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="thread_queries_db.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+              <folding>
+                <marker date="1512663806239" expanded="true" signature="32:232" ph="SELECT threa... threads" />
+                <marker date="1512663806239" expanded="true" signature="268:341" ph="SELECT sum(v... votes" />
+                <marker date="1512663806239" expanded="true" signature="762:812" ph="SELECT * FRO... threads" />
+                <marker date="1512663806239" expanded="true" signature="845:890" ph="SELECT * FRO... threads" />
+                <marker date="1512663806239" expanded="true" signature="915:1142" ph="UPDATE threads... " />
+                <marker date="1512663806239" expanded="true" signature="1174:1219" ph="SELECT count... threads" />
+                <marker date="1512663806239" expanded="true" signature="1251:1270" ph="DELETE FROM threads... " />
+                <marker date="1512663806239" expanded="true" signature="1299:1481" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="1528:2098" ph="INSERT INTO votes... " />
+                <marker date="1512663806239" expanded="true" signature="1528:2169" ph="INSERT INTO votes... " />
+                <marker date="1512663806239" expanded="true" signature="1649:1762" ph="SELECT users... users" />
+                <marker date="1512663806239" expanded="true" signature="1844:1954" ph="SELECT threa... threads" />
+                <marker date="1512663806239" expanded="true" signature="2099:2169" ph="UPDATE SET... " />
+                <marker date="1512663806239" expanded="true" signature="2226:2632" ph="INSERT INTO votes... " />
+                <marker date="1512663806239" expanded="true" signature="2226:2703" ph="INSERT INTO votes... " />
+                <marker date="1512663806239" expanded="true" signature="2347:2460" ph="SELECT users... users" />
+                <marker date="1512663806239" expanded="true" signature="2633:2703" ph="UPDATE SET... " />
+                <marker date="1512663806239" expanded="true" signature="2753:2988" ph="SELECT p.pos... posts" />
+                <marker date="1512663806239" expanded="true" signature="3048:3397" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="3427:3587" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="3696:3976" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="4058:4455" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="4493:4685" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="4723:4768" ph="END DESC LIM... " />
+                <marker date="1512663806239" expanded="true" signature="4855:5193" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="5289:5682" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="5715:5890" ph="END ORDER BY... " />
+                <marker date="1512663806239" expanded="true" signature="5932:6140" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="6182:6231" ph="END DESC LIM... " />
+                <marker date="1512663806239" expanded="true" signature="6304:6543" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="6613:6988" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="7022:7201" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="7318:7988" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="7637:7899" ph="SELECT p.pat... posts" />
+                <marker date="1512663806239" expanded="true" signature="8072:8845" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="8413:8694" ph="SELECT p.pat... posts" />
+                <marker date="1512663806239" expanded="true" signature="8903:9152" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="9210:9483" ph="END DESC LIM... " />
+                <marker date="1512663806239" expanded="true" signature="9521:9716" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="9859:11127" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="10220:11022" ph="SELECT p.pat... posts" />
+                <marker date="1512663806239" expanded="true" signature="10598:10795" ph="SELECT pr.pa... posts" />
+                <marker date="1512663806239" expanded="true" signature="11235:13016" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="11614:11932" ph="SELECT pr.pa... posts" />
+                <marker date="1512663806239" expanded="true" signature="13079:13356" ph="END ORDER BY... " />
+                <marker date="1512663806239" expanded="true" signature="13422:13704" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="13770:14083" ph="END DESC LIM... " />
+                <marker date="1512663806239" expanded="true" signature="14129:14356" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="14481:14720" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="14781:15134" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="15164:15327" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="15438:15742" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="15825:16218" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="16252:16439" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="16473:16518" ph="END DESC LIM... " />
+                <marker date="1512663806239" expanded="true" signature="16609:17171" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="16879:17077" ph="SELECT p.pat... posts" />
+                <marker date="1512663806239" expanded="true" signature="17267:18653" ph="SELECT posts... posts" />
+                <marker date="1512663806239" expanded="true" signature="18722:18899" ph="END ORDER BY... " />
+                <marker date="1512663806239" expanded="true" signature="18941:19152" ph="END ASC, CAS... " />
+                <marker date="1512663806239" expanded="true" signature="19194:19243" ph="END DESC LIM... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="secondary.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_db.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/my_db.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="79" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="906">
+              <caret line="95" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="console_1.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console_1.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="posts" pinned="false" current-in-tab="false">
+        <entry file="das://table:/c9202043/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/forums.public.posts">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="report.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/report.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+              <folding>
+                <marker date="1512664091419" expanded="true" signature="1110363:1110392" ph="..." />
+                <marker date="1512664091419" expanded="true" signature="1110363:1110399" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>USER</find>
+      <find>USER_B</find>
+      <find>coun</find>
+      <find>cou</find>
+      <find>students</find>
+      <find>f</find>
+      <find>forums</find>
+      <find>pa</find>
+      <find>pavel</find>
+      <find>user=&quot;postgres&quot;</find>
+      <find>user=&quot;postgre&quot;</find>
+      <find>user=&quot;po&quot;</find>
+      <find>user=&quot;&quot;</find>
+      <find>user=&quot;p&quot;</find>
+      <find>user=&quot;pa&quot;</find>
+      <find>user=&quot;pav&quot;</find>
+      <find>user=&quot;pave&quot;</find>
+      <find>user=&quot;pavel&quot;</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="REBASE" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+    <push-targets>
+      <push-target-info target-remote="origin" target-branch="refactor-code" repo="$PROJECT_DIR$" source="refactor-code" />
+    </push-targets>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/api/services/ForumService/__init__.py" />
+        <option value="$PROJECT_DIR$/api/models/forums/ForumModel.py" />
+        <option value="$PROJECT_DIR$/api/models/users/UserModel.py" />
+        <option value="$PROJECT_DIR$/api/models/threads/__init__.py" />
+        <option value="$PROJECT_DIR$/api/models/threads/ThreadModel.py" />
+        <option value="$PROJECT_DIR$/api/services/ThreadService/__init__.py" />
+        <option value="$PROJECT_DIR$/api/repositories/ThreadRepository/__init__.py" />
+        <option value="$PROJECT_DIR$/api/controllers/threads/__init_.py" />
+        <option value="$PROJECT_DIR$/api/models/posts/__init__.py" />
+        <option value="$PROJECT_DIR$/api/services/PostService/__init__.py" />
+        <option value="$PROJECT_DIR$/api/repositories/PostRepository/__init__.py" />
+        <option value="$PROJECT_DIR$/api/models/votes/VoteModel.py" />
+        <option value="$PROJECT_DIR$/api/services/VoteService/__init__.py" />
+        <option value="$PROJECT_DIR$/api/repositories/VoteRepository/__init__.py" />
+        <option value="$PROJECT_DIR$/api/models/posts/PostModel.py" />
+        <option value="$PROJECT_DIR$/api/controllers/posts/__init__.py" />
+        <option value="$PROJECT_DIR$/api/controllers/service/__init__.py" />
+        <option value="$PROJECT_DIR$/db.py" />
+        <option value="$PROJECT_DIR$/api/repositories/VoteRepository/vote_queries_db.py" />
+        <option value="$PROJECT_DIR$/api/repositories/ForumRepository/ForumRepository.py" />
+        <option value="$PROJECT_DIR$/api/repositories/PostRepository/PostRepository.py" />
+        <option value="$PROJECT_DIR$/api/repositories/ThreadRepository/ThreadRepository.py" />
+        <option value="$PROJECT_DIR$/api/repositories/UserRepository/UserRepository.py" />
+        <option value="$PROJECT_DIR$/api/repositories/VoteRepository/VoteRepository.py" />
+        <option value="$PROJECT_DIR$/api/services/ForumService/ForumService.py" />
+        <option value="$PROJECT_DIR$/api/services/PostService/PostService.py" />
+        <option value="$PROJECT_DIR$/api/services/ThreadService/ThreadServise.py" />
+        <option value="$PROJECT_DIR$/api/services/UserService/UserService.py" />
+        <option value="$PROJECT_DIR$/api/services/VoteService/VoteService.py" />
+        <option value="dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.users" />
+        <option value="$PROJECT_DIR$/ex_dev.py" />
+        <option value="$PROJECT_DIR$/api/repositories/ForumRepository/forum_queries_db.py" />
+        <option value="$PROJECT_DIR$/tests/report.html" />
+        <option value="$PROJECT_DIR$/enquiry/queries_db.py" />
+        <option value="$PROJECT_DIR$/api/repositories/PostRepository/post_queries_db.py" />
+        <option value="$PROJECT_DIR$/ex.py" />
+        <option value="$PROJECT_DIR$/api/controllers/forums/views.py" />
+        <option value="$PROJECT_DIR$/api/controllers/service/views.py" />
+        <option value="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" />
+        <option value="$PROJECT_DIR$/api/controllers/users/views.py" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/enquiry/connect.py" />
+        <option value="$PROJECT_DIR$/my_db.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql" />
+        <option value="$PROJECT_DIR$/api/repositories/connect.py" />
+        <option value="$PROJECT_DIR$/api/controllers/posts/views.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql" />
+        <option value="$PROJECT_DIR$/enquiry/secondary.py" />
+        <option value="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console_1.sql" />
+        <option value="$PROJECT_DIR$/api/controllers/threads/views.py" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1920" />
+    <option name="width" value="1914" />
+    <option name="height" value="1196" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyPep8Inspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="db_tp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db_tp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db_tp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db_tp" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db_tp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db_tp" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db_tp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db_tp" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="threads" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db_tp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db_tp" type="462c0819:PsiDirectoryNode" />
+              <item name="enquiry" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="db_tp" type="b2602c69:ProjectViewProjectNode" />
+              <item name="db_tp" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="PostgreSQL" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.db_tp">
+    <configuration name="UserModel" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/api/models/users" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/api/models/users/UserModel.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="db_tp" type="PythonConfigurationType" factoryName="Python" singleton="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/db.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="ex" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ex.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="ex_dev" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ex_dev.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration default="true" type="DjangoTestsConfigurationType" factoryName="Django tests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
+      <node-interpreter value="project" />
+      <working-dir value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <module name="db_tp" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="db_tp" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+    </configuration>
+    <list size="4">
+      <item index="0" class="java.lang.String" itemvalue="Python.db_tp" />
+      <item index="1" class="java.lang.String" itemvalue="Python.UserModel" />
+      <item index="2" class="java.lang.String" itemvalue="Python.ex" />
+      <item index="3" class="java.lang.String" itemvalue="Python.ex_dev" />
+    </list>
+    <recent_temporary>
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Python.ex" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ex_dev" />
+        <item index="2" class="java.lang.String" itemvalue="Python.UserModel" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="" />
+      <created>1508262907602</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1508262907602</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add forum//&lt;slug&gt;/threads [GET]">
+      <created>1508913964585</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1508913964585</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add PostModel">
+      <created>1508920185548</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1508920185548</updated>
+    </task>
+    <task id="LOCAL-00006" summary="created Post skeleton">
+      <created>1508920807102</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1508920807102</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add new methods">
+      <created>1508923266989</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1508923266989</updated>
+    </task>
+    <task id="LOCAL-00008" summary="rewrite thread create function">
+      <created>1509048488805</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1509048488805</updated>
+    </task>
+    <task id="LOCAL-00009" summary="add votes and posts models">
+      <created>1509221366084</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1509221366084</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add some sorts">
+      <created>1509227698999</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1509227698999</updated>
+    </task>
+    <task id="LOCAL-00011" summary="make all sorts&#10;and get post details">
+      <created>1509367811361</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1509367811361</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fix forum/&lt;slug&gt;/users">
+      <created>1509387954971</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1509387954972</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add forum controller">
+      <created>1509388078699</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1509388078699</updated>
+    </task>
+    <task id="LOCAL-00014" summary="make some fixed">
+      <created>1509395210666</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1509395210666</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add service/details">
+      <created>1509467760258</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1509467760258</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix post/&lt;id&gt;/details">
+      <created>1509471923209</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1509471923209</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add delete commands for all tables">
+      <created>1509474220302</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1509474220302</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add delete commands for Repositories">
+      <created>1509474397353</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1509474397353</updated>
+    </task>
+    <task id="LOCAL-00019" summary="add delete commands for Services">
+      <created>1509474593743</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1509474593743</updated>
+    </task>
+    <task id="LOCAL-00020" summary="all work">
+      <created>1509477027768</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1509477027768</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add Dockerfile">
+      <created>1509482118458</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1509482118459</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix Dockerfile">
+      <created>1509482375830</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1509482375830</updated>
+    </task>
+    <task id="LOCAL-00023" summary="new branch: the main direct is speed">
+      <created>1509565306838</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1509565306838</updated>
+    </task>
+    <task id="LOCAL-00024" summary="rewrite /api/user/&lt;nickname&gt;/create and /api/user/&lt;nickname&gt;/profile">
+      <created>1509571396022</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1509571396022</updated>
+    </task>
+    <task id="LOCAL-00025" summary="rewrite /api/user/&lt;nickname&gt;/profile [POST]">
+      <created>1509575111965</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1509575111965</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add test file">
+      <created>1509619329048</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1509619329048</updated>
+    </task>
+    <task id="LOCAL-00027" summary="add tests">
+      <created>1509619942607</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1509619942607</updated>
+    </task>
+    <task id="LOCAL-00028" summary="add tests file">
+      <created>1509624008170</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1509624008170</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add pool connection and rewrite user_create and user_profile functions">
+      <created>1509626799936</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1509626799936</updated>
+    </task>
+    <task id="LOCAL-00030" summary="rewrite change_user_profile with pool connection">
+      <created>1509627407279</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1509627407279</updated>
+    </task>
+    <task id="LOCAL-00031" summary="[WIP] change forum database model">
+      <created>1509635876648</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1509635876648</updated>
+    </task>
+    <task id="LOCAL-00032" summary="[WIP] change forum database model">
+      <created>1509636626202</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1509636626202</updated>
+    </task>
+    <task id="LOCAL-00033" summary="[WIP] forum/&lt;slug&gt;/create">
+      <created>1509808677332</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1509808677332</updated>
+    </task>
+    <task id="LOCAL-00034" summary="[WIP] forum/&lt;slug&gt;/create">
+      <created>1509808772867</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1509808772867</updated>
+    </task>
+    <task id="LOCAL-00035" summary="fix forum/&lt;slug&gt;/create and thread/&lt;slug_or_id&gt;/create">
+      <created>1509951643560</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1509951643560</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix forum/&lt;slug&gt;/create pass 21 tests">
+      <created>1509955633931</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1509955633931</updated>
+    </task>
+    <task id="LOCAL-00037" summary="pass first 30 tests">
+      <created>1510057601803</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1510057601803</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix thread/&lt;slug_or_id&gt;/vote">
+      <created>1510061751082</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1510061751082</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fix thread/&lt;slug_or_id&gt;/posts&#10;all sorted tests passed">
+      <created>1510087421091</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1510087421091</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fix thread/&lt;slug_or_id&gt;/details&#10;passed 40 tests">
+      <created>1510087934887</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1510087934887</updated>
+    </task>
+    <task id="LOCAL-00041" summary="all tests passed">
+      <created>1510144290092</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1510144290092</updated>
+    </task>
+    <task id="LOCAL-00042" summary="rewrite forum/&lt;slug&gt;/details [GET] using connection pool">
+      <created>1510752770947</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1510752770947</updated>
+    </task>
+    <task id="LOCAL-00043" summary="rewrite forum/&lt;slug&gt;/users [GET] using connection pool">
+      <created>1510839109878</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1510839109878</updated>
+    </task>
+    <task id="LOCAL-00044" summary="rewrite service/status [GET] using connection pool">
+      <created>1510839765180</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1510839765180</updated>
+    </task>
+    <task id="LOCAL-00045" summary="rewrite service/clear [POST] using connection pool">
+      <created>1510840016047</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1510840016047</updated>
+    </task>
+    <task id="LOCAL-00046" summary="rewrite service/clear [POST] using connection pool">
+      <created>1510843773358</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1510843773358</updated>
+    </task>
+    <task id="LOCAL-00047" summary="rewrite service/clear [POST] using connection pool">
+      <created>1511691218059</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1511691218059</updated>
+    </task>
+    <task id="LOCAL-00048" summary="add new branch">
+      <created>1512487996365</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1512487996365</updated>
+    </task>
+    <task id="LOCAL-00049" summary="add trigger on update, insert, delete vote">
+      <created>1512499187772</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1512499187772</updated>
+    </task>
+    <task id="LOCAL-00050" summary="add flat sort">
+      <created>1512639349667</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1512639349667</updated>
+    </task>
+    <task id="LOCAL-00051" summary="add tree sort">
+      <created>1512640001848</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1512640001848</updated>
+    </task>
+    <task id="LOCAL-00052" summary="add parent sort">
+      <created>1512653608738</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1512653608738</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1920" y="0" width="1914" height="1196" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5032017" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.4967983" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3082061" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3826336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2920686" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20203644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3740458" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="rewrite /api/user/&lt;nickname&gt;/create and /api/user/&lt;nickname&gt;/profile" />
+    <MESSAGE value="rewrite /api/user/&lt;nickname&gt;/profile [POST]" />
+    <MESSAGE value="add test file" />
+    <MESSAGE value="add tests" />
+    <MESSAGE value="add tests file" />
+    <MESSAGE value="add pool connection and rewrite user_create and user_profile functions" />
+    <MESSAGE value="rewrite change_user_profile with pool connection" />
+    <MESSAGE value="[WIP] change forum database model" />
+    <MESSAGE value="[WIP] forum/&lt;slug&gt;/create" />
+    <MESSAGE value="fix forum/&lt;slug&gt;/create and thread/&lt;slug_or_id&gt;/create" />
+    <MESSAGE value="fix forum/&lt;slug&gt;/create pass 21 tests" />
+    <MESSAGE value="pass first 30 tests" />
+    <MESSAGE value="fix thread/&lt;slug_or_id&gt;/vote" />
+    <MESSAGE value="fix thread/&lt;slug_or_id&gt;/posts&#10;all sorted tests passed" />
+    <MESSAGE value="fix thread/&lt;slug_or_id&gt;/details&#10;passed 40 tests" />
+    <MESSAGE value="all tests passed" />
+    <MESSAGE value="rewrite forum/&lt;slug&gt;/details [GET] using connection pool" />
+    <MESSAGE value="rewrite forum/&lt;slug&gt;/users [GET] using connection pool" />
+    <MESSAGE value="rewrite service/status [GET] using connection pool" />
+    <MESSAGE value="rewrite service/clear [POST] using connection pool" />
+    <MESSAGE value="add new branch" />
+    <MESSAGE value="add trigger on update, insert, delete vote" />
+    <MESSAGE value="add flat sort" />
+    <MESSAGE value="add tree sort" />
+    <MESSAGE value="add parent sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="add parent sort" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/controllers/threads/views.py</url>
+          <line>362</line>
+          <option name="timeStamp" value="271" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/api/controllers/threads/views.py</url>
+          <line>358</line>
+          <option name="timeStamp" value="272" />
+        </line-breakpoint>
+      </breakpoints>
+      <breakpoints-dialog>
+        <breakpoints-dialog />
+      </breakpoints-dialog>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+      <option name="time" value="276" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/api/models/users/UserModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1180">
+          <caret line="59" column="42" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="59" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/random.py" />
+    <entry file="file://$PROJECT_DIR$/ex_dev.py" />
+    <entry file="file://$USER_HOME$/.PyCharm2017.1/system/python_stubs/1702340190/psycopg2/_psycopg/cursor.py" />
+    <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/flask/globals.py" />
+    <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/werkzeug/local.py" />
+    <entry file="file://$PROJECT_DIR$/api/models/threads/ThreadModel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="56" column="8" lean-forward="false" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/VoteRepository/vote_queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/psycopg2/pool.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/typing.pyi">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ex.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="38" column="35" lean-forward="false" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/flask/app.py" />
+    <entry file="file://$PROJECT_DIR$/api/repositories/ForumRepository/forum_queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="24" column="56" lean-forward="false" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/PostRepository/post_queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="26" column="54" lean-forward="false" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/services/ForumService/ForumService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="112" column="35" lean-forward="true" selection-start-line="112" selection-start-column="35" selection-end-line="112" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/ForumRepository/ForumRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="138" column="47" lean-forward="true" selection-start-line="138" selection-start-column="12" selection-end-line="138" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/services/ThreadService/ThreadServise.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="111" column="34" lean-forward="false" selection-start-line="111" selection-start-column="34" selection-end-line="111" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/ThreadRepository/ThreadRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="139" column="12" lean-forward="false" selection-start-line="139" selection-start-column="12" selection-end-line="139" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/PostRepository/PostRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="295">
+          <caret line="286" column="12" lean-forward="false" selection-start-line="286" selection-start-column="12" selection-end-line="286" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/services/PostService/PostService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="142" column="37" lean-forward="false" selection-start-line="142" selection-start-column="37" selection-end-line="142" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/services/UserService/UserService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="98" column="37" lean-forward="false" selection-start-line="98" selection-start-column="37" selection-end-line="98" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/UserRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="220" column="12" lean-forward="false" selection-start-line="220" selection-start-column="12" selection-end-line="220" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/services/VoteService/VoteService.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/VoteRepository/VoteRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/service/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-466">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="271">
+          <caret line="70" column="40" lean-forward="false" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.forums" />
+    <entry file="file://$PROJECT_DIR$/enquiry/queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/users/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="384">
+          <caret line="60" column="58" lean-forward="false" selection-start-line="60" selection-start-column="58" selection-end-line="60" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.votes" />
+    <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.users" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql" />
+    <entry file="file://$PROJECT_DIR$/enquiry/connect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="88" lean-forward="false" selection-start-line="9" selection-start-column="73" selection-end-line="9" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.posts" />
+    <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.threads" />
+    <entry file="file://$PROJECT_DIR$/api/repositories/connect.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/cc7a0080-ee25-498d-83e5-17dc7188a86b/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="155" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="39" lean-forward="false" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/posts/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-682">
+          <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/c9202043/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/forums.public.threads">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/c9202043/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/forums.public.posts">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="1597" column="0" lean-forward="false" selection-start-line="1597" selection-start-column="0" selection-end-line="1597" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/report.html">
+      <provider editor-type-id="LargeFileEditor">
+        <state relative-caret-position="40">
+          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+          <folding>
+            <marker date="1512664091419" expanded="true" signature="1110363:1110392" ph="..." />
+            <marker date="1512664091419" expanded="true" signature="1110363:1110399" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/my_db.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="79" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="906">
+          <caret line="95" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+          <folding>
+            <marker date="1512663806239" expanded="true" signature="32:232" ph="SELECT threa... threads" />
+            <marker date="1512663806239" expanded="true" signature="268:341" ph="SELECT sum(v... votes" />
+            <marker date="1512663806239" expanded="true" signature="762:812" ph="SELECT * FRO... threads" />
+            <marker date="1512663806239" expanded="true" signature="845:890" ph="SELECT * FRO... threads" />
+            <marker date="1512663806239" expanded="true" signature="915:1142" ph="UPDATE threads... " />
+            <marker date="1512663806239" expanded="true" signature="1174:1219" ph="SELECT count... threads" />
+            <marker date="1512663806239" expanded="true" signature="1251:1270" ph="DELETE FROM threads... " />
+            <marker date="1512663806239" expanded="true" signature="1299:1481" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="1528:2098" ph="INSERT INTO votes... " />
+            <marker date="1512663806239" expanded="true" signature="1528:2169" ph="INSERT INTO votes... " />
+            <marker date="1512663806239" expanded="true" signature="1649:1762" ph="SELECT users... users" />
+            <marker date="1512663806239" expanded="true" signature="1844:1954" ph="SELECT threa... threads" />
+            <marker date="1512663806239" expanded="true" signature="2099:2169" ph="UPDATE SET... " />
+            <marker date="1512663806239" expanded="true" signature="2226:2632" ph="INSERT INTO votes... " />
+            <marker date="1512663806239" expanded="true" signature="2226:2703" ph="INSERT INTO votes... " />
+            <marker date="1512663806239" expanded="true" signature="2347:2460" ph="SELECT users... users" />
+            <marker date="1512663806239" expanded="true" signature="2633:2703" ph="UPDATE SET... " />
+            <marker date="1512663806239" expanded="true" signature="2753:2988" ph="SELECT p.pos... posts" />
+            <marker date="1512663806239" expanded="true" signature="3048:3397" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="3427:3587" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="3696:3976" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="4058:4455" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="4493:4685" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="4723:4768" ph="END DESC LIM... " />
+            <marker date="1512663806239" expanded="true" signature="4855:5193" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="5289:5682" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="5715:5890" ph="END ORDER BY... " />
+            <marker date="1512663806239" expanded="true" signature="5932:6140" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="6182:6231" ph="END DESC LIM... " />
+            <marker date="1512663806239" expanded="true" signature="6304:6543" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="6613:6988" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="7022:7201" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="7318:7988" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="7637:7899" ph="SELECT p.pat... posts" />
+            <marker date="1512663806239" expanded="true" signature="8072:8845" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="8413:8694" ph="SELECT p.pat... posts" />
+            <marker date="1512663806239" expanded="true" signature="8903:9152" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="9210:9483" ph="END DESC LIM... " />
+            <marker date="1512663806239" expanded="true" signature="9521:9716" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="9859:11127" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="10220:11022" ph="SELECT p.pat... posts" />
+            <marker date="1512663806239" expanded="true" signature="10598:10795" ph="SELECT pr.pa... posts" />
+            <marker date="1512663806239" expanded="true" signature="11235:13016" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="11614:11932" ph="SELECT pr.pa... posts" />
+            <marker date="1512663806239" expanded="true" signature="13079:13356" ph="END ORDER BY... " />
+            <marker date="1512663806239" expanded="true" signature="13422:13704" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="13770:14083" ph="END DESC LIM... " />
+            <marker date="1512663806239" expanded="true" signature="14129:14356" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="14481:14720" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="14781:15134" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="15164:15327" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="15438:15742" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="15825:16218" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="16252:16439" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="16473:16518" ph="END DESC LIM... " />
+            <marker date="1512663806239" expanded="true" signature="16609:17171" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="16879:17077" ph="SELECT p.pat... posts" />
+            <marker date="1512663806239" expanded="true" signature="17267:18653" ph="SELECT posts... posts" />
+            <marker date="1512663806239" expanded="true" signature="18722:18899" ph="END ORDER BY... " />
+            <marker date="1512663806239" expanded="true" signature="18941:19152" ph="END ASC, CAS... " />
+            <marker date="1512663806239" expanded="true" signature="19194:19243" ph="END DESC LIM... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/threads/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="334" column="107" lean-forward="false" selection-start-line="334" selection-start-column="107" selection-end-line="334" selection-end-column="107" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+            <marker date="1512664140511" expanded="true" signature="10531:10612" ph="UPDATE threads... " />
+            <marker date="1512664140511" expanded="true" signature="17911:18032" ph="SELECT autho... posts" />
+            <marker date="1512664140511" expanded="true" signature="18217:18329" ph="SELECT autho... posts" />
+            <marker date="1512664140511" expanded="true" signature="18604:18722" ph="SELECT autho... posts" />
+            <marker date="1512664140511" expanded="true" signature="18907:19009" ph="SELECT autho... posts" />
+            <marker date="1512664140511" expanded="true" signature="19284:19499" ph="SELECT autho... posts" />
+            <marker date="1512664140511" expanded="true" signature="19691:19887" ph="SELECT autho... posts" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
