@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
+    <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="merge">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/threads/views.py" afterPath="$PROJECT_DIR$/api/controllers/threads/views.py" />
-      <change beforePath="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" afterPath="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" />
-      <change beforePath="$PROJECT_DIR$/enquiry/secondary.py" afterPath="$PROJECT_DIR$/enquiry/secondary.py" />
-      <change beforePath="$PROJECT_DIR$/tests/report.html" afterPath="$PROJECT_DIR$/tests/report.html" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,7 +16,7 @@
     <SUITE FILE_PATH="coverage/db_tp$UserModel.coverage" NAME="UserModel Coverage Results" MODIFIED="1508588024728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api/models/users" />
     <SUITE FILE_PATH="coverage/db_tp$ex.coverage" NAME="ex Coverage Results" MODIFIED="1510219923799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/db_tp$ex_dev.coverage" NAME="ex_dev Coverage Results" MODIFIED="1509620215853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1512664079854" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1512720186516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -67,21 +63,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controllers/threads/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
+            <state relative-caret-position="4905">
               <caret line="334" column="107" lean-forward="false" selection-start-line="334" selection-start-column="107" selection-end-line="334" selection-end-column="107" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
-                <marker date="1512664140511" expanded="true" signature="10531:10612" ph="UPDATE threads... " />
-                <marker date="1512664140511" expanded="true" signature="17911:18032" ph="SELECT autho... posts" />
-                <marker date="1512664140511" expanded="true" signature="18217:18329" ph="SELECT autho... posts" />
-                <marker date="1512664140511" expanded="true" signature="18604:18722" ph="SELECT autho... posts" />
-                <marker date="1512664140511" expanded="true" signature="18907:19009" ph="SELECT autho... posts" />
-                <marker date="1512664140511" expanded="true" signature="19284:19499" ph="SELECT autho... posts" />
-                <marker date="1512664140511" expanded="true" signature="19691:19887" ph="SELECT autho... posts" />
+                <marker date="1512720128010" expanded="true" signature="10531:10612" ph="UPDATE threads... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="565">
+              <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -89,71 +89,9 @@
       <file leaf-file-name="thread_queries_db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
+            <state relative-caret-position="1920">
               <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-              <folding>
-                <marker date="1512663806239" expanded="true" signature="32:232" ph="SELECT threa... threads" />
-                <marker date="1512663806239" expanded="true" signature="268:341" ph="SELECT sum(v... votes" />
-                <marker date="1512663806239" expanded="true" signature="762:812" ph="SELECT * FRO... threads" />
-                <marker date="1512663806239" expanded="true" signature="845:890" ph="SELECT * FRO... threads" />
-                <marker date="1512663806239" expanded="true" signature="915:1142" ph="UPDATE threads... " />
-                <marker date="1512663806239" expanded="true" signature="1174:1219" ph="SELECT count... threads" />
-                <marker date="1512663806239" expanded="true" signature="1251:1270" ph="DELETE FROM threads... " />
-                <marker date="1512663806239" expanded="true" signature="1299:1481" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="1528:2098" ph="INSERT INTO votes... " />
-                <marker date="1512663806239" expanded="true" signature="1528:2169" ph="INSERT INTO votes... " />
-                <marker date="1512663806239" expanded="true" signature="1649:1762" ph="SELECT users... users" />
-                <marker date="1512663806239" expanded="true" signature="1844:1954" ph="SELECT threa... threads" />
-                <marker date="1512663806239" expanded="true" signature="2099:2169" ph="UPDATE SET... " />
-                <marker date="1512663806239" expanded="true" signature="2226:2632" ph="INSERT INTO votes... " />
-                <marker date="1512663806239" expanded="true" signature="2226:2703" ph="INSERT INTO votes... " />
-                <marker date="1512663806239" expanded="true" signature="2347:2460" ph="SELECT users... users" />
-                <marker date="1512663806239" expanded="true" signature="2633:2703" ph="UPDATE SET... " />
-                <marker date="1512663806239" expanded="true" signature="2753:2988" ph="SELECT p.pos... posts" />
-                <marker date="1512663806239" expanded="true" signature="3048:3397" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="3427:3587" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="3696:3976" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="4058:4455" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="4493:4685" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="4723:4768" ph="END DESC LIM... " />
-                <marker date="1512663806239" expanded="true" signature="4855:5193" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="5289:5682" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="5715:5890" ph="END ORDER BY... " />
-                <marker date="1512663806239" expanded="true" signature="5932:6140" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="6182:6231" ph="END DESC LIM... " />
-                <marker date="1512663806239" expanded="true" signature="6304:6543" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="6613:6988" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="7022:7201" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="7318:7988" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="7637:7899" ph="SELECT p.pat... posts" />
-                <marker date="1512663806239" expanded="true" signature="8072:8845" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="8413:8694" ph="SELECT p.pat... posts" />
-                <marker date="1512663806239" expanded="true" signature="8903:9152" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="9210:9483" ph="END DESC LIM... " />
-                <marker date="1512663806239" expanded="true" signature="9521:9716" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="9859:11127" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="10220:11022" ph="SELECT p.pat... posts" />
-                <marker date="1512663806239" expanded="true" signature="10598:10795" ph="SELECT pr.pa... posts" />
-                <marker date="1512663806239" expanded="true" signature="11235:13016" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="11614:11932" ph="SELECT pr.pa... posts" />
-                <marker date="1512663806239" expanded="true" signature="13079:13356" ph="END ORDER BY... " />
-                <marker date="1512663806239" expanded="true" signature="13422:13704" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="13770:14083" ph="END DESC LIM... " />
-                <marker date="1512663806239" expanded="true" signature="14129:14356" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="14481:14720" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="14781:15134" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="15164:15327" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="15438:15742" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="15825:16218" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="16252:16439" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="16473:16518" ph="END DESC LIM... " />
-                <marker date="1512663806239" expanded="true" signature="16609:17171" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="16879:17077" ph="SELECT p.pat... posts" />
-                <marker date="1512663806239" expanded="true" signature="17267:18653" ph="SELECT posts... posts" />
-                <marker date="1512663806239" expanded="true" signature="18722:18899" ph="END ORDER BY... " />
-                <marker date="1512663806239" expanded="true" signature="18941:19152" ph="END ASC, CAS... " />
-                <marker date="1512663806239" expanded="true" signature="19194:19243" ph="END DESC LIM... " />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -161,8 +99,8 @@
       <file leaf-file-name="secondary.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
+            <state relative-caret-position="120">
+              <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -171,7 +109,7 @@
       <file leaf-file-name="my_db.sql" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/my_db.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
+            <state relative-caret-position="1185">
               <caret line="79" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
               <folding />
             </state>
@@ -181,7 +119,7 @@
       <file leaf-file-name="console.sql" pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="906">
+            <state relative-caret-position="1425">
               <caret line="95" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
               <folding />
             </state>
@@ -209,13 +147,9 @@
       </file>
       <file leaf-file-name="report.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/report.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-              <folding>
-                <marker date="1512664091419" expanded="true" signature="1110363:1110392" ph="..." />
-                <marker date="1512664091419" expanded="true" signature="1110363:1110399" ph="..." />
-              </folding>
+          <provider selected="true" editor-type-id="LargeFileEditor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
             </state>
           </provider>
         </entry>
@@ -298,17 +232,17 @@
         <option value="$PROJECT_DIR$/api/controllers/service/views.py" />
         <option value="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" />
         <option value="$PROJECT_DIR$/api/controllers/users/views.py" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/enquiry/connect.py" />
         <option value="$PROJECT_DIR$/my_db.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql" />
         <option value="$PROJECT_DIR$/api/repositories/connect.py" />
         <option value="$PROJECT_DIR$/api/controllers/posts/views.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql" />
-        <option value="$PROJECT_DIR$/enquiry/secondary.py" />
         <option value="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console_1.sql" />
         <option value="$PROJECT_DIR$/api/controllers/threads/views.py" />
+        <option value="$PROJECT_DIR$/enquiry/secondary.py" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
       </list>
     </option>
   </component>
@@ -357,8 +291,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -398,6 +330,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -670,27 +604,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1508262907602</updated>
-    </task>
-    <task id="LOCAL-00004" summary="add forum//&lt;slug&gt;/threads [GET]">
-      <created>1508913964585</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1508913964585</updated>
-    </task>
-    <task id="LOCAL-00005" summary="add PostModel">
-      <created>1508920185548</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1508920185548</updated>
-    </task>
-    <task id="LOCAL-00006" summary="created Post skeleton">
-      <created>1508920807102</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1508920807102</updated>
     </task>
     <task id="LOCAL-00007" summary="add new methods">
       <created>1508923266989</created>
@@ -1014,7 +927,28 @@
       <option name="project" value="LOCAL" />
       <updated>1512653608738</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="merge">
+      <created>1512720280783</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1512720280783</updated>
+    </task>
+    <task id="LOCAL-00054" summary="change dockerfile">
+      <created>1512727087346</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1512727087347</updated>
+    </task>
+    <task id="LOCAL-00055" summary="comment docer proxy settings">
+      <created>1512727353378</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1512727353378</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1023,22 +957,22 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5032017" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.4967983" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3082061" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3826336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2920686" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3072519" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3017149" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20203644" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3740458" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3826336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1079,9 +1013,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rewrite /api/user/&lt;nickname&gt;/create and /api/user/&lt;nickname&gt;/profile" />
-    <MESSAGE value="rewrite /api/user/&lt;nickname&gt;/profile [POST]" />
-    <MESSAGE value="add test file" />
     <MESSAGE value="add tests" />
     <MESSAGE value="add tests file" />
     <MESSAGE value="add pool connection and rewrite user_create and user_profile functions" />
@@ -1104,7 +1035,10 @@
     <MESSAGE value="add flat sort" />
     <MESSAGE value="add tree sort" />
     <MESSAGE value="add parent sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="add parent sort" />
+    <MESSAGE value="merge" />
+    <MESSAGE value="change dockerfile" />
+    <MESSAGE value="comment docer proxy settings" />
+    <option name="LAST_COMMIT_MESSAGE" value="comment docer proxy settings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1275,19 +1209,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="70" column="40" lean-forward="false" selection-start-line="70" selection-start-column="40" selection-end-line="70" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.forums" />
     <entry file="file://$PROJECT_DIR$/enquiry/queries_db.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="243">
           <caret line="38" column="44" lean-forward="true" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1314,9 +1240,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1338,7 +1261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1367,117 +1289,39 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
           <caret line="1597" column="0" lean-forward="false" selection-start-line="1597" selection-start-column="0" selection-end-line="1597" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/report.html">
-      <provider editor-type-id="LargeFileEditor">
-        <state relative-caret-position="40">
-          <caret line="2" column="16" lean-forward="true" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="105">
           <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
           <folding>
-            <marker date="1512664091419" expanded="true" signature="1110363:1110392" ph="..." />
-            <marker date="1512664091419" expanded="true" signature="1110363:1110399" ph="..." />
+            <marker date="1512720845542" expanded="true" signature="17:206" ph="..." />
+            <marker date="1512720845542" expanded="true" signature="24:206" ph="..." />
+            <marker date="1512720845542" expanded="true" signature="186:206" ph="..." />
           </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="LargeFileEditor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/my_db.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="1185">
           <caret line="79" column="15" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="41" lean-forward="false" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="906">
-          <caret line="95" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state relative-caret-position="1920">
           <caret line="128" column="0" lean-forward="false" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <marker date="1512663806239" expanded="true" signature="32:232" ph="SELECT threa... threads" />
-            <marker date="1512663806239" expanded="true" signature="268:341" ph="SELECT sum(v... votes" />
-            <marker date="1512663806239" expanded="true" signature="762:812" ph="SELECT * FRO... threads" />
-            <marker date="1512663806239" expanded="true" signature="845:890" ph="SELECT * FRO... threads" />
-            <marker date="1512663806239" expanded="true" signature="915:1142" ph="UPDATE threads... " />
-            <marker date="1512663806239" expanded="true" signature="1174:1219" ph="SELECT count... threads" />
-            <marker date="1512663806239" expanded="true" signature="1251:1270" ph="DELETE FROM threads... " />
-            <marker date="1512663806239" expanded="true" signature="1299:1481" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="1528:2098" ph="INSERT INTO votes... " />
-            <marker date="1512663806239" expanded="true" signature="1528:2169" ph="INSERT INTO votes... " />
-            <marker date="1512663806239" expanded="true" signature="1649:1762" ph="SELECT users... users" />
-            <marker date="1512663806239" expanded="true" signature="1844:1954" ph="SELECT threa... threads" />
-            <marker date="1512663806239" expanded="true" signature="2099:2169" ph="UPDATE SET... " />
-            <marker date="1512663806239" expanded="true" signature="2226:2632" ph="INSERT INTO votes... " />
-            <marker date="1512663806239" expanded="true" signature="2226:2703" ph="INSERT INTO votes... " />
-            <marker date="1512663806239" expanded="true" signature="2347:2460" ph="SELECT users... users" />
-            <marker date="1512663806239" expanded="true" signature="2633:2703" ph="UPDATE SET... " />
-            <marker date="1512663806239" expanded="true" signature="2753:2988" ph="SELECT p.pos... posts" />
-            <marker date="1512663806239" expanded="true" signature="3048:3397" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="3427:3587" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="3696:3976" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="4058:4455" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="4493:4685" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="4723:4768" ph="END DESC LIM... " />
-            <marker date="1512663806239" expanded="true" signature="4855:5193" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="5289:5682" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="5715:5890" ph="END ORDER BY... " />
-            <marker date="1512663806239" expanded="true" signature="5932:6140" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="6182:6231" ph="END DESC LIM... " />
-            <marker date="1512663806239" expanded="true" signature="6304:6543" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="6613:6988" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="7022:7201" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="7318:7988" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="7637:7899" ph="SELECT p.pat... posts" />
-            <marker date="1512663806239" expanded="true" signature="8072:8845" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="8413:8694" ph="SELECT p.pat... posts" />
-            <marker date="1512663806239" expanded="true" signature="8903:9152" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="9210:9483" ph="END DESC LIM... " />
-            <marker date="1512663806239" expanded="true" signature="9521:9716" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="9859:11127" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="10220:11022" ph="SELECT p.pat... posts" />
-            <marker date="1512663806239" expanded="true" signature="10598:10795" ph="SELECT pr.pa... posts" />
-            <marker date="1512663806239" expanded="true" signature="11235:13016" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="11614:11932" ph="SELECT pr.pa... posts" />
-            <marker date="1512663806239" expanded="true" signature="13079:13356" ph="END ORDER BY... " />
-            <marker date="1512663806239" expanded="true" signature="13422:13704" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="13770:14083" ph="END DESC LIM... " />
-            <marker date="1512663806239" expanded="true" signature="14129:14356" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="14481:14720" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="14781:15134" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="15164:15327" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="15438:15742" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="15825:16218" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="16252:16439" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="16473:16518" ph="END DESC LIM... " />
-            <marker date="1512663806239" expanded="true" signature="16609:17171" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="16879:17077" ph="SELECT p.pat... posts" />
-            <marker date="1512663806239" expanded="true" signature="17267:18653" ph="SELECT posts... posts" />
-            <marker date="1512663806239" expanded="true" signature="18722:18899" ph="END ORDER BY... " />
-            <marker date="1512663806239" expanded="true" signature="18941:19152" ph="END ASC, CAS... " />
-            <marker date="1512663806239" expanded="true" signature="19194:19243" ph="END DESC LIM... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1491,18 +1335,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/threads/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
+        <state relative-caret-position="4905">
           <caret line="334" column="107" lean-forward="false" selection-start-line="334" selection-start-column="107" selection-end-line="334" selection-end-column="107" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
-            <marker date="1512664140511" expanded="true" signature="10531:10612" ph="UPDATE threads... " />
-            <marker date="1512664140511" expanded="true" signature="17911:18032" ph="SELECT autho... posts" />
-            <marker date="1512664140511" expanded="true" signature="18217:18329" ph="SELECT autho... posts" />
-            <marker date="1512664140511" expanded="true" signature="18604:18722" ph="SELECT autho... posts" />
-            <marker date="1512664140511" expanded="true" signature="18907:19009" ph="SELECT autho... posts" />
-            <marker date="1512664140511" expanded="true" signature="19284:19499" ph="SELECT autho... posts" />
-            <marker date="1512664140511" expanded="true" signature="19691:19887" ph="SELECT autho... posts" />
+            <marker date="1512720128010" expanded="true" signature="10531:10612" ph="UPDATE threads... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1425">
+          <caret line="95" column="40" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="95" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="565">
+          <caret line="77" column="27" lean-forward="true" selection-start-line="77" selection-start-column="27" selection-end-line="77" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

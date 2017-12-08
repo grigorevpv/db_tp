@@ -72,7 +72,7 @@ ENV PGPASSWORD lomogi99
 CMD service postgresql start &&\
     cd $WORK/ &&\
     psql -h localhost -U pavel -d forums -f my_db.sql &&\
-    gunicorn -w 4 -t 180 -b :5000 db:app
+    gunicorn -w 8 -t 360 -b :5000 db:app
 
 
 #docker build -t grigorev .
