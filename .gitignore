@@ -1,4 +1,5 @@
 ./tests/*
+.idea/
 .idea/*
 *.pyc
 *.pyo
