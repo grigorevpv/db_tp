@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS votes CASCADE;
 DROP TABLE IF EXISTS threads CASCADE;
 DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS forum_for_users CASCADE;
 
 CREATE TABLE users (
   user_id  serial CONSTRAINT firstkey_u PRIMARY KEY,                      -- ID форума
@@ -22,6 +23,15 @@ CREATE TABLE forums (
   title TEXT,                                                             -- Название форума
   "user" CITEXT                                                           -- Имя пользователя, создавшего форум
 );
+
+CREATE TABLE IF NOT EXISTS forum_for_users (
+  user_id  INTEGER REFERENCES users (user_id) ON DELETE CASCADE NOT NULL,
+  forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE NOT NULL
+);
+
+ALTER TABLE forum_for_users
+    ADD CONSTRAINT forum_for_users_cstr
+    UNIQUE(user_id, forum_id);
 
 CREATE TABLE threads (
   id serial CONSTRAINT firstkey_th PRIMARY KEY,                    -- ID ветки обсуждения
@@ -94,3 +104,30 @@ CREATE TRIGGER update_thread_votes
   ON votes
   FOR EACH ROW
 EXECUTE PROCEDURE update_thread_votes();
+
+CREATE OR REPLACE FUNCTION inser_forum_for_user()
+  RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO forum_for_users (user_id, forum_id)
+  (
+    SELECT NEW.user_id, NEW.forum_id
+    FROM users
+    WHERE users.user_id = new.user_id
+  )
+  ON CONFLICT DO NOTHING;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER inser_user_for_post
+  AFTER INSERT
+  ON posts
+  FOR EACH ROW
+EXECUTE PROCEDURE inser_forum_for_user();
+
+CREATE TRIGGER inser_user_for_thread
+  AFTER INSERT
+  ON threads
+  FOR EACH ROW
+EXECUTE PROCEDURE inser_forum_for_user();
+
