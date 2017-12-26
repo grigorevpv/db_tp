@@ -1,5 +1,9 @@
 .idea/
 .idea/*
 .idea/workspace.xml
+./venv/*
+./venv/
+./tests/
+./tests/*
 tests/
 *.pyc
