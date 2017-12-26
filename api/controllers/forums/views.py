@@ -195,13 +195,15 @@ def get_list_of_users(slug):
             cursor.execute(command)
             users = cursor.fetchall()
         else:
-            command = SELECT_USERS_SINCE % (forum["forum_id"], forum["forum_id"], since, limit)
+            # command = SELECT_USERS_SINCE % (forum["forum_id"], forum["forum_id"], since, limit)
+            command = SELECT_USERS_SINCE % (forum["forum_id"], since, limit)
             cursor.execute(command)
             users = cursor.fetchall()
 
     else:
         if desc:
-            command = SELECT_USERS_DESC % (forum["forum_id"], forum["forum_id"], limit)
+            # command = SELECT_USERS_DESC % (forum["forum_id"], forum["forum_id"], limit)
+            command = SELECT_USERS_DESC % (forum["forum_id"], limit)
             cursor.execute(command)
             users = cursor.fetchall()
             if users is None:
