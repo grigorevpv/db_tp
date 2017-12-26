@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS votes CASCADE;
 DROP TABLE IF EXISTS threads CASCADE;
 DROP TABLE IF EXISTS posts CASCADE;
+DROP TABLE IF EXISTS forum_for_users CASCADE;
 
 CREATE TABLE users (
   user_id  serial CONSTRAINT firstkey_u PRIMARY KEY,                      -- ID форума
@@ -24,9 +25,13 @@ CREATE TABLE forums (
 );
 
 CREATE TABLE IF NOT EXISTS forum_for_users (
-  user_id  INTEGER REFERENCES users (user_id) ON DELETE CASCADE,
-  forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE
+  user_id  INTEGER REFERENCES users (user_id) ON DELETE CASCADE NOT NULL,
+  forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE NOT NULL
 );
+
+ALTER TABLE forum_for_users
+    ADD CONSTRAINT forum_for_users_cstr
+    UNIQUE(user_id, forum_id);
 
 CREATE TABLE threads (
   id serial CONSTRAINT firstkey_th PRIMARY KEY,                    -- ID ветки обсуждения
