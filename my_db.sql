@@ -16,18 +16,18 @@ CREATE TABLE users (
 
 CREATE TABLE forums (
   forum_id serial CONSTRAINT firstkey_f PRIMARY KEY,                      -- ID форума
-  user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,            -- ID пользователя, создавшего форум
-  posts INTEGER DEFAULT 0,                                                -- Количество постов в форуме
-  slug CITEXT UNIQUE NOT NULL,                                            -- Человекопонятный URL (уникальное поле)
-  threads INTEGER DEFAULT 0,                                              -- Количество тредов в форуме
-  title TEXT,                                                             -- Название форума
-  "user" CITEXT                                                           -- Имя пользователя, создавшего форум
+  user_id  INTEGER REFERENCES users(user_id) ON DELETE CASCADE,            -- ID пользователя, создавшего форум
+  posts    INTEGER DEFAULT 0,                                                -- Количество постов в форуме
+  slug     CITEXT UNIQUE NOT NULL,                                            -- Человекопонятный URL (уникальное поле)
+  threads  INTEGER DEFAULT 0,                                              -- Количество тредов в форуме
+  title    TEXT,                                                             -- Название форума
+  "user"   CITEXT                                                           -- Имя пользователя, создавшего форум
 );
 
 CREATE TABLE IF NOT EXISTS forum_for_users (
   forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE NOT NULL,
   user_id  INTEGER REFERENCES users (user_id) ON DELETE CASCADE NOT NULL,
-  nickname CITEXT COLLATE "ucs_basic" UNIQUE NOT NULL,                    -- Уникальный nick пользователя
+  nickname CITEXT COLLATE "ucs_basic",                                    -- Уникальный nick пользователя
   about    TEXT,                                                          -- Описание пользователя
   email    CITEXT,                                                        -- email пользователя
   fullname TEXT                                                           -- полное имя пользователя
@@ -163,14 +163,14 @@ EXECUTE PROCEDURE insert_forum_for_user();
 
 -- --=========== FORUMS ===========
 -- 
-CREATE INDEX forums_slug_idx
-  ON forums (slug);
+      CREATE INDEX forums_slug_idx
+        ON forums (slug);
 
-CREATE INDEX forums_users_idx
-  ON forums (user_id);
--- 
-CREATE INDEX forums_slug_uid_idx
-  ON forums (slug, forum_id);
+      CREATE INDEX forums_users_idx
+        ON forums (user_id);
+      --
+      CREATE INDEX forums_slug_uid_idx
+        ON forums (slug, forum_id);
 -- 
 -- CREATE INDEX forums_slug_all_idx
 --   ON forums (slug, user, title, threads, posts, forum_id);
@@ -196,47 +196,47 @@ CREATE INDEX forums_slug_uid_idx
 -- CREATE INDEX IF NOT EXISTS posts_thread_uid_idx
 --   ON posts (thread, id);
 -- 
-CREATE INDEX IF NOT EXISTS posts_thread_path_idx
-  ON posts (thread, path);
+      CREATE INDEX IF NOT EXISTS posts_thread_path_idx
+        ON posts (thread, path);
 
-CREATE index posts_uid_path_idx
-  ON posts (id, path);
+      CREATE index posts_uid_path_idx
+        ON posts (id, path);
 
-CREATE INDEX posts_thread_parent_path_uid_idx
-  ON posts (thread, parent, path, id);
+      CREATE INDEX posts_thread_parent_path_uid_idx
+        ON posts (thread, parent, path, id);
 -- 
 -- CREATE INDEX posts_uid_thread_parent_idx
 --   ON posts (id, thread, parent);
 -- 
 -- --=========== THREADS ===========
 -- 
-CREATE INDEX threads_slug_idx
-  ON threads (slug);
+      CREATE INDEX threads_slug_idx
+        ON threads (slug);
 
-CREATE INDEX threads_forums_idx
-  ON threads (forum_id);
+      CREATE INDEX threads_forums_idx
+        ON threads (forum_id);
 -- 
 -- CREATE INDEX threads_users_idx
 --   ON threads (user_id);
 -- 
-create index threads_forum_id_created_idx
-  on threads (forum_id, created);
+      create index threads_forum_id_created_idx
+        on threads (forum_id, created);
 -- 
 -- --=========== USERS ===========
 -- 
-CREATE INDEX users_nickname_idx
-  ON users (nickname);
+      CREATE INDEX users_nickname_idx
+        ON users (nickname);
 
-CREATE INDEX users_email_idx
-  ON users (email);
+      CREATE INDEX users_email_idx
+        ON users (email);
 
-CREATE INDEX users_nickname_collate_email_about_fullname_uid_idx
-  ON users (nickname, about, email, fullname, user_id);
+      CREATE INDEX users_nickname_collate_email_about_fullname_uid_idx
+        ON users (nickname, about, email, fullname, user_id);
 -- 
 -- --=========== FORUM_FOR_USER ===========
 -- 
-CREATE INDEX users_for_forum_full_idx
-  on forum_for_users (forum_id, user_id, nickname COLLATE "usc_basic", email, about, fullname);
+      CREATE INDEX users_for_forum_full_idx
+        on forum_for_users (forum_id, user_id, nickname COLLATE "ucs_basic", email, about, fullname);
 -- 
 -- --=========== VOTES ===========
 -- 
