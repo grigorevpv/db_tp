@@ -130,3 +130,4 @@ CREATE TRIGGER inser_user_for_thread
   ON threads
   FOR EACH ROW
 EXECUTE PROCEDURE inser_forum_for_user();
+
