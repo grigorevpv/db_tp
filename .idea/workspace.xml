@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" afterPath="$PROJECT_DIR$/Dockerfile" />
-      <change beforePath="$PROJECT_DIR$/enquiry/secondary.py" afterPath="$PROJECT_DIR$/enquiry/secondary.py" />
-      <change beforePath="$PROJECT_DIR$/tests/report.html" afterPath="$PROJECT_DIR$/tests/report.html" />
+      <change beforePath="$PROJECT_DIR$/tests/report.html" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -588,13 +586,6 @@
       <option name="presentableId" value="Default" />
       <updated>1508262907602</updated>
     </task>
-    <task id="LOCAL-00008" summary="rewrite thread create function">
-      <created>1509048488805</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1509048488805</updated>
-    </task>
     <task id="LOCAL-00009" summary="add votes and posts models">
       <created>1509221366084</created>
       <option name="number" value="00009" />
@@ -931,7 +922,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514284383685</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="make some changes">
+      <created>1514284914415</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1514284914415</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -995,7 +993,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests file" />
     <MESSAGE value="add pool connection and rewrite user_create and user_profile functions" />
     <MESSAGE value="rewrite change_user_profile with pool connection" />
     <MESSAGE value="[WIP] change forum database model" />
@@ -1020,7 +1017,8 @@
     <MESSAGE value="rewrite SELECT_USERS_SINCE_DESC command" />
     <MESSAGE value="rewrite SELECT_USERS_DESC command" />
     <MESSAGE value="change sql" />
-    <option name="LAST_COMMIT_MESSAGE" value="change sql" />
+    <MESSAGE value="make some changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="make some changes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
