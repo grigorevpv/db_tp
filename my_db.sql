@@ -109,31 +109,55 @@ CREATE TRIGGER update_thread_votes
   FOR EACH ROW
 EXECUTE PROCEDURE update_thread_votes();
 
-CREATE OR REPLACE FUNCTION inser_forum_for_user()
+CREATE OR REPLACE FUNCTION insert_forum_for_user()
   RETURNS TRIGGER AS $$
 BEGIN
+
+  LOCK TABLE forum_for_users;
+
   INSERT INTO forum_for_users (forum_id, user_id, nickname, email, about, fullname)
   (
     SELECT  NEW.forum_id, NEW.user_id, u.nickname, u.email, u.about, u.fullname
     FROM users u
     WHERE u.user_id = new.user_id
+    FOR NO KEY UPDATE
   )
   ON CONFLICT DO NOTHING;
   RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE TRIGGER inser_user_for_post
+
+CREATE OR REPLACE FUNCTION insert_post_for_user()
+  RETURNS TRIGGER AS $$
+BEGIN
+
+  LOCK TABLE forum_for_users;
+
+  INSERT INTO forum_for_users (forum_id, user_id, nickname, email, about, fullname)
+  (
+    SELECT  NEW.forum_id, NEW.user_id, u.nickname, u.email, u.about, u.fullname
+    FROM users u
+    WHERE u.user_id = new.user_id
+    FOR NO KEY UPDATE
+  )
+  ON CONFLICT DO NOTHING;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER insert_user_for_post_tg
   AFTER INSERT
   ON posts
   FOR EACH ROW
-EXECUTE PROCEDURE inser_forum_for_user();
+EXECUTE PROCEDURE insert_post_for_user();
 
-CREATE TRIGGER inser_user_for_thread
+CREATE TRIGGER insert_user_for_thread_tg
   AFTER INSERT
   ON threads
   FOR EACH ROW
-EXECUTE PROCEDURE inser_forum_for_user();
+EXECUTE PROCEDURE insert_forum_for_user();
 
 --==================================== INDEXES ====================================
 
