@@ -23,6 +23,11 @@ CREATE TABLE forums (
   "user" CITEXT                                                           -- Имя пользователя, создавшего форум
 );
 
+CREATE TABLE IF NOT EXISTS forum_for_users (
+  user_id  INTEGER REFERENCES users (user_id) ON DELETE CASCADE,
+  forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE
+);
+
 CREATE TABLE threads (
   id serial CONSTRAINT firstkey_th PRIMARY KEY,                    -- ID ветки обсуждения
   forum_id  INTEGER REFERENCES forums(forum_id) ON DELETE CASCADE,        -- ID форума, к которому относится тред
@@ -94,3 +99,29 @@ CREATE TRIGGER update_thread_votes
   ON votes
   FOR EACH ROW
 EXECUTE PROCEDURE update_thread_votes();
+
+CREATE OR REPLACE FUNCTION inser_forum_for_user()
+  RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO forum_for_users (user_id, forum_id)
+  (
+    SELECT NEW.user_id, NEW.forum_id
+    FROM users
+    WHERE users.user_id = new.user_id
+  )
+  ON CONFLICT DO NOTHING;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER inser_user_for_post
+  AFTER INSERT
+  ON posts
+  FOR EACH ROW
+EXECUTE PROCEDURE inser_forum_for_user();
+
+CREATE TRIGGER inser_user_for_thread
+  AFTER INSERT
+  ON threads
+  FOR EACH ROW
+EXECUTE PROCEDURE inser_forum_for_user();
