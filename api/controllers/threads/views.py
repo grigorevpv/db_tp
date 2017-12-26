@@ -24,6 +24,7 @@ STATUS_CODE = {
 def create_posts(slug_or_id):
     content = request.get_json(silent=True)
     connect, cursor = data_context.create_connection()
+    thread = None
 
     if slug_or_id.isdigit():
         cursor.execute(SELECT_THREAD_BY_ID, [slug_or_id, ])
@@ -52,14 +53,6 @@ def create_posts(slug_or_id):
             data_context.put_connection(connect)
             cursor.close()
             return make_response(jsonify({"message": "Can't find user with nickname: " + post['author']}),
-                                 STATUS_CODE['NOT_FOUND'])
-
-        cursor.execute(SELECT_FORUM_BY_FORUM_ID, [thread["forum_id"]])
-        forum = cursor.fetchone()
-        if user is None:
-            data_context.put_connection(connect)
-            cursor.close()
-            return make_response(jsonify({"message": "Can't find forum with forum_id: " + thread["forum_id"]}),
                                  STATUS_CODE['NOT_FOUND'])
 
         post_path = list()
@@ -101,7 +94,7 @@ def create_posts(slug_or_id):
         created_thread_data = dict(zip(param_name_array, param_value_array))
         created_threads_arr.append(created_thread_data)
 
-        cursor.execute(INCREMENT_POSTS, [forum["forum_id"], ])
+        cursor.execute(INCREMENT_POSTS, [thread["forum_id"], ])
     data_context.put_connection(connect)
     cursor.close()
     return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])
