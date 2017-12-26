@@ -5,9 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/api/controllers/forums/views.py" afterPath="$PROJECT_DIR$/api/controllers/forums/views.py" />
       <change beforePath="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" afterPath="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" />
-      <change beforePath="$PROJECT_DIR$/api/repositories/connect.py" afterPath="$PROJECT_DIR$/api/repositories/connect.py" />
-      <change beforePath="$PROJECT_DIR$/enquiry/connect.py" afterPath="$PROJECT_DIR$/enquiry/connect.py" />
-      <change beforePath="$PROJECT_DIR$/my_db.sql" afterPath="$PROJECT_DIR$/my_db.sql" />
       <change beforePath="$PROJECT_DIR$/tests/report.html" afterPath="$PROJECT_DIR$/tests/report.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +18,7 @@
     <SUITE FILE_PATH="coverage/db_tp$UserModel.coverage" NAME="UserModel Coverage Results" MODIFIED="1508588024728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api/models/users" />
     <SUITE FILE_PATH="coverage/db_tp$ex.coverage" NAME="ex Coverage Results" MODIFIED="1510219923799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/db_tp$ex_dev.coverage" NAME="ex_dev Coverage Results" MODIFIED="1509620215853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1514276844083" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1514279292837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -68,17 +65,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
+            <state relative-caret-position="333">
+              <caret line="211" column="68" lean-forward="true" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
               <folding>
-                <marker date="1514274933059" expanded="true" signature="3057:3245" ph="INSERT INTO threads... " />
-                <marker date="1514274933059" expanded="true" signature="3447:3647" ph="INSERT INTO threads... " />
-                <marker date="1514274933059" expanded="true" signature="7882:8295" ph="SELECT * FRO... users" />
-                <marker date="1514274933059" expanded="true" signature="7920:8039" ph="SELECT u.use... posts" />
-                <marker date="1514274933059" expanded="true" signature="8082:8208" ph="SELECT us.us... threads" />
+                <marker date="1514279292798" expanded="true" signature="3057:3245" ph="INSERT INTO threads... " />
+                <marker date="1514279292798" expanded="true" signature="3447:3647" ph="INSERT INTO threads... " />
               </folding>
             </state>
           </provider>
@@ -94,34 +88,38 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user_queries_db.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user_queries_db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="23" />
+            <state relative-caret-position="308">
+              <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
               <folding>
-                <marker date="1514276844034" expanded="true" signature="29:153" ph="SELECT users... users" />
-                <marker date="1514276844034" expanded="true" signature="189:264" ph="SELECT user_... " />
-                <marker date="1514276844034" expanded="true" signature="300:476" ph="SELECT users... users" />
-                <marker date="1514276844034" expanded="true" signature="521:698" ph="SELECT users... users" />
-                <marker date="1514276844034" expanded="true" signature="733:953" ph="UPDATE users... " />
-                <marker date="1514276844034" expanded="true" signature="976:1176" ph="INSERT INTO users... " />
-                <marker date="1514276844034" expanded="true" signature="1213:1674" ph="SELECT * FRO... users" />
-                <marker date="1514276844034" expanded="true" signature="1251:1376" ph="SELECT u.use... posts" />
-                <marker date="1514276844034" expanded="true" signature="1421:1553" ph="SELECT us.us... threads" />
-                <marker date="1514276844034" expanded="true" signature="1710:2081" ph="SELECT * FRO... forum_for_users" />
-                <marker date="1514276844034" expanded="true" signature="1710:2134" ph="SELECT * FRO... forum_for_users" />
-                <marker date="1514276844034" expanded="true" signature="2138:2579" ph="SELECT * FRO... users" />
-                <marker date="1514276844034" expanded="true" signature="2176:2297" ph="SELECT u.use... posts" />
-                <marker date="1514276844034" expanded="true" signature="2338:2466" ph="SELECT us.us... threads" />
-                <marker date="1514276844034" expanded="true" signature="2603:3018" ph="SELECT * FRO... users" />
-                <marker date="1514276844034" expanded="true" signature="2641:2762" ph="SELECT u.use... posts" />
-                <marker date="1514276844034" expanded="true" signature="2803:2931" ph="SELECT us.us... threads" />
-                <marker date="1514276844034" expanded="true" signature="3047:3467" ph="SELECT * FRO... users" />
-                <marker date="1514276844034" expanded="true" signature="3085:3206" ph="SELECT u.use... posts" />
-                <marker date="1514276844034" expanded="true" signature="3247:3375" ph="SELECT us.us... threads" />
-                <marker date="1514276844034" expanded="true" signature="3497:3538" ph="SELECT count... users" />
-                <marker date="1514276844034" expanded="true" signature="3568:3585" ph="DELETE FROM users... " />
+                <marker date="1514279292770" expanded="true" signature="29:153" ph="SELECT users... users" />
+                <marker date="1514279292770" expanded="true" signature="189:264" ph="SELECT user_... " />
+                <marker date="1514279292770" expanded="true" signature="300:476" ph="SELECT users... users" />
+                <marker date="1514279292770" expanded="true" signature="521:698" ph="SELECT users... users" />
+                <marker date="1514279292770" expanded="true" signature="733:953" ph="UPDATE users... " />
+                <marker date="1514279292770" expanded="true" signature="976:1176" ph="INSERT INTO users... " />
+                <marker date="1514279292770" expanded="true" signature="1213:1674" ph="SELECT * FRO... users" />
+                <marker date="1514279292770" expanded="true" signature="1251:1376" ph="SELECT u.use... posts" />
+                <marker date="1514279292770" expanded="true" signature="1421:1553" ph="SELECT us.us... threads" />
+                <marker date="1514279292770" expanded="true" signature="1710:2081" ph="SELECT * FRO... forum_for_users" />
+                <marker date="1514279292770" expanded="true" signature="1710:2136" ph="SELECT * FRO... forum_for_users" />
+                <marker date="1514279292770" expanded="true" signature="2140:2596" ph="SELECT * FRO... users" />
+                <marker date="1514279292770" expanded="true" signature="2178:2303" ph="SELECT u.use... posts" />
+                <marker date="1514279292770" expanded="true" signature="2348:2480" ph="SELECT us.us... threads" />
+                <marker date="1514279292770" expanded="true" signature="2627:2968" ph="SELECT u.use... forum_for_users" />
+                <marker date="1514279292770" expanded="true" signature="3020:3339" ph="SELECT u.use... forum_for_users" />
+                <marker date="1514279292770" expanded="true" signature="3387:3817" ph="SELECT * FRO... users" />
+                <marker date="1514279292770" expanded="true" signature="3425:3550" ph="SELECT u.use... posts" />
+                <marker date="1514279292770" expanded="true" signature="3595:3727" ph="SELECT us.us... threads" />
+                <marker date="1514279292770" expanded="true" signature="3842:4131" ph="SELECT u.use... forum_for_users" />
+                <marker date="1514279292770" expanded="true" signature="4179:4614" ph="SELECT * FRO... users" />
+                <marker date="1514279292770" expanded="true" signature="4217:4342" ph="SELECT u.use... posts" />
+                <marker date="1514279292770" expanded="true" signature="4387:4519" ph="SELECT us.us... threads" />
+                <marker date="1514279292770" expanded="true" signature="4644:4968" ph="SELECT u.use... forum_for_users" />
+                <marker date="1514279292770" expanded="true" signature="5020:5061" ph="SELECT count... users" />
+                <marker date="1514279292770" expanded="true" signature="5091:5108" ph="DELETE FROM users... " />
               </folding>
             </state>
           </provider>
@@ -223,9 +221,9 @@
         <option value="$PROJECT_DIR$/api/repositories/connect.py" />
         <option value="$PROJECT_DIR$/enquiry/connect.py" />
         <option value="$PROJECT_DIR$/api/controllers/threads/views.py" />
-        <option value="$PROJECT_DIR$/api/controllers/forums/views.py" />
         <option value="$PROJECT_DIR$/my_db.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql" />
+        <option value="$PROJECT_DIR$/api/controllers/forums/views.py" />
         <option value="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" />
       </list>
     </option>
@@ -596,20 +594,6 @@
       <option name="presentableId" value="Default" />
       <updated>1508262907602</updated>
     </task>
-    <task id="LOCAL-00005" summary="add PostModel">
-      <created>1508920185548</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1508920185548</updated>
-    </task>
-    <task id="LOCAL-00006" summary="created Post skeleton">
-      <created>1508920807102</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1508920807102</updated>
-    </task>
     <task id="LOCAL-00007" summary="add new methods">
       <created>1508923266989</created>
       <option name="number" value="00007" />
@@ -939,7 +923,21 @@
       <option name="project" value="LOCAL" />
       <updated>1514273060851</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="rewrite SELECT_USERS_SINCE_DESC command">
+      <created>1514276899106</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1514276899106</updated>
+    </task>
+    <task id="LOCAL-00055" summary="rewrite SELECT_USERS_DESC command">
+      <created>1514278866691</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1514278866691</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1017,8 +1015,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="rewrite /api/user/&lt;nickname&gt;/profile [POST]" />
-    <MESSAGE value="add test file" />
     <MESSAGE value="add tests" />
     <MESSAGE value="add tests file" />
     <MESSAGE value="add pool connection and rewrite user_create and user_profile functions" />
@@ -1042,15 +1038,17 @@
     <MESSAGE value="add tree sort" />
     <MESSAGE value="add parent sort" />
     <MESSAGE value="add new table forum_for_user and triggers for this table" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new table forum_for_user and triggers for this table" />
+    <MESSAGE value="rewrite SELECT_USERS_SINCE_DESC command" />
+    <MESSAGE value="rewrite SELECT_USERS_DESC command" />
+    <option name="LAST_COMMIT_MESSAGE" value="rewrite SELECT_USERS_DESC command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/api/controllers/forums/views.py</url>
-          <line>193</line>
-          <option name="timeStamp" value="277" />
+          <line>211</line>
+          <option name="timeStamp" value="280" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -1063,7 +1061,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="278" />
+      <option name="time" value="281" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1306,28 +1304,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/flask/app.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="1597" column="0" lean-forward="false" selection-start-line="1597" selection-start-column="0" selection-end-line="1597" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="221" column="0" lean-forward="false" selection-start-line="221" selection-start-column="0" selection-end-line="221" selection-end-column="0" />
-          <folding>
-            <marker date="1514274933059" expanded="true" signature="3057:3245" ph="INSERT INTO threads... " />
-            <marker date="1514274933059" expanded="true" signature="3447:3647" ph="INSERT INTO threads... " />
-            <marker date="1514274933059" expanded="true" signature="7882:8295" ph="SELECT * FRO... users" />
-            <marker date="1514274933059" expanded="true" signature="7920:8039" ph="SELECT u.use... posts" />
-            <marker date="1514274933059" expanded="true" signature="8082:8208" ph="SELECT us.us... threads" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://table:/c9202043/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/forums.public.threads">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -1389,33 +1365,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/flask/app.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="1597" column="0" lean-forward="false" selection-start-line="1597" selection-start-column="0" selection-end-line="1597" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="23" />
+        <state relative-caret-position="308">
+          <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
           <folding>
-            <marker date="1514276844034" expanded="true" signature="29:153" ph="SELECT users... users" />
-            <marker date="1514276844034" expanded="true" signature="189:264" ph="SELECT user_... " />
-            <marker date="1514276844034" expanded="true" signature="300:476" ph="SELECT users... users" />
-            <marker date="1514276844034" expanded="true" signature="521:698" ph="SELECT users... users" />
-            <marker date="1514276844034" expanded="true" signature="733:953" ph="UPDATE users... " />
-            <marker date="1514276844034" expanded="true" signature="976:1176" ph="INSERT INTO users... " />
-            <marker date="1514276844034" expanded="true" signature="1213:1674" ph="SELECT * FRO... users" />
-            <marker date="1514276844034" expanded="true" signature="1251:1376" ph="SELECT u.use... posts" />
-            <marker date="1514276844034" expanded="true" signature="1421:1553" ph="SELECT us.us... threads" />
-            <marker date="1514276844034" expanded="true" signature="1710:2081" ph="SELECT * FRO... forum_for_users" />
-            <marker date="1514276844034" expanded="true" signature="1710:2134" ph="SELECT * FRO... forum_for_users" />
-            <marker date="1514276844034" expanded="true" signature="2138:2579" ph="SELECT * FRO... users" />
-            <marker date="1514276844034" expanded="true" signature="2176:2297" ph="SELECT u.use... posts" />
-            <marker date="1514276844034" expanded="true" signature="2338:2466" ph="SELECT us.us... threads" />
-            <marker date="1514276844034" expanded="true" signature="2603:3018" ph="SELECT * FRO... users" />
-            <marker date="1514276844034" expanded="true" signature="2641:2762" ph="SELECT u.use... posts" />
-            <marker date="1514276844034" expanded="true" signature="2803:2931" ph="SELECT us.us... threads" />
-            <marker date="1514276844034" expanded="true" signature="3047:3467" ph="SELECT * FRO... users" />
-            <marker date="1514276844034" expanded="true" signature="3085:3206" ph="SELECT u.use... posts" />
-            <marker date="1514276844034" expanded="true" signature="3247:3375" ph="SELECT us.us... threads" />
-            <marker date="1514276844034" expanded="true" signature="3497:3538" ph="SELECT count... users" />
-            <marker date="1514276844034" expanded="true" signature="3568:3585" ph="DELETE FROM users... " />
+            <marker date="1514279292770" expanded="true" signature="29:153" ph="SELECT users... users" />
+            <marker date="1514279292770" expanded="true" signature="189:264" ph="SELECT user_... " />
+            <marker date="1514279292770" expanded="true" signature="300:476" ph="SELECT users... users" />
+            <marker date="1514279292770" expanded="true" signature="521:698" ph="SELECT users... users" />
+            <marker date="1514279292770" expanded="true" signature="733:953" ph="UPDATE users... " />
+            <marker date="1514279292770" expanded="true" signature="976:1176" ph="INSERT INTO users... " />
+            <marker date="1514279292770" expanded="true" signature="1213:1674" ph="SELECT * FRO... users" />
+            <marker date="1514279292770" expanded="true" signature="1251:1376" ph="SELECT u.use... posts" />
+            <marker date="1514279292770" expanded="true" signature="1421:1553" ph="SELECT us.us... threads" />
+            <marker date="1514279292770" expanded="true" signature="1710:2081" ph="SELECT * FRO... forum_for_users" />
+            <marker date="1514279292770" expanded="true" signature="1710:2136" ph="SELECT * FRO... forum_for_users" />
+            <marker date="1514279292770" expanded="true" signature="2140:2596" ph="SELECT * FRO... users" />
+            <marker date="1514279292770" expanded="true" signature="2178:2303" ph="SELECT u.use... posts" />
+            <marker date="1514279292770" expanded="true" signature="2348:2480" ph="SELECT us.us... threads" />
+            <marker date="1514279292770" expanded="true" signature="2627:2968" ph="SELECT u.use... forum_for_users" />
+            <marker date="1514279292770" expanded="true" signature="3020:3339" ph="SELECT u.use... forum_for_users" />
+            <marker date="1514279292770" expanded="true" signature="3387:3817" ph="SELECT * FRO... users" />
+            <marker date="1514279292770" expanded="true" signature="3425:3550" ph="SELECT u.use... posts" />
+            <marker date="1514279292770" expanded="true" signature="3595:3727" ph="SELECT us.us... threads" />
+            <marker date="1514279292770" expanded="true" signature="3842:4131" ph="SELECT u.use... forum_for_users" />
+            <marker date="1514279292770" expanded="true" signature="4179:4614" ph="SELECT * FRO... users" />
+            <marker date="1514279292770" expanded="true" signature="4217:4342" ph="SELECT u.use... posts" />
+            <marker date="1514279292770" expanded="true" signature="4387:4519" ph="SELECT us.us... threads" />
+            <marker date="1514279292770" expanded="true" signature="4644:4968" ph="SELECT u.use... forum_for_users" />
+            <marker date="1514279292770" expanded="true" signature="5020:5061" ph="SELECT count... users" />
+            <marker date="1514279292770" expanded="true" signature="5091:5108" ph="DELETE FROM users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="211" column="68" lean-forward="true" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
+          <folding>
+            <marker date="1514279292798" expanded="true" signature="3057:3245" ph="INSERT INTO threads... " />
+            <marker date="1514279292798" expanded="true" signature="3447:3647" ph="INSERT INTO threads... " />
           </folding>
         </state>
       </provider>

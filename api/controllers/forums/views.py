@@ -209,15 +209,7 @@ def get_list_of_users(slug):
             if users is None:
                 raise Exception("user is not exist")
         else:
-            command = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
-                 JOIN users u ON p.user_id = u.user_id
-                 WHERE forum_id = %s
-                 UNION
-                 SELECT us.user_id FROM threads th
-                 JOIN users us ON th.user_id = us.user_id
-                 WHERE forum_id = %s)
-                 ORDER BY users.nickname COLLATE ucs_basic 
-                 LIMIT %s;''' % (forum["forum_id"], forum["forum_id"], limit)
+            command = SELECT_ONLY_USERS % (forum["forum_id"], limit)
             cursor.execute(command)
             users = cursor.fetchall()
 

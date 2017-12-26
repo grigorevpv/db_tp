@@ -57,15 +57,31 @@ SELECT_USERS_SINCE = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fulln
                          LIMIT %s;
                      '''
 
-SELECT_USERS = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
-                 JOIN users u ON p.user_id = u.user_id
-                 WHERE forum_id = %s
-                 UNION
-                 SELECT us.user_id FROM threads th
-                 JOIN users us ON th.user_id = us.user_id
-                 WHERE forum_id = %s)
-                 ORDER BY users.nickname COLLATE ucs_basic 
-                 LIMIT %s;'''
+SELECT_ONLY_USERS = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
+                         JOIN users u
+                         ON ffu.user_id = u.user_id
+                         WHERE ffu.forum_id = %s
+                         ORDER BY u.nickname COLLATE ucs_basic
+                         LIMIT %s;
+                     '''
+
+# SELECT_USERS = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
+#                  JOIN users u ON p.user_id = u.user_id
+#                  WHERE forum_id = %s
+#                  UNION
+#                  SELECT us.user_id FROM threads th
+#                  JOIN users us ON th.user_id = us.user_id
+#                  WHERE forum_id = %s)
+#                  ORDER BY users.nickname COLLATE ucs_basic
+#                  LIMIT %s;'''
+
+SELECT_USERS = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
+                   JOIN users u
+                   ON ffu.user_id = u.user_id
+                   WHERE ffu.forum_id = %s
+                   ORDER BY u.nickname COLLATE ucs_basic
+                   LIMIT %s;
+                '''
 
 # SELECT_USERS_DESC = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
 #                  JOIN users u ON p.user_id = u.user_id
