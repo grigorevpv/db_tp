@@ -13,8 +13,11 @@ COUNT_VOTES_BY_THREAD_ID = '''SELECT sum(voice) as votes_count FROM votes
 # 							threads.created, threads.message, threads.slug, threads.title
 # 							FROM threads WHERE slug = %s;'''
 
-SELECT_THREAD_BY_ID = '''SELECT *
-							FROM threads WHERE threads.id = %s;'''
+SELECT_THREAD_BY_ID = '''SELECT * FROM threads WHERE threads.id = %s;'''
+
+THREAD_ID_IS_EXISTS = '''SELECT th.id FROM threads th WHERE th.id = %s;'''
+
+THREAD_SLUG_IS_EXISTS = '''SELECT th.id FROM threads th WHERE th.slug = %s;'''
 
 SELECT_THREAD_BY_SLUG = '''SELECT * 
 							FROM threads WHERE slug = %s;'''

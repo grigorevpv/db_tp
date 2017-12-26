@@ -131,4 +131,89 @@ CREATE TRIGGER inser_user_for_thread
   FOR EACH ROW
 EXECUTE PROCEDURE inser_forum_for_user();
 
+--==================================== INDEXES ====================================
 
+-- --=========== FORUMS ===========
+-- 
+CREATE INDEX forums_slug_idx
+  ON forums (slug);
+
+CREATE INDEX forums_users_idx
+  ON forums (user_id);
+-- 
+CREATE INDEX forums_slug_uid_idx
+  ON forums (slug, forum_id);
+-- 
+-- CREATE INDEX forums_slug_all_idx
+--   ON forums (slug, user, title, threads, posts, forum_id);
+-- 
+-- --=========== POSTS ===========
+-- 
+-- CREATE INDEX posts_threads_idx
+--   ON posts (thread);
+-- 
+-- CREATE INDEX posts_forums_idx
+--   ON posts (forum_id);
+-- 
+-- CREATE INDEX posts_users_idx
+--   ON posts (user_id);
+-- 
+-- CREATE INDEX posts_parent_idx
+--   ON posts (parent);
+-- 
+-- ------------------------------------------------------------------------------------------------------------------------
+-- CREATE INDEX IF NOT EXISTS posts_uid_thread_idx
+--   ON posts (id, thread);
+-- 
+-- CREATE INDEX IF NOT EXISTS posts_thread_uid_idx
+--   ON posts (thread, id);
+-- 
+CREATE INDEX IF NOT EXISTS posts_thread_path_idx
+  ON posts (thread, path);
+
+CREATE index posts_uid_path_idx
+  ON posts (id, path);
+
+CREATE INDEX posts_thread_parent_path_uid_idx
+  ON posts (thread, parent, path, id);
+-- 
+-- CREATE INDEX posts_uid_thread_parent_idx
+--   ON posts (id, thread, parent);
+-- 
+-- --=========== THREADS ===========
+-- 
+CREATE INDEX threads_slug_idx
+  ON threads (slug);
+
+CREATE INDEX threads_forums_idx
+  ON threads (forum_id);
+-- 
+-- CREATE INDEX threads_users_idx
+--   ON threads (user_id);
+-- 
+create index threads_forum_id_created_idx
+  on threads (forum_id, created);
+-- 
+-- --=========== USERS ===========
+-- 
+CREATE INDEX users_nickname_idx
+  ON users (nickname);
+
+CREATE INDEX users_email_idx
+  ON users (email);
+
+CREATE INDEX users_nickname_collate_email_about_fullname_uid_idx
+  ON users (nickname, about, email, fullname, user_id);
+-- 
+-- --=========== FORUM_FOR_USER ===========
+-- 
+-- CREATE INDEX users_for_forum_full_idx
+--   on forum_for_users (user_id, forum_id);
+-- 
+-- --=========== VOTES ===========
+-- 
+-- CREATE INDEX vote_users_idx
+--   ON votes (user_id);
+-- 
+-- CREATE INDEX vote_threads_idx
+--   ON votes (thread_id);
