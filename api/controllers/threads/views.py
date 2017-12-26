@@ -78,8 +78,8 @@ def create_posts(slug_or_id):
         cursor.execute(SELECT_NEXT_VAL)
         post_id = cursor.fetchone()["nextval"]
         post_path.append(post_id)
-        cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["id"], forum["forum_id"], parent_id, created_time,
-                                     post["message"], post_path, user["nickname"], forum["slug"]])
+        cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["id"], thread["forum_id"], parent_id, created_time,
+                                     post["message"], post_path, user["nickname"], thread["forum"]])
         returning_post = cursor.fetchone()
         param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
                             "parent", "thread"]
