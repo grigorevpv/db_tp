@@ -30,11 +30,10 @@ INSERT_USER = '''INSERT INTO users (nickname, about, email, fullname)
 #                  ORDER BY users.nickname COLLATE ucs_basic DESC
 #                  LIMIT %s;'''
 
-SELECT_USERS_SINCE_DESC = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
-                              JOIN users u
-                              ON ffu.user_id = u.user_id
-                              WHERE ffu.forum_id = %s AND u.nickname < '%s'
-                              ORDER BY u.nickname COLLATE ucs_basic DESC
+SELECT_USERS_SINCE_DESC = ''' SELECT ffu.nickname, ffu.email, ffu.about, ffu.fullname 
+                              FROM forum_for_users ffu
+                              WHERE ffu.forum_id = %s AND ffu.nickname < '%s'
+                              ORDER BY ffu.nickname COLLATE ucs_basic DESC
                               LIMIT %s;
                           '''
 
@@ -48,20 +47,18 @@ SELECT_USERS_SINCE_DESC = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.
 #                  ORDER BY users.nickname COLLATE ucs_basic
 #                  LIMIT %s;'''
 
-SELECT_USERS_SINCE = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
-                         JOIN users u
-                         ON ffu.user_id = u.user_id
-                         WHERE ffu.forum_id = %s AND u.nickname > '%s'
-                         ORDER BY u.nickname COLLATE ucs_basic
+SELECT_USERS_SINCE = ''' SELECT ffu.nickname, ffu.email, ffu.about, ffu.fullname 
+                         FROM forum_for_users ffu
+                         WHERE ffu.forum_id = %s AND ffu.nickname > '%s'
+                         ORDER BY ffu.nickname COLLATE ucs_basic
                          LIMIT %s;
                      '''
 
-SELECT_ONLY_USERS = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
-                         JOIN users u
-                         ON ffu.user_id = u.user_id
-                         WHERE ffu.forum_id = %s
-                         ORDER BY u.nickname COLLATE ucs_basic
-                         LIMIT %s;
+SELECT_ONLY_USERS = ''' SELECT ffu.nickname, ffu.email, ffu.about, ffu.fullname 
+                        FROM forum_for_users ffu
+                        WHERE ffu.forum_id = %s
+                        ORDER BY ffu.nickname COLLATE ucs_basic
+                        LIMIT %s;
                      '''
 
 # SELECT_USERS = '''SELECT * FROM users WHERE user_id IN (SELECT u.user_id FROM posts p
@@ -74,11 +71,10 @@ SELECT_ONLY_USERS = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullna
 #                  ORDER BY users.nickname COLLATE ucs_basic
 #                  LIMIT %s;'''
 
-SELECT_USERS = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
-                   JOIN users u
-                   ON ffu.user_id = u.user_id
+SELECT_USERS = ''' SELECT ffu.nickname, ffu.email, ffu.about, ffu.fullname 
+                   FROM forum_for_users ffu
                    WHERE ffu.forum_id = %s
-                   ORDER BY u.nickname COLLATE ucs_basic
+                   ORDER BY ffu.nickname COLLATE ucs_basic
                    LIMIT %s;
                 '''
 
@@ -92,12 +88,11 @@ SELECT_USERS = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FR
 #                  ORDER BY users.nickname COLLATE ucs_basic DESC
 #                  LIMIT %s;'''
 
-SELECT_USERS_DESC = ''' SELECT u.user_id, u.nickname, u.about, u.email, u.fullname FROM forum_for_users ffu
-                         JOIN users u
-                         ON ffu.user_id = u.user_id
-                         WHERE ffu.forum_id = %s
-                         ORDER BY u.nickname COLLATE ucs_basic DESC
-                         LIMIT %s;
+SELECT_USERS_DESC = ''' SELECT ffu.nickname, ffu.email, ffu.about, ffu.fullname 
+                        FROM forum_for_users ffu
+                        WHERE ffu.forum_id = %s
+                        ORDER BY ffu.nickname COLLATE ucs_basic DESC
+                        LIMIT %s;
                      '''
 
 SELECT_COUNT_USERS = '''SELECT count(*) as users_count FROM users;'''

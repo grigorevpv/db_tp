@@ -56,13 +56,9 @@ def get_post_details_get(id):
             if 'user' == key:
                 user = post_user
             if 'forum' == key:
-                cursor.execute(SELECT_COUNT_POSTS_BY_FORUM_ID, [post["forum_id"], ])
-                count_posts = cursor.fetchone()["posts_count"]
-                cursor.execute(SELECT_COUNT_THREADS_BY_FORUM_ID, [post["forum_id"], ])
-                count_threads = cursor.fetchone()["threads_count"]
 
                 param_name_array = ["posts", "slug", "threads", "title", "user"]
-                param_value_array = [count_posts, post_forum["slug"], count_threads,
+                param_value_array = [post_forum['posts'], post_forum["slug"], post_forum['threads'],
                                      post_forum["title"], post_forum["user"]]
                 forum = dict(zip(param_name_array, param_value_array))
             if 'thread' == key:

@@ -2,8 +2,8 @@ FROM ubuntu:16.04
 
 MAINTAINER Grigorev Pavel
 
-#ENV http_proxy http://10.100.122.141:3128/
-#ENV https_proxy https://10.100.122.141:3128/
+ENV http_proxy http://10.100.122.141:3128/
+ENV https_proxy https://10.100.122.141:3128/
 
 # Обвновление списка пакетов
 RUN apt-get -y update
@@ -47,14 +47,14 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/$PGVER/main/postgresql.conf
 RUN echo "synchronous_commit=off" >> /etc/postgresql/$PGVER/main/postgresql.conf
 
 
-#RUN echo "log_statement = none" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_duration = off " >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_lock_waits = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_min_duration_statement = 50" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_filename = 'query.log'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_directory = '/var/log/postgresql'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_destination = 'csvlog'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "logging_collector = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_statement = none" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_duration = off " >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_lock_waits = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_min_duration_statement = 50" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_filename = 'query.log'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_directory = '/var/log/postgresql'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "log_destination = 'csvlog'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+RUN echo "logging_collector = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
 
 # Expose the PostgreSQL port
 EXPOSE 5432

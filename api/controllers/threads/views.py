@@ -2,6 +2,7 @@ from datetime import datetime
 from flask import Blueprint, request, make_response, jsonify
 from api.repositories.connect import PostgresDataContext
 from api.repositories.ThreadRepository.thread_queries_db import *
+from api.repositories.ForumRepository.forum_queries_db import *
 from api.repositories.PostRepository.post_queries_db import *
 from api.repositories.VoteRepository.vote_queries_db import *
 from enquiry.queries_db import *
@@ -100,6 +101,7 @@ def create_posts(slug_or_id):
         created_thread_data = dict(zip(param_name_array, param_value_array))
         created_threads_arr.append(created_thread_data)
 
+        cursor.execute(INCREMENT_POSTS, [forum["forum_id"], ])
     data_context.put_connection(connect)
     cursor.close()
     return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])

@@ -25,3 +25,7 @@ SELECT_COUNT_THREADS_BY_FORUM_ID = '''SELECT count(*) as threads_count FROM thre
 SELECT_COUNT_FORUMS = '''SELECT count(*) as forums_count FROM forums;'''
 
 DELETE_FORUMS_TABLE = '''DELETE FROM forums;'''
+
+INCREMENT_THREADS = '''UPDATE forums SET threads = threads + 1 WHERE forums.forum_id = %s;'''
+
+INCREMENT_POSTS = '''UPDATE forums SET posts = posts + 1 WHERE forums.forum_id = %s;'''

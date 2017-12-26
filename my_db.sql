@@ -25,13 +25,17 @@ CREATE TABLE forums (
 );
 
 CREATE TABLE IF NOT EXISTS forum_for_users (
+  forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE NOT NULL,
   user_id  INTEGER REFERENCES users (user_id) ON DELETE CASCADE NOT NULL,
-  forum_id INTEGER REFERENCES forums (forum_id) ON DELETE CASCADE NOT NULL
+  nickname CITEXT COLLATE "ucs_basic" UNIQUE NOT NULL,                    -- Уникальный nick пользователя
+  about    TEXT,                                                          -- Описание пользователя
+  email    CITEXT,                                                        -- email пользователя
+  fullname TEXT                                                           -- полное имя пользователя
 );
 
 ALTER TABLE forum_for_users
     ADD CONSTRAINT forum_for_users_cstr
-    UNIQUE(user_id, forum_id);
+    UNIQUE(forum_id, user_id);
 
 CREATE TABLE threads (
   id serial CONSTRAINT firstkey_th PRIMARY KEY,                    -- ID ветки обсуждения
@@ -108,11 +112,11 @@ EXECUTE PROCEDURE update_thread_votes();
 CREATE OR REPLACE FUNCTION inser_forum_for_user()
   RETURNS TRIGGER AS $$
 BEGIN
-  INSERT INTO forum_for_users (user_id, forum_id)
+  INSERT INTO forum_for_users (forum_id, user_id, nickname, email, about, fullname)
   (
-    SELECT NEW.user_id, NEW.forum_id
-    FROM users
-    WHERE users.user_id = new.user_id
+    SELECT  NEW.forum_id, NEW.user_id, u.nickname, u.email, u.about, u.fullname
+    FROM users u
+    WHERE u.user_id = new.user_id
   )
   ON CONFLICT DO NOTHING;
   RETURN NEW;
@@ -207,8 +211,8 @@ CREATE INDEX users_nickname_collate_email_about_fullname_uid_idx
 -- 
 -- --=========== FORUM_FOR_USER ===========
 -- 
--- CREATE INDEX users_for_forum_full_idx
---   on forum_for_users (user_id, forum_id);
+CREATE INDEX users_for_forum_full_idx
+  on forum_for_users (forum_id, user_id, nickname COLLATE "usc_basic", email, about, fullname);
 -- 
 -- --=========== VOTES ===========
 -- 
