@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="add new table forum_for_user and triggers for this table">
+    <list default="true" id="09fe1a01-a34b-4b4c-af42-302dc637e5d6" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/controllers/forums/views.py" afterPath="$PROJECT_DIR$/api/controllers/forums/views.py" />
-      <change beforePath="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" afterPath="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" />
-      <change beforePath="$PROJECT_DIR$/tests/report.html" afterPath="$PROJECT_DIR$/tests/report.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,7 +15,7 @@
     <SUITE FILE_PATH="coverage/db_tp$UserModel.coverage" NAME="UserModel Coverage Results" MODIFIED="1508588024728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/api/models/users" />
     <SUITE FILE_PATH="coverage/db_tp$ex.coverage" NAME="ex Coverage Results" MODIFIED="1510219923799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/db_tp$ex_dev.coverage" NAME="ex_dev Coverage Results" MODIFIED="1509620215853" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1514279292837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/db_tp$db_tp.coverage" NAME="db_tp Coverage Results" MODIFIED="1514279662992" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -65,15 +62,35 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="211" column="68" lean-forward="true" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
+            <state relative-caret-position="468">
+              <caret line="211" column="68" lean-forward="false" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
               <folding>
                 <marker date="1514279292798" expanded="true" signature="3057:3245" ph="INSERT INTO threads... " />
                 <marker date="1514279292798" expanded="true" signature="3447:3647" ph="INSERT INTO threads... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="117">
+              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,8 +108,8 @@
       <file leaf-file-name="user_queries_db.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+            <state relative-caret-position="870">
+              <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
               <folding>
                 <marker date="1514279292770" expanded="true" signature="29:153" ph="SELECT users... users" />
                 <marker date="1514279292770" expanded="true" signature="189:264" ph="SELECT user_... " />
@@ -121,6 +138,16 @@
                 <marker date="1514279292770" expanded="true" signature="5020:5061" ph="SELECT count... users" />
                 <marker date="1514279292770" expanded="true" signature="5091:5108" ph="DELETE FROM users... " />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="secondary.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -174,7 +201,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/api/services/ForumService/__init__.py" />
         <option value="$PROJECT_DIR$/api/models/forums/ForumModel.py" />
         <option value="$PROJECT_DIR$/api/models/users/UserModel.py" />
         <option value="$PROJECT_DIR$/api/models/threads/__init__.py" />
@@ -212,12 +238,10 @@
         <option value="$PROJECT_DIR$/ex.py" />
         <option value="$PROJECT_DIR$/api/controllers/service/views.py" />
         <option value="$PROJECT_DIR$/api/controllers/users/views.py" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/console.sql" />
         <option value="$PROJECT_DIR$/api/controllers/posts/views.py" />
         <option value="$PROJECT_DIR$/api/repositories/ThreadRepository/thread_queries_db.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console_1.sql" />
-        <option value="$PROJECT_DIR$/enquiry/secondary.py" />
         <option value="$PROJECT_DIR$/api/repositories/connect.py" />
         <option value="$PROJECT_DIR$/enquiry/connect.py" />
         <option value="$PROJECT_DIR$/api/controllers/threads/views.py" />
@@ -225,6 +249,9 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql" />
         <option value="$PROJECT_DIR$/api/controllers/forums/views.py" />
         <option value="$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/enquiry/secondary.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -594,27 +621,6 @@
       <option name="presentableId" value="Default" />
       <updated>1508262907602</updated>
     </task>
-    <task id="LOCAL-00007" summary="add new methods">
-      <created>1508923266989</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1508923266989</updated>
-    </task>
-    <task id="LOCAL-00008" summary="rewrite thread create function">
-      <created>1509048488805</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1509048488805</updated>
-    </task>
-    <task id="LOCAL-00009" summary="add votes and posts models">
-      <created>1509221366084</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1509221366084</updated>
-    </task>
     <task id="LOCAL-00010" summary="add some sorts">
       <created>1509227698999</created>
       <option name="number" value="00010" />
@@ -937,19 +943,39 @@
       <option name="project" value="LOCAL" />
       <updated>1514278866691</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="rewrite SELECT_USERS command">
+      <created>1514279337166</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1514279337166</updated>
+    </task>
+    <task id="LOCAL-00057" summary="change timezone for Dockerfile">
+      <created>1514281391443</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1514281391443</updated>
+    </task>
+    <task id="LOCAL-00058" summary="change gitignore">
+      <created>1514281515007</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1514281515007</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1920" y="0" width="1914" height="1196" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5032017" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.4967983" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3053435" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3053435" sideWeight="0.49791667" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3826336" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1693462" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
@@ -1015,9 +1041,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tests" />
-    <MESSAGE value="add tests file" />
-    <MESSAGE value="add pool connection and rewrite user_create and user_profile functions" />
     <MESSAGE value="rewrite change_user_profile with pool connection" />
     <MESSAGE value="[WIP] change forum database model" />
     <MESSAGE value="[WIP] forum/&lt;slug&gt;/create" />
@@ -1040,7 +1063,10 @@
     <MESSAGE value="add new table forum_for_user and triggers for this table" />
     <MESSAGE value="rewrite SELECT_USERS_SINCE_DESC command" />
     <MESSAGE value="rewrite SELECT_USERS_DESC command" />
-    <option name="LAST_COMMIT_MESSAGE" value="rewrite SELECT_USERS_DESC command" />
+    <MESSAGE value="rewrite SELECT_USERS command" />
+    <MESSAGE value="change timezone for Dockerfile" />
+    <MESSAGE value="change gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="change gitignore" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1066,7 +1092,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/flask/globals.py" />
     <entry file="file://$USER_HOME$/.virtualenvs/db_tp/lib/python3.5/site-packages/werkzeug/local.py" />
     <entry file="file://$PROJECT_DIR$/api/models/threads/ThreadModel.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1189,14 +1214,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="23" lean-forward="false" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/2d136c32/e03ccd64-b3ad-4aa7-83a0-62814fc2a280/students.public.forums" />
     <entry file="file://$PROJECT_DIR$/enquiry/queries_db.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1265,14 +1282,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="33" lean-forward="false" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1357,14 +1366,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="906">
-          <caret line="131" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="131" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/lib/python3.5/site-packages/flask/app.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="202">
@@ -1375,8 +1376,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/repositories/UserRepository/user_queries_db.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="59" column="17" lean-forward="false" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+        <state relative-caret-position="870">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding>
             <marker date="1514279292770" expanded="true" signature="29:153" ph="SELECT users... users" />
             <marker date="1514279292770" expanded="true" signature="189:264" ph="SELECT user_... " />
@@ -1410,12 +1411,44 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/controllers/forums/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="333">
-          <caret line="211" column="68" lean-forward="true" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
+        <state relative-caret-position="468">
+          <caret line="211" column="68" lean-forward="false" selection-start-line="211" selection-start-column="68" selection-end-line="211" selection-end-column="68" />
           <folding>
             <marker date="1514279292798" expanded="true" signature="3057:3245" ph="INSERT INTO threads... " />
             <marker date="1514279292798" expanded="true" signature="3447:3647" ph="INSERT INTO threads... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/fc1ff17a-ad19-4e6d-8f8c-e885abe750d6/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="906">
+          <caret line="131" column="41" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="131" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/enquiry/secondary.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="30" lean-forward="false" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" lean-forward="false" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
