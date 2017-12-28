@@ -2,9 +2,6 @@ FROM ubuntu:16.04
 
 MAINTAINER Grigorev Pavel
 
-#ENV http_proxy http://10.100.122.141:3128/
-#ENV https_proxy https://10.100.122.141:3128/
-
 # Обвновление списка пакетов
 RUN apt-get -y update
 
@@ -46,16 +43,6 @@ RUN echo "host  all all ::1/128 trust" >> /etc/postgresql/$PGVER/main/pg_hba.con
 RUN echo "listen_addresses='*'" >> /etc/postgresql/$PGVER/main/postgresql.conf
 RUN echo "synchronous_commit=off" >> /etc/postgresql/$PGVER/main/postgresql.conf
 
-
-#RUN echo "log_statement = none" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_duration = off " >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_lock_waits = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_min_duration_statement = 50" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_filename = 'query.log'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_directory = '/var/log/postgresql'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_destination = 'csvlog'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "logging_collector = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-
 # Expose the PostgreSQL port
 EXPOSE 5432
 
@@ -82,7 +69,7 @@ ENV PGPASSWORD lomogi99
 CMD service postgresql start &&\
     cd $WORK/ &&\
     psql -h localhost -U pavel -d forums -f my_db.sql &&\
-    gunicorn -w 6 -k sync --worker-connections 12 -t 360 -b :5000 db:app
+    gunicorn -w 8 -k sync --worker-connections 12 -t 360 -b :5000 db:app
 
 
 #docker build -t grigorev .

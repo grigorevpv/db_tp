@@ -1,5 +1,7 @@
 from datetime import datetime
 from flask import Blueprint, request, make_response, jsonify
+from psycopg2.extras import execute_values
+
 from api.repositories.connect import PostgresDataContext
 from api.repositories.ThreadRepository.thread_queries_db import *
 from api.repositories.ForumRepository.forum_queries_db import *
@@ -46,6 +48,9 @@ def create_posts(slug_or_id):
     created_threads_arr = []
     created_time = datetime.now()
 
+    data = []
+    query = "INSERT INTO posts (id, user_id, thread, forum_id, parent, created, message, path, author, forum) VALUES %s"
+
     for post in content:
         cursor.execute(SELECT_USERS_BY_NICKNAME, [post['author']])
         user = cursor.fetchone()
@@ -78,23 +83,26 @@ def create_posts(slug_or_id):
         cursor.execute(SELECT_NEXT_VAL)
         post_id = cursor.fetchone()["nextval"]
         post_path.append(post_id)
-        cursor.execute(INSERT_POST, [post_id, user["user_id"], thread["id"], thread["forum_id"], parent_id, created_time,
-                                     post["message"], post_path, user["nickname"], thread["forum"]])
-        returning_post = cursor.fetchone()
-        param_name_array = ["author", "created", "forum", "id", "isEdited", "message",
-                            "parent", "thread"]
-        param_value_array = [returning_post["author"],
-                             convert_time(created_time),
-                             returning_post["forum"],
-                             returning_post["id"],
-                             returning_post["isedited"],
-                             returning_post["message"],
-                             returning_post["parent"],
-                             returning_post["thread"]]
-        created_thread_data = dict(zip(param_name_array, param_value_array))
+
+        data.append([post_id, user["user_id"], thread["id"], thread["forum_id"], parent_id, created_time,
+                     post["message"], post_path, user["nickname"], thread["forum"], ])
+
+        created_thread_data = {
+            "author": user["nickname"],
+            "created": convert_time(created_time),
+            "forum": thread["forum"],
+            "id": post_id,
+            "isEdited": False,
+            "message": post["message"],
+            "parent": parent_id,
+            "thread": thread["id"]
+        }
+
         created_threads_arr.append(created_thread_data)
 
-        cursor.execute(INCREMENT_POSTS, [thread["forum_id"], ])
+    execute_values(cursor, query, data)
+    cursor.execute(INCREMENT_POSTS_BY_NUMBER, [len(data), thread["forum_id"], ])
+
     data_context.put_connection(connect)
     cursor.close()
     return make_response(jsonify(created_threads_arr), STATUS_CODE['CREATED'])
