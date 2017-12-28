@@ -69,7 +69,7 @@ ENV PGPASSWORD lomogi99
 CMD service postgresql start &&\
     cd $WORK/ &&\
     psql -h localhost -U pavel -d forums -f my_db.sql &&\
-    gunicorn -w 9 -k sync --worker-connections 18 -t 360 -b :5000 db:app
+    gunicorn -w 8 -k sync --worker-connections 12 -t 360 -b :5000 db:app
 
 
 #docker build -t grigorev .
