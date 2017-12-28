@@ -172,29 +172,29 @@ EXECUTE PROCEDURE insert_forum_for_user();
       CREATE INDEX forums_slug_uid_idx
         ON forums (slug, forum_id);
 -- 
--- CREATE INDEX forums_slug_all_idx
---   ON forums (slug, user, title, threads, posts, forum_id);
+CREATE INDEX forums_slug_all_idx
+  ON forums (slug, user, title, threads, posts, forum_id);
 -- 
 -- --=========== POSTS ===========
 -- 
--- CREATE INDEX posts_threads_idx
---   ON posts (thread);
--- 
--- CREATE INDEX posts_forums_idx
---   ON posts (forum_id);
--- 
--- CREATE INDEX posts_users_idx
---   ON posts (user_id);
--- 
--- CREATE INDEX posts_parent_idx
---   ON posts (parent);
+CREATE INDEX posts_threads_idx
+  ON posts (thread);
+
+CREATE INDEX posts_forums_idx
+  ON posts (forum_id);
+
+CREATE INDEX posts_users_idx
+  ON posts (user_id);
+
+CREATE INDEX posts_parent_idx
+  ON posts (parent);
 -- 
 -- ------------------------------------------------------------------------------------------------------------------------
--- CREATE INDEX IF NOT EXISTS posts_uid_thread_idx
---   ON posts (id, thread);
--- 
--- CREATE INDEX IF NOT EXISTS posts_thread_uid_idx
---   ON posts (thread, id);
+CREATE INDEX IF NOT EXISTS posts_uid_thread_idx
+  ON posts (id, thread);
+
+CREATE INDEX IF NOT EXISTS posts_thread_uid_idx
+  ON posts (thread, id);
 -- 
       CREATE INDEX IF NOT EXISTS posts_thread_path_idx
         ON posts (thread, path);
@@ -205,8 +205,8 @@ EXECUTE PROCEDURE insert_forum_for_user();
       CREATE INDEX posts_thread_parent_path_uid_idx
         ON posts (thread, parent, path, id);
 -- 
--- CREATE INDEX posts_uid_thread_parent_idx
---   ON posts (id, thread, parent);
+CREATE INDEX posts_uid_thread_parent_idx
+  ON posts (id, thread, parent);
 -- 
 -- --=========== THREADS ===========
 -- 
@@ -216,8 +216,8 @@ EXECUTE PROCEDURE insert_forum_for_user();
       CREATE INDEX threads_forums_idx
         ON threads (forum_id);
 -- 
--- CREATE INDEX threads_users_idx
---   ON threads (user_id);
+CREATE INDEX threads_users_idx
+  ON threads (user_id);
 -- 
       create index threads_forum_id_created_idx
         on threads (forum_id, created);
@@ -240,8 +240,8 @@ EXECUTE PROCEDURE insert_forum_for_user();
 -- 
 -- --=========== VOTES ===========
 -- 
--- CREATE INDEX vote_users_idx
---   ON votes (user_id);
--- 
--- CREATE INDEX vote_threads_idx
---   ON votes (thread_id);
+CREATE INDEX vote_users_idx
+  ON votes (user_id);
+
+CREATE INDEX vote_threads_idx
+  ON votes (thread_id);

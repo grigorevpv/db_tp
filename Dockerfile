@@ -50,7 +50,7 @@ RUN echo "synchronous_commit=off" >> /etc/postgresql/$PGVER/main/postgresql.conf
 #RUN echo "log_statement = none" >>  /etc/postgresql/$PGVER/main/postgresql.conf
 #RUN echo "log_duration = off " >>  /etc/postgresql/$PGVER/main/postgresql.conf
 #RUN echo "log_lock_waits = on" >>  /etc/postgresql/$PGVER/main/postgresql.conf
-#RUN echo "log_min_duration_statement = 50" >>  /etc/postgresql/$PGVER/main/postgresql.conf
+#RUN echo "log_min_duration_statement = 5" >>  /etc/postgresql/$PGVER/main/postgresql.conf
 #RUN echo "log_filename = 'query.log'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
 #RUN echo "log_directory = '/var/log/postgresql'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
 #RUN echo "log_destination = 'csvlog'" >>  /etc/postgresql/$PGVER/main/postgresql.conf
@@ -82,7 +82,7 @@ ENV PGPASSWORD lomogi99
 CMD service postgresql start &&\
     cd $WORK/ &&\
     psql -h localhost -U pavel -d forums -f my_db.sql &&\
-    gunicorn -w 6 -k sync --worker-connections 12 -t 360 -b :5000 db:app
+    gunicorn -w 8 -k sync --worker-connections 12 -t 360 -b :5000 db:app
 
 
 #docker build -t grigorev .
